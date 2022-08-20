@@ -24,7 +24,6 @@ function Game() {
                 {gameMode === "Town View" && <TownView/>}
                 {gameMode === "Battle View" && <BattleView/>}
             </>
-
         </div>
     )
 }
