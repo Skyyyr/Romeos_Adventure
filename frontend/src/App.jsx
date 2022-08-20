@@ -1,33 +1,55 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios'
 import './App.css'
+import Home from "./Pages/Home.jsx";
+import Signup from "./Pages/Signup.jsx";
+import Login from "./Pages/Login.jsx";
+import Logout from "./Pages/Logout.jsx";
+import About from "./Pages/About.jsx";
+import Game from "./Pages/Game.jsx";
+import PageNotFound from "./Pages/PageNotFound.jsx";
+
+const getCSRFToken = ()=> {
+    let csrfToken
+
+    // the browser's cookies for this page are all in one string, separated by semi-colons
+    const cookies = document.cookie.split(';')
+    for ( let cookie of cookies ) {
+        // individual cookies have their key and value separated by an equal sign
+        const crumbs = cookie.split('=')
+        if ( crumbs[0].trim() === 'csrftoken') {
+          csrfToken = crumbs[1]
+        }
+    }
+    return csrfToken
+}
+
+axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
 function App() {
-  const [count, setCount] = useState(0)
+
+    // const whoAmI = async () => {
+    //     const response = await axios.get('/whoami')
+    //     const user = response.data && response.data[0] && response.data[0].fields
+    //     setUser(user)
+    // }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="App">
+          <Router>
+              {/*<AppNavbar/>*/}
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/logout' element={<Logout />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/game' element={<Game />} />
+                <Route path='*' element={<PageNotFound />} />
+            </Routes>
+        </Router>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
   )
 }
 
