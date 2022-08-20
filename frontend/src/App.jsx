@@ -29,6 +29,7 @@ const getCSRFToken = ()=> {
 axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
 function App() {
+  const [user, setUser] = useState("Garrett Adams")
 
     // const whoAmI = async () => {
     //     const response = await axios.get('/whoami')
@@ -39,7 +40,7 @@ function App() {
   return (
       <div className="App">
           <Router>
-              <ResponsiveAppBar/>
+              <ResponsiveAppBar user={user}/>
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/signup' element={<Signup />} />

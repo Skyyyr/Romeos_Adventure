@@ -11,15 +11,19 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import SecurityIcon from '@mui/icons-material/Security';
+import {useNavigate} from 'react-router-dom';
 
-const pages = ['Justins Project', 'Pricing', 'Blog'];
-const settings = ['Account', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const pages = ['Home', 'Game'];
+const pagesObj = {'Home':'',"Game":'game'}
+const settings = ['About', 'Logout'];
+
+const ResponsiveAppBar = ({user}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,6 +39,22 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const settingHandler = function(event,key){
+    event.preventDefault()
+    console.log(key)
+    if(key==="About"){
+      navigate('/about');
+    }
+    else{
+        console.log('You Logged Out')
+    //   axios.post('/logout').then((response)=>{
+    //     console.log('response from server: ', response)
+    //     navigate('/');
+    //     window.location.reload()
+    //   })
+    }
+  }
 
   return (
     <AppBar position="static">
@@ -90,12 +110,11 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography component="a" textAlign="center" href={`#/${pagesObj[page]}`}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <SecurityIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -112,11 +131,12 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Romeos Adventure
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
+                href={`#/${pagesObj[page]}`}
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -126,6 +146,7 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
+          {user && <Typography style = {{marginRight:'10px'}}>Welcome, {user}  </Typography>}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -150,7 +171,7 @@ const ResponsiveAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                    <Typography component='a' onClick={(event)=>settingHandler(event,setting)} textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
