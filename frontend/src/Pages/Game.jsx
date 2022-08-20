@@ -1,7 +1,7 @@
-import CreateCharacter from '../Components/gamemenu/CreateCharacter'
-import BattleView from '../Components/gamemenu/BattleView'
-import MapView from '../Components/gamemenu/MapView'
-import TownView from '../Components/gamemenu/TownView'
+import CreateCharacter from '../features/gamemenu/CreateCharacter'
+import BattleView from '../features/gamemenu/BattleView'
+import MapView from '../features/gamemenu/MapView'
+import TownView from '../features/gamemenu/TownView'
 import { useState } from 'react'
 
 

@@ -1,6 +1,7 @@
 /backend/.idea/
 .idea/
 /backend/venv/
+/backend/static/
 
 # Django #
 *.log
