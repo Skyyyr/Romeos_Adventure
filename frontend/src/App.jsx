@@ -9,7 +9,7 @@ import Logout from "./Pages/Logout.jsx";
 import About from "./Pages/About.jsx";
 import Game from "./Pages/Game.jsx";
 import PageNotFound from "./Pages/PageNotFound.jsx";
-import ResponsiveAppBar from './Components/Navbar';
+import ResponsiveAppBar from './components/Navbar';
 
 const getCSRFToken = ()=> {
     let csrfToken
