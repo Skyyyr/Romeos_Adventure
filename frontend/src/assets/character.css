@@ -1,0 +1,22 @@
+.dispFighter{
+    background: url(Fighter.png);
+    background-position: -5px -3378px !important; 
+    width: 262px !important;
+    height: 279px !important;
+    background-size: auto !important;
+}
+
+.icon{
+    background: url(Fighter.png);
+    width: 74px !important; 
+    height: 105px !important;
+    background-position: 0px -10px !important;
+    background-size: auto !important;
+    transform: scaleX(-1);
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}

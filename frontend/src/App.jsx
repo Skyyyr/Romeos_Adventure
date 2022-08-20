@@ -9,6 +9,7 @@ import Logout from "./Pages/Logout.jsx";
 import About from "./Pages/About.jsx";
 import Game from "./Pages/Game.jsx";
 import PageNotFound from "./Pages/PageNotFound.jsx";
+import ResponsiveAppBar from './Components/Navbar';
 
 const getCSRFToken = ()=> {
     let csrfToken
@@ -28,6 +29,7 @@ const getCSRFToken = ()=> {
 axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
 function App() {
+  const [user, setUser] = useState("Garrett Adams")
 
     // const whoAmI = async () => {
     //     const response = await axios.get('/whoami')
@@ -38,7 +40,7 @@ function App() {
   return (
       <div className="App">
           <Router>
-              {/*<AppNavbar/>*/}
+              <ResponsiveAppBar user={user}/>
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/signup' element={<Signup />} />
