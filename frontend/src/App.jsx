@@ -9,6 +9,7 @@ import Logout from "./Pages/Logout.jsx";
 import About from "./Pages/About.jsx";
 import Game from "./Pages/Game.jsx";
 import PageNotFound from "./Pages/PageNotFound.jsx";
+import ResponsiveAppBar from './Components/Navbar';
 
 const getCSRFToken = ()=> {
     let csrfToken
@@ -38,7 +39,7 @@ function App() {
   return (
       <div className="App">
           <Router>
-              {/*<AppNavbar/>*/}
+              <ResponsiveAppBar/>
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/signup' element={<Signup />} />
