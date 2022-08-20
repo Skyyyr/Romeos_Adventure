@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios'
 import './App.css'
@@ -29,28 +29,33 @@ const getCSRFToken = ()=> {
 axios.defaults.headers.common['X-CSRFToken'] = getCSRFToken()
 
 function App() {
+  //TODO Change the default value
   const [user, setUser] = useState("Garrett Adams")
 
-    // const whoAmI = async () => {
-    //     const response = await axios.get('/whoami')
-    //     const user = response.data && response.data[0] && response.data[0].fields
-    //     setUser(user)
-    // }
+  const whoAmI = async () => {
+    const response = await axios.get('/whoami')
+    const user = response.data && response.data[0] && response.data[0].fields
+    setUser(user)
+  }
+
+  useEffect(() => {
+    whoAmI()
+  }, [])
 
   return (
       <div className="App">
-          <Router>
-              <ResponsiveAppBar user={user}/>
-              <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/signup' element={<Signup />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/logout' element={<Logout />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/game' element={<Game />} />
-                <Route path='*' element={<PageNotFound />} />
-            </Routes>
-        </Router>
+        <Router>
+          <ResponsiveAppBar user={user}/>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/logout' element={<Logout />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/game' element={<Game />} />
+            <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </Router>
       </div>
   )
 }

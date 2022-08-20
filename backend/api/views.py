@@ -1,25 +1,29 @@
+from django.forms import model_to_dict
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 # from .models import AppUser as User, BaseCharacter, Character, Moves
-from django.core import serializers
-from django.contrib.auth import authenticate, login, logout
+from .models import AppUser as User
+# from django.core import serializers
+# from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view
-from django.views.decorators.csrf import csrf_exempt
-import json
-from django.db.models import F
+# from django.views.decorators.csrf import csrf_exempt
+# import json
+# from django.db.models import F
 
 
 def home(request):
     theIndex = open('static/index.html').read()
     return HttpResponse(theIndex)
 
-# @api_view(['POST'])
-# def sign_up(request):
-#     try:
-#         User.objects.create_user(last_name=request.data['last_name'], first_name=request.data['first_name'], username=request.data['email'], password=request.data['password'], email=request.data['email'])
-#     except Exception as e:
-#         print(str(e))
-#     return HttpResponse('hi')
+
+@api_view(['POST'])
+def sign_up(request):
+    try:
+        User.objects.create_user(password=request.data['password'], username=request.data['email'])
+        return JsonResponse({'signup': 'success'})
+    except Exception as e:
+        print(str(e))
+    return JsonResponse({'signup': 'failure'})
 
 # @api_view(['POST'])
 # def log_in(request):
