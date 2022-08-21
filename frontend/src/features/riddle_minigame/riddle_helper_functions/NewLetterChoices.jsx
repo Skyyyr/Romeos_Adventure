@@ -1,3 +1,5 @@
+import ShuffleArray from './ShuffleArray'
+
 export default function NewLetterChoices(answer) {
   let list = answer.split('')
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -7,6 +9,6 @@ export default function NewLetterChoices(answer) {
   const listWithLetterIDs = list.map((letter, index) => {
     return [index.toString(), letter]
   })
-  const newList = shuffleArray(listWithLetterIDs)
+  const newList = ShuffleArray(listWithLetterIDs)
   return newList
 }
