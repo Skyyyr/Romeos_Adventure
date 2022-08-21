@@ -10,7 +10,8 @@ function LetterTiles( {lettersGuessed, setLettersGuessed, letterChoices} ) {
       if (lettersGuessed[i][0] == '') {
         let newLettersGuessed = JSON.parse(JSON.stringify(lettersGuessed))
         newLettersGuessed[i][0] = event.target.dataset.id
-        newLettersGuessed[i][1] = event.target.value
+        console.log('event.target', event.target)
+        newLettersGuessed[i][1] = event.target.textContent
         setLettersGuessed(newLettersGuessed)
         return
       }
@@ -37,15 +38,14 @@ function LetterTiles( {lettersGuessed, setLettersGuessed, letterChoices} ) {
       { 
         letterChoices.map((elem) => {
           return (
-            <Button
-              variant="contained"
+            <button
               id={`ltr${elem[0]}`}
               data-id={elem[0]}
               value={elem[1]}
               onClick={(e) => handleSelectLetterClick(e)}
             >
               {elem[1]}
-            </Button>
+            </button>
           )
         })
       }

@@ -10,16 +10,18 @@ import riddles from './riddle_data/riddles.json';
 import NewLetterChoices from './riddle_helper_functions/NewLetterChoices';
 
 
-function Riddle_Minigame( {handleClose} ) {
+function Riddle_Minigame( {handleRiddleClose} ) {
 
   let isMounted = useRef(false);
 
-  const [ riddleIdNumber, setRiddleIdNumber ] = useState(0);
+  const [ riddleIdNumber, setRiddleIdNumber ] = useState('0');
   const [ lettersGuessed, setLettersGuessed ] = useState(false);
   const [ letterChoices, setLetterChoices ] = useState(false);
   const [ riddleSolved, setRiddleSolved ] = useState(false);
 
-  const CURRENT_RIDDLE = riddles.find(x => x.id === riddleIdNumber);
+  const CURRENT_RIDDLE = riddles.find(x => x.id == riddleIdNumber);
+  console.log(CURRENT_RIDDLE)
+  console.log(CURRENT_RIDDLE.question)
   const RIDDLE_QUESTION = CURRENT_RIDDLE.question;
   const RIDDLE_ANSWER = CURRENT_RIDDLE.answer.toUpperCase();
   
@@ -91,8 +93,6 @@ function Riddle_Minigame( {handleClose} ) {
 
   return (
     <section id="riddle-container">
-
-      // Conditional render loads everything at once to avoid pop-in
       { letterChoices ?
         <>
           <div className="centered" id="title-box">
@@ -116,7 +116,7 @@ function Riddle_Minigame( {handleClose} ) {
               setLetterChoices={setLetterChoices}
               resetLettersGuessed={resetLettersGuessed}
             />
-            <Button variant="contained" onClick={devResetRiddleId()}>DEV-RESET</Button>
+            <button style={{marginLeft: 'auto'}} onClick={devResetRiddleId}>DEV-RESET</button>
           </div>
           <div className="centered" id="answer-box">
             <AnswerField 
@@ -133,15 +133,13 @@ function Riddle_Minigame( {handleClose} ) {
           </div>
         </> : null
       }
-
-      // Conditional render produces win-screen overlay
       { riddleSolved ?
         <div className="win-overlay centered">
           <WinOverlay
             answer={RIDDLE_ANSWER}
             riddleIdNumber={riddleIdNumber}
             setRiddleIdNumber={setRiddleIdNumber}
-            handleClose={handleClose}
+            handleRiddleClose={handleRiddleClose}
           />
         </div> : null 
       }

@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { useRef } from 'react'
 
 
-function RiddleWinOverlay( {answer, riddleIdNumber, setRiddleIdNumber, handleClose} ) {
+function RiddleWinOverlay( {answer, riddleIdNumber, setRiddleIdNumber, handleRiddleClose} ) {
 
   const firstAnswer = useRef(answer)
 
@@ -12,7 +12,7 @@ function RiddleWinOverlay( {answer, riddleIdNumber, setRiddleIdNumber, handleClo
   // }
 
   return (
-    <div className="text-center" style={'color: gold'}>
+    <div className="text-center" style={{color: 'gold'}}>
       <h1>
         <u>Correct!</u>
       </h1>
@@ -23,7 +23,7 @@ function RiddleWinOverlay( {answer, riddleIdNumber, setRiddleIdNumber, handleClo
       <h2 className="mb-5">
         {firstAnswer.current}
       </h2>
-      <Button variant="contained" onClick={() => handleClose()} id="riddle-win-button">
+      <Button variant="contained" onClick={handleRiddleClose} id="riddle-win-button">
         Continue
       </Button>
     </div>
