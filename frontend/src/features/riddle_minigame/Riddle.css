@@ -1,0 +1,137 @@
+#riddle-container {
+  height: 620px;
+  width: 460px;
+  padding: 0px;
+  color: rgb(251, 250, 235);
+  background-color: rgb(3, 78, 61);
+}
+
+/* RIDDLE CONTAINER SECTIONS - TOP TO BOTTOM */
+#title-box {
+  height: 100px;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.6));
+}
+#question-box {
+  height: 240px;
+}
+#options-box {
+  height: 50px;
+  display: flex;
+  padding: 0;
+}
+#answer-box {
+  height: 70px;
+  padding: 0;
+  background-color: rgb(35, 122, 131);
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.6));
+}
+#letters-box{
+  height: 160px;
+  padding: 0;
+}
+
+/* GENERAL STYLING  */ 
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.mt-5 {
+  margin-top: 5rem;
+}
+.mb-5 {
+  margin-bottom: 5rem;
+}
+.text-center {
+  text-align: center;
+}
+
+/* QUESTION BOX STYLING */
+#display-question {
+  text-align: center;
+  height: auto;
+  margin-inline: 40px;
+  font-size: 1.5rem;
+}
+
+/* LETTER CHOICES STYLING */
+#letter-choices-container {
+  display: flex;
+  width: 460px;
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#ltr0, #ltr1, #ltr2, #ltr3, #ltr4, #ltr5, #ltr6, #ltr7,
+#ltr8, #ltr9, #ltr10, #ltr11, #ltr12, #ltr13, #ltr14, #ltr15 {
+  height: 52px;
+  width: 52px;
+  margin: .40rem .25rem .40rem .25rem;
+  padding: 0;
+  border-radius: 8px;
+  border-color: rgb(35, 122, 131);
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgb(251, 250, 235);
+  background: rgb(37, 200, 162);
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.6));
+}
+
+/* SHUFFLE AND RESET ICON BUTTONS */
+.riddle-icon {
+  color: rgb(251, 250, 235);
+  height: 35px;
+  width: auto;
+  margin-left: 20px;
+  margin-right: -10px;
+}
+.riddle-icon:hover {
+  color: rgb(37, 200, 162);
+}
+
+/* ANSWER BOX STYLING */
+#ans-container {
+  display: flex;
+}
+.ans-tile {
+  height: 42px;
+  width: 42px;
+  padding-top: 1%;
+  margin-inline: .1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  vertical-align: middle;
+  border-radius: 10px;
+  background-color: rgb(43, 43, 43);
+  color: rgb(251, 250, 235);
+}
+.ans-tile:hover {
+  cursor: pointer;
+}
+
+/* RIDDLE WIN-SCREEN */
+.win-overlay {
+  position: absolute;
+  height: 620px;
+  width: 100%;
+  top: 0%;
+  color: rgb(251, 250, 235);
+  background-color: rgb(3, 78, 61);
+}
+#win-horiz-rule {
+  margin-top: 0px auto 0px auto;
+  width: 50%;
+}
+#riddle-win-button {
+  width: 60%;
+  height: 55px;
+  font-weight: 800;
+  font-size: 1.7rem;
+  border-color: rgb(35, 122, 131);
+  background-color: rgb(37, 200, 162);
+}

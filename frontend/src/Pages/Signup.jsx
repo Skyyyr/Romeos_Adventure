@@ -1,16 +1,14 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import { useEffect } from 'react';
 
 
 export default function SignUp() {
@@ -45,7 +43,7 @@ export default function SignUp() {
     const results = signupResponse.data['signup']
     if (results === 'success') {
         alert("You've successfully created your account.")
-        nav('/login')
+        nav('/signin')
     } else {
       alert("The details you entered were not valid for an account to be made. Please enter a valid email, " +
           "and a password which is 7 characters or greater.")
@@ -100,7 +98,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/#/login" variant="body2">
+                <Link href="/#/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
