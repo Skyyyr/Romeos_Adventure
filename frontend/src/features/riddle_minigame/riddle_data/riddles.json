@@ -1,0 +1,32 @@
+[
+  {
+		"id": "0",
+		"question": "I'm a language for everything yet I have no real identity of my own. Good luck trying to compile me. What am I?",
+		"answer": "Pseudocode"
+	},
+	{
+		"id": "1",
+		"question": "The more you code, the more of me there is. I may be gone for now, but you can't get rid of me forever. What am I?",
+		"answer": "Bug"
+	},
+	{
+		"id": "2",
+		"question": "As a developer, you usually get mad at me because I complain a lot, although I'm usually right. What am I?",
+		"answer": "Compiler"
+	},
+	{
+		"id": "3",
+		"question": "I'm your \"waiter\" for information. What am I?",
+		"answer": "Server"
+	},
+	{
+		"id": "4",
+		"question": "I have a pulse but no heart, a brain but can't think and while I can sleep, I usually don't stay asleep for long. What am I?",
+		"answer": "CPU"
+	},
+	{
+		"id": "5",
+		"question": "I used to have a ball, but now I have a laser. I may or may not have a tail. What am I?",
+		"answer": "Mouse"
+	}
+]
