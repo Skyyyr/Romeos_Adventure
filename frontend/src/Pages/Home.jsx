@@ -8,7 +8,7 @@ function Home() {
             <h1>
                 Home Page
             </h1>
-            <Link to="/login">
+            <Link to="/signin">
                 <button>Login</button>
             </Link>
             <Link to="/signup">

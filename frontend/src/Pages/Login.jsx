@@ -1,26 +1,32 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import axios from 'axios'
+import { useEffect } from 'react';
 
 
 
-export default function Login() {
+export default function Login({user,setUser}) {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    console.log(event)
+    console.log(data.get('email'))
+    console.log(data.get('password'))
+    console.log(user)
+    axios.post('/login', {email: data.get('email'), password: data.get('password')}).then((response)=>{
+        console.log('response from server: ', response)
+        window.location.reload()
+    })
+  }
+
+
 
   return (
       <Container component="main" maxWidth="xs">
