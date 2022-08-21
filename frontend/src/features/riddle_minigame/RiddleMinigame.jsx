@@ -20,8 +20,6 @@ function Riddle_Minigame( {handleRiddleClose} ) {
   const [ riddleSolved, setRiddleSolved ] = useState(false);
 
   const CURRENT_RIDDLE = riddles.find(x => x.id == riddleIdNumber);
-  console.log(CURRENT_RIDDLE)
-  console.log(CURRENT_RIDDLE.question)
   const RIDDLE_QUESTION = CURRENT_RIDDLE.question;
   const RIDDLE_ANSWER = CURRENT_RIDDLE.answer.toUpperCase();
   
