@@ -10,7 +10,6 @@ function LetterTiles( {lettersGuessed, setLettersGuessed, letterChoices} ) {
       if (lettersGuessed[i][0] == '') {
         let newLettersGuessed = JSON.parse(JSON.stringify(lettersGuessed))
         newLettersGuessed[i][0] = event.target.dataset.id
-        console.log('event.target', event.target)
         newLettersGuessed[i][1] = event.target.textContent
         setLettersGuessed(newLettersGuessed)
         return

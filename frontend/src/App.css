@@ -5,38 +5,56 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+
+/* GENERAL PAGE DESIGN */
+
+.page-container {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 68.5px);
+  width: 100%;
+  background-color: rgb(48,48,48);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.game-container {
+  height: 600px;
+  width: 1000px;
+  border: transparent;
+  border-radius: 10px;
+  background-color: rgb(70,70,70);
 }
 
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* HOME PAGE */ 
+
+#home-top-half {
+  height: 60%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  color: whitesmoke;
+}
+#home-bottom-half {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.home-details {
+  width: calc(90%/3);
+  height: 94%;
+  border: solid black;
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+  color: whitesmoke;
+  box-shadow: 0 .25rem .25rem 0.2rem black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* GAME PAGE */
+#game-title {
+  height: 20%;
+  display: grid;
+  place-items: center;  
+  color: whitesmoke;
 }

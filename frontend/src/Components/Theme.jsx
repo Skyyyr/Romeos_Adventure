@@ -1,9 +1,9 @@
 import { createTheme} from '@mui/material';
 
 export const themeOptions = createTheme({
-    typography: {
-      fontFamily: ['MedievalSharp', 'cursive'].join(','),
-    },
+    // typography: {
+    //   fontFamily: ['MedievalSharp', 'cursive'].join(','),
+    // },
     palette: {
       type: 'dark',
       primary: {
