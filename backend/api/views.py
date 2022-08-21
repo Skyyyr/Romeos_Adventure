@@ -1,7 +1,7 @@
 from django.forms import model_to_dict
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import AppUser as User
+from .models import AppUser as User, GameData
 from django.core import serializers
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.decorators import api_view
@@ -70,10 +70,19 @@ def who_am_i(request):
 
 @api_view(['POST'])
 def create_character(request):
-    print(request.user)
-    print(request.data['type'])
-    User.objects.filter(username=request.user).update(character=request.data['type'])
-    return HttpResponse("success")
+    if request.user.is_authenticated:
+        char_data = request.data
+       
+        GameData.objects.create(
+            type=char_data['type'],
+            accuracy = char_data['accuracy'],
+            evasion = char_data['evasion'],
+            strength = char_data['strength'],
+            defense = char_data['defense'],
+            user=request.user).save()
+        return HttpResponse("success")
+    return JsonResponse({'user':None})
+
 
 @api_view(['POST'])
 def delete_character(request):
