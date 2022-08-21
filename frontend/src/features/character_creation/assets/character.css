@@ -1,0 +1,34 @@
+
+
+.frontend{
+    background: url(frontend.png);
+    background-position: -5px -646px; 
+    width: 55px;
+    height: 65px;
+    transform: scale(2);
+    background-size: auto !important;
+}
+
+.backend{
+    background: url(backend.png);
+    background-position: -5px -1159px; 
+    width: 55px;
+    height: 60px;
+    transform: scale(2);
+    background-size: auto !important;
+}
+
+.fullstack{
+    background: url(fullstack.png);
+    background-position: -325px -903px; 
+    width: 63px;
+    height: 63px;
+    transform: scale(2);
+    background-size: auto !important;
+}
+
+.char-tab{
+    width: 126px;
+    height: 126px;
+}
+

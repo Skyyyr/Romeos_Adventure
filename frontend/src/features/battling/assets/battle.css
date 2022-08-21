@@ -1,0 +1,121 @@
+
+
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+
+.frontend-battle{
+    background: url(frontend.png);
+    background-position: -637px -1598px; 
+    width: 75px;
+    height: 76px;
+    transform: scale(2);
+    background-size: auto !important;
+}
+
+.backend-battle{
+    background: url(backend.png);
+    background-position: -195px -1223px; 
+    width: 65px;
+    height: 63px;
+    transform: scale(2);
+    background-size: auto !important;
+}
+
+.fullstack-battle{
+    background: url(fullstack.png);
+    background-position: -202px -966px; 
+    width: 61px;
+    height: 64px;
+    transform: scale(2);
+    background-size: auto !important;
+}
+
+.flip
+{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.color{
+    background-color: #d34549;
+
+}
+
+.attack{
+    transition: 0.1s;
+    transform: scale(2) translateX(10px) translateY(-10px);
+}
+
+.reset{
+    transition: 0.1s;
+    animation: .3s .3s infinite;
+}
+
+.eneAttack{
+    transition: 0.1s;
+    transform: scale(2) translateX(-10px) translateY(-10px);
+}
+
+.eneReset{
+    transition: 0.1s;
+}
+
+.hit {
+    opacity: 1;
+    animation: flash 0.3s 0.3s infinite;
+}
+
+  @keyframes flash {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+.main {
+    display: flex;
+    border-radius: 5px;
+    gap: 5px;
+    padding: 5px;
+    align-items: center;
+    background-color: white;
+  }
+  
+  .label {
+    font-size: 32px;
+    font-weight: bold;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 50px;
+    color: black;
+  }
+  
+  .max {
+    height: 35px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    flex: 1;
+    background-color: lightgray;
+  }
+
+  .value {
+    height: 100%;
+    background-color: #020025;
+    transition: 0.35s;
+  }
+
+  .battleDialog{
+    border-style: double;
+  }

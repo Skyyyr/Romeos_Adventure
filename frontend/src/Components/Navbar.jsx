@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,6 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import SecurityIcon from '@mui/icons-material/Security';
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios'
+
 
 
 const pages = ['Home', 'Game'];
@@ -48,11 +49,11 @@ const ResponsiveAppBar = ({user}) => {
     }
     else{
         console.log('You Logged Out')
-    //   axios.post('/logout').then((response)=>{
-    //     console.log('response from server: ', response)
-    //     navigate('/');
-    //     window.location.reload()
-    //   })
+      axios.post('/logout').then((response)=>{
+        console.log('response from server: ', response)
+        navigate('/');
+        window.location.reload()
+      })
     }
   }
 
@@ -146,11 +147,12 @@ const ResponsiveAppBar = ({user}) => {
             ))}
           </Box>
 
-          {user && <Typography style = {{marginRight:'10px'}}>Welcome, {user}  </Typography>}
+          {user && <Typography style = {{marginRight:'10px'}}>Logged In </Typography>}
+          {!user && <Typography style = {{marginRight:'10px'}}>Logged Out </Typography>}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Romeo" />
               </IconButton>
             </Tooltip>
             <Menu
