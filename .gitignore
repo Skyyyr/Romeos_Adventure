@@ -3,11 +3,12 @@
 /backend/venv/
 #/backend/static/assets/
 /backend/static/
+#backend/api/__pycache__/
 
 # Django #
 *.log
 *.pot
-*.pyc
+#*.pyc
 __pycache__
 db.sqlite3
 media

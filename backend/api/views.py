@@ -19,11 +19,13 @@ def home(request):
 def sign_up(request):
     print(request.data)
     try:
-        User.objects.create_user(password=request.data['password'],character=None, username=request.data['email'],email=request.data['email'])
+        User.objects.create_user(password=request.data['password'], character=None, username=request.data['email'],
+                                 email=request.data['email'])
         return JsonResponse({'signup': 'success'})
     except Exception as e:
         print(str(e))
     return JsonResponse({'signup': 'failure'})
+
 
 @api_view(['POST'])
 def log_in(request):
@@ -53,35 +55,40 @@ def log_in(request):
         return HttpResponse('no user!')
         # Return an 'invalid login' error message.
 
+
 @api_view(['POST'])
 def log_out(request):
     logout(request)
     return HttpResponse('Logged you out!')
+
 
 @api_view(['GET'])
 def who_am_i(request):
     # Make sure that you don't send sensitive information to the client, such as password hashes
     # raise Exception('oops')
     if request.user.is_authenticated:
-        data = serializers.serialize("json", [request.user], fields=['email', 'username','first_name','last_name','date_joined','character'])
+        data = serializers.serialize("json", [request.user],
+                                     fields=['email', 'username', 'first_name', 'last_name', 'date_joined',
+                                             'character'])
         return HttpResponse(data)
     else:
-        return JsonResponse({'user':None})
+        return JsonResponse({'user': None})
+
 
 @api_view(['POST'])
 def create_character(request):
     if request.user.is_authenticated:
         char_data = request.data
-       
+
         GameData.objects.create(
             type=char_data['type'],
-            accuracy = char_data['accuracy'],
-            evasion = char_data['evasion'],
-            strength = char_data['strength'],
-            defense = char_data['defense'],
+            accuracy=char_data['accuracy'],
+            evasion=char_data['evasion'],
+            strength=char_data['strength'],
+            defense=char_data['defense'],
             user=request.user).save()
         return HttpResponse("success")
-    return JsonResponse({'user':None})
+    return JsonResponse({'user': None})
 
 
 @api_view(['POST'])
