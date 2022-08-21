@@ -39,8 +39,8 @@ function CreateCharacter({user}) {
 
     const createChar = function(event,type){
         event.preventDefault()
-        console.log(user)
-        axios.post('/createcharacter', {type:type}).then((response)=>{
+        console.log(user,data,stats)
+        axios.post('/createcharacter', {type:type, ...stats}).then((response)=>{
             window.location.reload()
             console.log('response from server: ', response)
         })

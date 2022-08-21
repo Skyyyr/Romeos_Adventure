@@ -54,34 +54,6 @@ function ViewCharacter() {
                 This page will display character the user picked.
             </h1>
             <Button variant="outlined" onClick={(event)=>deleteChar(event,type)}>Delete Character</Button>
-            <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                <Tabs p={0} value={type} onChange={handleChangeTab} centered>
-                    <Tab sx={{height:150}} className="char-tab" value = "frontend" label={<span style={{'padding-top':'20px'}}>Frontend</span>} icon={<div className="frontend"></div>}/>
-                    <Tab sx={{height:150}} className="char-tab" value = "backend" label={<span style={{'padding-top':'20px'}}>Backend</span>} icon={<div className="backend"></div>}/>
-                    <Tab sx={{height:150}} className="char-tab" value = "fullstack" label={<span style={{'padding-top':'20px'}}>FullStack</span>} icon={<div className="fullstack"></div>}/>
-                </Tabs>
-            </Box>
-            <div className='col-md-4 align-self-center'>
-                <h1>Stats</h1>
-                <List>
-                    {statType.map((val, ind)=>{
-                        return <ListItemText key={ind}> {`${val.charAt(0).toUpperCase() + val.slice(1)}`}: {stats[val]} <Slider size={'small'} min={0} max={10} value = {stats[val]} valueLabelDisplay="auto" onChange={(e) => changeStat(e,val)}/></ListItemText>
-                    })}
-                </List>
-            </div>
-            <div className='col-md-4 align-self-start'>
-                <h1>Skills</h1>
-                <List>
-                    {data.MOVES.map((val, ind)=>{
-                        return (
-                            <ListItemText>
-                                <h3>{val.name}</h3>
-                                <h5>Accuracy: {val.accuracy}</h5>
-                                <h5>Power: {val.power}</h5>
-                            </ListItemText>)
-                    })}
-                </List>
-            </div>
         </div>
     )
 }
