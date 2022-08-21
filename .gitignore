@@ -3,7 +3,7 @@
 /backend/venv/
 #/backend/static/assets/
 /backend/static/
-backend/api/__pycache__/
+#backend/api/__pycache__/
 
 # Django #
 *.log
