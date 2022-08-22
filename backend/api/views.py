@@ -17,7 +17,6 @@ def home(request):
 
 @api_view(['POST'])
 def sign_up(request):
-    print(request.data)
     try:
         User.objects.create_user(password=request.data['password'], username=request.data['email'],
                                  email=request.data['email'])
@@ -32,11 +31,7 @@ def log_in(request):
     # DRF assumes that the body is JSON, and automatically parses it into a dictionary at request.data
     email = request.data['email']
     password = request.data['password']
-    # user = authenticate(username=email, password=password, email=email)
     user = authenticate(username=email, password=password)
-    print('user?')
-    print(user.email)
-    print(user.password)
     if user is not None:
         if user.is_active:
             try:
@@ -101,8 +96,8 @@ def game_data(request):
 
         elif request.method == 'DELETE':
             if results:
-                load_data = GameData.objects.get(user=request.user).delete().save()
-                return JsonResponse({'game_data': model_to_dict(load_data)})
+                load_data = GameData.objects.get(user=request.user).delete()
+                return JsonResponse({'game_data': load_data})
 
         elif request.method == 'PUT':
             # TODO Break response data down to determine how to update the user

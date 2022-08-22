@@ -58,7 +58,7 @@ function App() {
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Login user={user} setUser={setUser}/>} />
             <Route path='/about' element={<About />} />
-            <Route path='/game' element={<Game user={user}/>} />
+            <Route path='/game' element={user && <Game user={user}/>} />
             <Route path='*' element={<PageNotFound />} />
         </Routes>
       </Router>

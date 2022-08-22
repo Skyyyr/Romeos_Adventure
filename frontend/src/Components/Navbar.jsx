@@ -16,8 +16,8 @@ import axios from 'axios'
 
 
 
-const pages = ['Home', 'Game'];
-const pagesObj = {'Home':'',"Game":'game'}
+const pages = ['Game'];
+const pagesObj = {"Game":'game'}
 const settings = ['About', 'Logout'];
 
 const ResponsiveAppBar = ({user}) => {
@@ -51,7 +51,6 @@ const ResponsiveAppBar = ({user}) => {
         console.log('You Logged Out')
       axios.post('/logout').then((response)=>{
         console.log('response from server: ', response)
-        navigate('/');
         window.location.reload()
       })
     }
@@ -109,7 +108,7 @@ const ResponsiveAppBar = ({user}) => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {user && pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography component="a" textAlign="center" href={`#/${pagesObj[page]}`}>{page}</Typography>
                 </MenuItem>
@@ -135,7 +134,7 @@ const ResponsiveAppBar = ({user}) => {
             Romeos Adventure
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {user && pages.map((page) => (
               <Button
                 href={`#/${pagesObj[page]}`}
                 key={page}
