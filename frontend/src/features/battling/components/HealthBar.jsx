@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import '../assets/battle.css'
+import '../styling/battle.css'
 
 export const Bar = ({ value, label }) => (
   <div className='main'>
