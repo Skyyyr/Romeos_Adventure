@@ -1,6 +1,6 @@
 import { Button } from "@mui/material"
 
-function MainMenu( {user, setGameMode, hasCharacter} ) {
+function MainMenu( {user, setGameMode, gameData} ) {
 
   return (
     <>
@@ -13,7 +13,7 @@ function MainMenu( {user, setGameMode, hasCharacter} ) {
         variant="contained"
         color="secondary"
         onClick={()=>setGameMode("MapView")}
-        disabled={user && !hasCharacter}
+        disabled={user && !gameData}
       >
         Continue
       </Button>
