@@ -1,4 +1,4 @@
-import '../assets/character.css'
+import '../styling/character.css'
 import { List, ListItemText, Typography } from '@mui/material';
 import  Slider  from '@mui/material/Slider'
 import * as React from 'react';

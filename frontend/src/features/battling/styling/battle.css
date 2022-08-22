@@ -8,7 +8,7 @@
 
 
 .frontend-battle{
-    background: url(frontend.png);
+    background: url(../../assets/frontend.png);
     background-position: -637px -1598px; 
     width: 75px;
     height: 76px;
@@ -17,7 +17,7 @@
 }
 
 .backend-battle{
-    background: url(backend.png);
+    background: url(../../assets/backend.png);
     background-position: -195px -1223px; 
     width: 65px;
     height: 63px;
@@ -26,7 +26,7 @@
 }
 
 .fullstack-battle{
-    background: url(fullstack.png);
+    background: url(../../assets/fullstack.png);
     background-position: -202px -966px; 
     width: 61px;
     height: 64px;

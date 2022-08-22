@@ -1,4 +1,4 @@
-import '../assets/battle.css'
+import '../styling/battle.css'
 import {Bar} from './HealthBar'
 import {getCharacterData} from '../../character_creation/data/characterdata'
 import {getEnemyData} from '../../character_creation/data/enemydata'
