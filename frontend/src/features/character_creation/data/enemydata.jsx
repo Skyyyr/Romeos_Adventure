@@ -1,7 +1,7 @@
 //function to return characters,stats,moves
 export function getEnemyData(enemy) {
     switch (enemy) {
-        case 'Raphael':
+        case 5:
             return ({
                 'NAME':'Raphael',
                 'MOVES':[{'name':'Raph Attack', 'accuracy':5,'power':5}, {'name':'Raph Kick', 'accuracy':5,'power':5}, {'name':'Raph Punch', 'accuracy':5,'power':5}],
@@ -13,7 +13,7 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":31
             })
-        case 'Adam':
+        case 0:
             return ({
                 'NAME':'Adam',
                 'MOVES':[{'name':'Adam Attack', 'accuracy':5,'power':5}, {'name':'Adam Kick', 'accuracy':5,'power':5}, {'name':'Adam Punch', 'accuracy':5,'power':5}],
@@ -25,7 +25,7 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":20
             })
-        case 'Zaynab':
+        case 2:
             return ({
                 'NAME':'Zaynab',
                 'MOVES':[{'name':'Zaynab Attack', 'accuracy':5,'power':5}, {'name':'Zaynab Kick', 'accuracy':5,'power':5}, {'name':'Zaynab Punch', 'accuracy':5,'power':5}],
@@ -38,6 +38,5 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":25
             })
-
     }
   }
