@@ -97,7 +97,7 @@ def game_data(request):
         elif request.method == 'DELETE':
             if results:
                 load_data = GameData.objects.get(user=request.user).delete()
-                return JsonResponse({'game_data': load_data})
+                return JsonResponse({'result' : 'success'})
 
         elif request.method == 'PUT':
             # TODO Break response data down to determine how to update the user
