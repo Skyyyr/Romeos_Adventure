@@ -19,7 +19,7 @@ def home(request):
 def sign_up(request):
     print(request.data)
     try:
-        User.objects.create_user(password=request.data['password'], character=None, username=request.data['email'],
+        User.objects.create_user(password=request.data['password'], username=request.data['email'],
                                  email=request.data['email'])
         return JsonResponse({'signup': 'success'})
     except Exception as e:
@@ -68,30 +68,47 @@ def who_am_i(request):
     # raise Exception('oops')
     if request.user.is_authenticated:
         data = serializers.serialize("json", [request.user],
-                                     fields=['email', 'username', 'first_name', 'last_name', 'date_joined',
-                                             'character'])
+                                     fields=['email', 'username', 'date_joined'])
         return HttpResponse(data)
     else:
         return JsonResponse({'user': None})
 
 
-@api_view(['POST'])
-def create_character(request):
+@api_view(['POST', 'GET', 'DELETE', 'PUT'])
+def game_data(request):
     if request.user.is_authenticated:
-        char_data = request.data
+        results = GameData.objects.filter(user=request.user).exists()
 
-        GameData.objects.create(
-            type=char_data['type'],
-            accuracy=char_data['accuracy'],
-            evasion=char_data['evasion'],
-            strength=char_data['strength'],
-            defense=char_data['defense'],
-            user=request.user).save()
-        return HttpResponse("success")
-    return JsonResponse({'user': None})
+        if request.method == 'POST':
+            char_data = request.data
 
+            new_data = GameData.objects.create(
+                type=char_data['type'],
+                accuracy=char_data['accuracy'],
+                evasion=char_data['evasion'],
+                strength=char_data['strength'],
+                defense=char_data['defense'],
+                user=request.user).save()
 
-@api_view(['POST'])
-def delete_character(request):
-    User.objects.filter(username=request.user).update(character=None)
-    return HttpResponse("success")
+            return JsonResponse({'game_data': new_data})
+
+        elif request.method == 'GET':
+            if results:
+                load_data = GameData.objects.get(user=request.user)
+                return JsonResponse({'get_data': model_to_dict(load_data), 'results': results})
+
+            return JsonResponse({'no_data': results})
+
+        elif request.method == 'DELETE':
+            if results:
+                load_data = GameData.objects.get(user=request.user).delete().save()
+                return JsonResponse({'game_data': model_to_dict(load_data)})
+
+        elif request.method == 'PUT':
+            # TODO Break response data down to determine how to update the user
+            #  * Determine which entry to update for the gameData model
+            #  * Perform the update
+            #  * Return jsonResp with the results pass/fail
+            return JsonResponse({'game_data': request.data['data']})
+
+    return JsonResponse({'game_data': None})
