@@ -18,22 +18,34 @@ function CreateCharacter({user}) {
     const [type, setType] = useState('frontend')
     const [stats, setStats] = useState(getCharacterData(type).STATS)
     const [data, setData] = useState(getCharacterData(type))
-    const nav = useNavigate()
-    ////const [update, setUpdate] = useState(false)
+    const [update, setUpdate] = useState(false)
+    const [spending, setSpending] = useState(3)
 
 
-    const handleChangeTab = (event, newValue) => {
-      setType(newValue)
-      let data = getCharacterData(newValue)
+    const handleChangeTab = (event, newType) => {
+      setType(newType)
+      let data = getCharacterData(newType)
       setStats(data.STATS)
       setData(data)
+      setSpending(3)
     };
 
     function changeStat(e, stat){
-        let temp= stats
-        temp[stat] = e.target.value
-        setStats(temp)
-        ////update === false ? setUpdate(true) : setUpdate(false)
+
+        let sum = Object.values(stats).reduce((a,b)=>{
+            return a+b
+        })
+
+        let baseStat = getCharacterData(type).STATS[stat]
+
+        if(((e.target.value-stats[stat])+sum)-data.SUM<=3 || (e.movementX<=0 && (e.target.value<baseStat))){
+            let temp= stats
+            temp[stat] = e.target.value
+            setStats(temp)
+            update === false ? setUpdate(true) : setUpdate(false)
+        }
+
+        setSpending(3-(sum-data.SUM))
     
     }
 
@@ -46,27 +58,26 @@ function CreateCharacter({user}) {
         })
     }
 
-    const viewChar = async () => {
-      //This is an example of an axios get call
-      const response = await axios.get('/gamedata').catch((e) => {
-        console.log(e)
-      })
-      // console.log(response)
-      console.log(response.data)
-    }
+    // // const viewChar = async () => {
+    // //   //This is an example of an axios get call
+    // //   const response = await axios.get('/gamedata').catch((e) => {
+    // //     console.log(e)
+    // //   })
+    // //   // console.log(response)
+    // //   console.log(response.data)
+    // // }
 
-    const updateChar = async () => {
-      //This is an example of an axios put call
-      const response = await axios.put('/gamedata', {
-        'data': 'this is a string, which could be data.'
-      }).catch((e) => {
-        console.log(e)
-      })
-      console.log(response)
-    }
+    // // const updateChar = async () => {
+    // //   //This is an example of an axios put call
+    // //   const response = await axios.put('/gamedata', {
+    // //     'data': 'this is a string, which could be data.'
+    // //   }).catch((e) => {
+    // //     console.log(e)
+    // //   })
+    // //   console.log(response)
+    // // }
 
-    // useEffect(() => {
-    // }, [stats])
+
 
     return (
         <div className='row justify-content-center'>
@@ -75,10 +86,10 @@ function CreateCharacter({user}) {
             </h1>
             <Button variant="outlined" onClick={(event)=>createChar(event,type)}>Start Journey</Button>
             {/*TODO Remove these when done testing them*/}
-            <Button variant="outlined" onClick={viewChar}>VIEW CHARACTER</Button>
+            {/*<Button variant="outlined" onClick={viewChar}>VIEW CHARACTER</Button>*/}
             {/*TODO Remove these when done testing them*/}
-            <Button variant="outlined" onClick={updateChar}>UPDATE CHARACTER</Button>
-            <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            {/*<Button variant="outlined" onClick={updateChar}>UPDATE CHARACTER</Button>*/}
+            <Box sx={{ width: '100%' }}>
                 <Tabs p={0} value={type} onChange={handleChangeTab} centered>
                     <Tab sx={{height:150}} className="char-tab" value = "frontend" label={<span style={{'padding-top':'20px'}}>Frontend</span>} icon={<div className="frontend"></div>}/>
                     <Tab sx={{height:150}} className="char-tab" value = "backend" label={<span style={{'padding-top':'20px'}}>Backend</span>} icon={<div className="backend"></div>}/>
@@ -87,9 +98,10 @@ function CreateCharacter({user}) {
             </Box>
             <div className='col-md-4 align-self-center'>
                 <h1>Stats</h1>
+                <h5>Spending: {spending}</h5>
                 <List>
                     {statType.map((val, ind)=>{
-                        return <ListItemText key={ind}> {`${val.charAt(0).toUpperCase() + val.slice(1)}`}: {stats[val]} <Slider size={'small'} min={0} max={10} value = {stats[val]} valueLabelDisplay="auto" onChange={(e) => changeStat(e,val)}/></ListItemText>
+                        return <ListItemText key={ind}> {`${val.charAt(0).toUpperCase() + val.slice(1)}`}: {stats[val]} <Slider size={'small'} min={0} max={10} value = {stats[val]} valueLabelDisplay="auto" onChange={(e) => getCharacterData(type).STATS[val] <= e.target.value && changeStat(e,val)}/></ListItemText>
                     })}
                 </List>
             </div>
@@ -99,9 +111,9 @@ function CreateCharacter({user}) {
                     {data.MOVES.map((val, ind)=>{
                         return (
                             <ListItemText>
-                                <h3>{val.name}</h3>
-                                <h5>Accuracy: {val.accuracy}</h5>
-                                <h5>Power: {val.power}</h5>
+                                <h5>{val.name}</h5>
+                                <h6>Accuracy: {val.accuracy}</h6>
+                                <h6>Power: {val.power}</h6>
                             </ListItemText>)
                     })}
                 </List>

@@ -1,10 +1,10 @@
 //function to return characters,stats,moves
-export function getCharacterData(character) {
-    switch (character) {
-        case 'frontend':
+export function getEnemyData(enemy) {
+    switch (enemy) {
+        case 'Raphael':
             return ({
-                'CLASS':'frontend',
-                'MOVES':[{'name':'React', 'accuracy':5,'power':5}, {'name':'HTML', 'accuracy':5,'power':5}, {'name':'CSS', 'accuracy':5,'power':5}],
+                'NAME':'Raphael',
+                'MOVES':[{'name':'Raph Attack', 'accuracy':5,'power':5}, {'name':'Raph Kick', 'accuracy':5,'power':5}, {'name':'Raph Punch', 'accuracy':5,'power':5}],
                 'STATS':{
                     'strength': 8, 
                     'defense': 7,
@@ -13,10 +13,10 @@ export function getCharacterData(character) {
                 },
                 "SUM":31
             })
-        case 'backend':
+        case 'Adam':
             return ({
-                'CLASS':'backend',
-                'MOVES':[{'name':'Django', 'accuracy':5,'power':5}, {'name':'Python', 'accuracy':5,'power':5}, {'name':'Postgres', 'accuracy':5,'power':5}],
+                'NAME':'Adam',
+                'MOVES':[{'name':'Adam Attack', 'accuracy':5,'power':5}, {'name':'Adam Kick', 'accuracy':5,'power':5}, {'name':'Adam Punch', 'accuracy':5,'power':5}],
                 'STATS':{
                     'strength': 4,
                     'defense': 3,
@@ -25,10 +25,10 @@ export function getCharacterData(character) {
                 },
                 "SUM":20
             })
-        case 'fullstack':
+        case 'Zaynab':
             return ({
-                'CLASS':'fullstack',
-                'MOVES':[{'name':'React', 'accuracy':5,'power':5}, {'name':'Django', 'accuracy':5,'power':5}, {'name':'Postgres', 'accuracy':5,'power':5}],
+                'NAME':'Zaynab',
+                'MOVES':[{'name':'Zaynab Attack', 'accuracy':5,'power':5}, {'name':'Zaynab Kick', 'accuracy':5,'power':5}, {'name':'Zaynab Punch', 'accuracy':5,'power':5}],
                 'STATS':{
                     'strength': 5,
                     'defense': 6,
@@ -41,4 +41,3 @@ export function getCharacterData(character) {
 
     }
   }
-

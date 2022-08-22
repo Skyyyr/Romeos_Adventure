@@ -1,6 +1,7 @@
 import '../assets/battle.css'
 import {Bar} from './HealthBar'
 import {getCharacterData} from '../../character_creation/data/characterdata'
+import {getEnemyData} from '../../character_creation/data/enemydata'
 import { useState,useEffect } from 'react'
 import  Button from "@mui/material/Button" 
 import { Typography, Tooltip } from '@mui/material'
@@ -8,14 +9,18 @@ import {wait, Damage} from '../helpers/helpers'
 
 
 
-function BattleView() {
-    const [data,setData] = useState(getCharacterData('frontend'))
+function BattleView({gameData, enemy}) {
+    console.log(enemy)
+    const [romeoStats,setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
+    const [romeoMoves,setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
+    const [enemyData,setEnemyData] = useState(getEnemyData(enemy))
     const [turn, setTurn] = useState('Player One')
     const [romeoHealth, setRomeoHealth] = useState(100)
     const [enemyHealth, setEnemyHealth] = useState(100)
     const [currAttack, setCurrAttack] = useState('')
     const [enemyAnimation, setEnemyAnimation] = useState('')
     const [playerAnimation, setPlayerAnimation] = useState('')
+
 
     const enemyAttack = async (move) => {
 
@@ -49,7 +54,7 @@ function BattleView() {
     useEffect(()=>{
         if(turn === "Player Two"){
             let rand = Math.floor(Math.random() * (3))
-            enemyAttack(data.MOVES[rand])
+            enemyAttack(enemyData.MOVES[rand])
         }
     },[turn])
 
@@ -73,7 +78,7 @@ function BattleView() {
     },[romeoHealth,enemyHealth])
 
     const inflictDamage = async (move) => {
-        const damage = Damage(turn, data.STATS, data.STATS, move)
+        const damage = Damage(turn, romeoStats, enemyData.STATS, move)
 
         if(turn == "Player One"){
             setCurrAttack(`Romeo used ${move.name} it did ${damage} damage${damage == 0 ? ', it missed.' : '.'}`)
@@ -97,23 +102,23 @@ function BattleView() {
                 </div>
                 <div className='col-md-6'></div>
                 <div className='col-md-3'>
-                    <Bar label="Enemy" value={enemyHealth}/>
+                    <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>                        
 
-        <div className='row align-items-end' style={{'height':'45vh', 'overflow': 'hidden'}}>
+        <div className='row align-items-end' style={{'height':'20vh', 'overflow': 'hidden'}}>
             <div className='wrapper'>
-                <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "300px"}}>
-                    <div className={`backend-battle ${turn} ${playerAnimation}`} ></div>
+                <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
+                    <div className={`${gameData.type}-battle ${turn} ${playerAnimation}`} ></div>
                 </div>
-                <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "300px"}}>
+                <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
                     <div className={`frontend-battle ${enemyAnimation}`} ></div> 
                 </div>
             </div>
         </div>
         <div className='row battleDialog' style={{'height':'20vh','overflow': 'hidden'}}>
             <div className='col-md-3 vstack gap-2 align-self-center'>
-                {data.MOVES.map(elem=><Tooltip disableInteractive title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}><Button id={elem.name} variant="contained" onClick={()=> (turn == "Player One") && attack(elem)}>{elem['name']}</Button></Tooltip>)}
+                {romeoMoves.map(elem=><Tooltip disableInteractive title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}><Button id={elem.name} variant="contained" onClick={()=> (turn == "Player One") && attack(elem)}>{elem['name']}</Button></Tooltip>)}
             </div>
             <div className='col-md-9 align-self-start'>
                 <Typography variant='h3'>{turn}'s Turn!</Typography>

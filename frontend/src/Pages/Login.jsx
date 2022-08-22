@@ -7,19 +7,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios'
-import { useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 
 
-export default function Login({user,setUser}) {
+export default function Login({user}) {
+    const nav = useNavigate()
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(event)
-    console.log(data.get('email'))
-    console.log(data.get('password'))
-    console.log(user)
     axios.post('/login', {email: data.get('email'), password: data.get('password')}).then((response)=>{
         console.log('response from server: ', response)
         window.location.reload()
