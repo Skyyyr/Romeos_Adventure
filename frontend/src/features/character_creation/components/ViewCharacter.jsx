@@ -1,4 +1,4 @@
-import '../assets/character.css'
+import '../styling/character.css'
 import * as React from 'react';
 import  Button from "@mui/material/Button"
 import axios from 'axios'
