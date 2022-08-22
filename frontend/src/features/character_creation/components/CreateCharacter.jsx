@@ -40,21 +40,44 @@ function CreateCharacter({user}) {
     const createChar = function(event,type){
         event.preventDefault()
         console.log(user,data,stats)
-        axios.post('/createcharacter', {type:type, ...stats}).then((response)=>{
+        axios.post('/gamedata', {type:type, ...stats}).then((response)=>{
             window.location.reload()
             console.log('response from server: ', response)
         })
     }
 
-    // // useEffect(() => {
-    // // }, [stats])
-    console.log(data)
+    const viewChar = async () => {
+      //This is an example of an axios get call
+      const response = await axios.get('/gamedata').catch((e) => {
+        console.log(e)
+      })
+      // console.log(response)
+      console.log(response.data)
+    }
+
+    const updateChar = async () => {
+      //This is an example of an axios put call
+      const response = await axios.put('/gamedata', {
+        'data': 'this is a string, which could be data.'
+      }).catch((e) => {
+        console.log(e)
+      })
+      console.log(response)
+    }
+
+    // useEffect(() => {
+    // }, [stats])
+
     return (
         <div className='row justify-content-center'>
             <h1>
                 Choose Character
             </h1>
             <Button variant="outlined" onClick={(event)=>createChar(event,type)}>Start Journey</Button>
+            {/*TODO Remove these when done testing them*/}
+            <Button variant="outlined" onClick={viewChar}>VIEW CHARACTER</Button>
+            {/*TODO Remove these when done testing them*/}
+            <Button variant="outlined" onClick={updateChar}>UPDATE CHARACTER</Button>
             <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
                 <Tabs p={0} value={type} onChange={handleChangeTab} centered>
                     <Tab sx={{height:150}} className="char-tab" value = "frontend" label={<span style={{'padding-top':'20px'}}>Frontend</span>} icon={<div className="frontend"></div>}/>
