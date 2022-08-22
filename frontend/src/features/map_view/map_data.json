@@ -1,0 +1,35 @@
+[
+  {
+    "id": 0,
+    "name": "Battle Adam",
+    "function": "battle"
+  },
+  {
+    "id": 1,
+    "name": "Riddle 1",
+    "function": "riddle",
+    "riddleID": "0"
+  },
+  {
+    "id": 2,
+    "name": "Battle Zaynab",
+    "function": "battle"
+  },  
+  {
+    "id": 3,
+    "name": "Riddle 2",
+    "function": "riddle",
+    "riddleID": "1"
+  },  
+  {
+    "id": 4,
+    "name": "Riddle 3",
+    "function": "riddle",
+    "riddleID": "2"
+  },  
+  {
+    "id": 5,
+    "name": "Battle Raphael",
+    "function": "battle"
+  }
+]

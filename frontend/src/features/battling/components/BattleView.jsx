@@ -9,7 +9,7 @@ import {wait, Damage} from '../helpers/helpers'
 
 
 
-function BattleView({gameData, enemy}) {
+function BattleView({gameData, enemy, nextStage}) {
     console.log(enemy)
     const [romeoStats,setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
     const [romeoMoves,setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
@@ -70,7 +70,6 @@ function BattleView({gameData, enemy}) {
             // //     await wait(2000)
             // //     props.BattleCur("wonBattle")
             // // }
-
         }
 
         checkDead()
@@ -104,8 +103,7 @@ function BattleView({gameData, enemy}) {
                 <div className='col-md-3'>
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
-            </div>                        
-
+            </div>
         <div className='row align-items-end' style={{'height':'20vh', 'overflow': 'hidden'}}>
             <div className='wrapper'>
                 <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
@@ -125,6 +123,9 @@ function BattleView({gameData, enemy}) {
                 <Typography variant='h5'>{currAttack}</Typography>
             </div>
         </div>
+        <Button onClick={nextStage}>
+          Dev-Win
+        </Button>
     </div>
     )
 }

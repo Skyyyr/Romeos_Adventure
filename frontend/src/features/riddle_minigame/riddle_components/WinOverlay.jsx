@@ -2,14 +2,9 @@ import { Button } from '@mui/material'
 import { useRef } from 'react'
 
 
-function RiddleWinOverlay( {answer, riddleIdNumber, setRiddleIdNumber, handleRiddleClose} ) {
+function RiddleWinOverlay( {answer, handleRiddleClose} ) {
 
   const firstAnswer = useRef(answer)
-
-  // const nextRiddle = () => {
-  //   const next = riddleIdNumber+1
-  //   setRiddleIdNumber(next)
-  // }
 
   return (
     <div className="text-center" style={{color: 'gold'}}>

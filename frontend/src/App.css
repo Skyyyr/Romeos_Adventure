@@ -51,6 +51,26 @@
 }
 
 
+/* NAVBAR */
+#navbar-center {
+  position: absolute;
+  left: 50%;
+  width: 220px;
+  margin-left: -110px;
+  text-align: center;
+}
+#avatar-icon {
+  height: 40px;
+  width: 40px;
+  /* transform: scale(1.5); */
+  align-self: center;
+  cursor: pointer;
+}
+#avatar-icon:hover {
+  color: #535BF2;
+}
+
+
 /* GAME PAGE */
 #game-title {
   height: 20%;

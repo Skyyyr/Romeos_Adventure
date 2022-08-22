@@ -28,7 +28,6 @@ function Home( {user} ) {
                     </Link>
                   </div>
               }
-
             </div>
             <div id="home-bottom-half">
               <div className="home-details">
