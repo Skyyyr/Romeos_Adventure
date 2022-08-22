@@ -36,6 +36,7 @@ axios.defaults.headers.common['X-CSRFToken'] = csrftoken
 
 function App() {
   
+  const [gameData, setGameData] = useState(null)
   const [user, setUser] = useState(null)
 
   const whoAmI = async () => {
@@ -44,21 +45,31 @@ function App() {
     setUser(user)
   }
 
+  const getGameData = async () => {
+    const response = await axios.get('/gamedata').catch((e) => {
+      console.log(e)
+    })
+    if (response.data['results']) {
+      setGameData(response.data['get_data'])
+    }
+  }
+
     useEffect(()=>{
         whoAmI()
+        getGameData()
     }, [])
 
   return (
       <div className="App">
       <ThemeProvider theme={themeOptions}>
         <Router>
-          <ResponsiveAppBar user={user}/>
+          <ResponsiveAppBar user={user} gameData={gameData}/>
           <Routes>
             <Route path='/' element={<Home user={user} />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/signin' element={<Login user={user} setUser={setUser}/>} />
             <Route path='/about' element={<About />} />
-            <Route path='/game' element={user && <Game user={user}/>} />
+            <Route path='/game' element={user && <Game user={user} gameData={gameData}/>} />
             <Route path='*' element={<PageNotFound />} />
         </Routes>
       </Router>

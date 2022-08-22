@@ -10,11 +10,11 @@ import riddles from './riddle_data/riddles.json';
 import NewLetterChoices from './riddle_helper_functions/NewLetterChoices';
 
 
-function Riddle_Minigame( {handleRiddleClose} ) {
+function Riddle_Minigame( {handleRiddleClose, riddleID} ) {
 
   let isMounted = useRef(false);
 
-  const [ riddleIdNumber, setRiddleIdNumber ] = useState('0');
+  const [ riddleIdNumber, setRiddleIdNumber ] = useState(riddleID);
   const [ lettersGuessed, setLettersGuessed ] = useState(false);
   const [ letterChoices, setLetterChoices ] = useState(false);
   const [ riddleSolved, setRiddleSolved ] = useState(false);
@@ -43,6 +43,10 @@ function Riddle_Minigame( {handleRiddleClose} ) {
       setRiddleSolved(false);
     }
   }, [riddleIdNumber])
+
+  function handleContinueClick() {
+    handleRiddleClose(true)
+  }
 
   // Generates new letter choices and clears answer field for new riddle
   function setupNewGame() {
@@ -84,11 +88,6 @@ function Riddle_Minigame( {handleRiddleClose} ) {
     })
   }
 
-  // DEV-TESTING FUNCTIONS:
-  function devResetRiddleId() {
-    setRiddleIdNumber(0)
-  }
-
   return (
     <section id="riddle-container">
       { letterChoices ?
@@ -114,7 +113,6 @@ function Riddle_Minigame( {handleRiddleClose} ) {
               setLetterChoices={setLetterChoices}
               resetLettersGuessed={resetLettersGuessed}
             />
-            <button style={{marginLeft: 'auto'}} onClick={devResetRiddleId}>DEV-RESET</button>
           </div>
           <div className="centered" id="answer-box">
             <AnswerField 
@@ -135,9 +133,7 @@ function Riddle_Minigame( {handleRiddleClose} ) {
         <div className="win-overlay centered">
           <WinOverlay
             answer={RIDDLE_ANSWER}
-            riddleIdNumber={riddleIdNumber}
-            setRiddleIdNumber={setRiddleIdNumber}
-            handleRiddleClose={handleRiddleClose}
+            handleRiddleClose={() => handleContinueClick()}
           />
         </div> : null 
       }
