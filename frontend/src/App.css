@@ -59,15 +59,49 @@
   margin-left: -110px;
   text-align: center;
 }
+.circle-icon-box {
+  position: relative;
+  height: 60px;
+  width: 60px;
+  /* border: solid transparent; */
+  /* border-radius: 30px; */
+  overflow: hidden;
+}
 #avatar-icon {
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
   /* transform: scale(1.5); */
   align-self: center;
   cursor: pointer;
 }
 #avatar-icon:hover {
-  color: #535BF2;
+  border: solid #535BF2;
+}
+.headshot-img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+  margin-left: 5px;
+  margin-top: 5px;
+  background-color: white;
+  background-image: url(./Components/headshot-imgs/fullstack-head.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: solid transparent;
+  border-radius: 50%;
+}
+#frontend-head {
+  background-image: url(./Components/headshot-imgs/frontend-head.png);
+}
+#backend-head {
+  background-image: url(./Components/headshot-imgs/backend-head.png);
+}
+#fullstack-head {
+  background-image: url(./Components/headshot-imgs/fullstack-head.png);
 }
 
 #frontend-icon{
