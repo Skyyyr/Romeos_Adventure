@@ -1,7 +1,7 @@
 import '../styling/battle.css'
 import {Bar} from './HealthBar'
-import {getCharacterData} from '../../character_creation/data/characterdata'
-import {getEnemyData} from '../../character_creation/data/enemydata'
+import {getCharacterData} from '../../character/data/characterdata'
+import {getEnemyData} from '../../character/data/enemydata'
 import { useState,useEffect } from 'react'
 import  Button from "@mui/material/Button" 
 import { Typography, Tooltip } from '@mui/material'
@@ -9,8 +9,8 @@ import {wait, Damage} from '../helpers/helpers'
 
 
 
-function BattleView({gameData, enemy, nextStage}) {
-    console.log(enemy)
+function BattleView({gameData, enemy, setGameMode,nextStage}) {
+    
     const [romeoStats,setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
     const [romeoMoves,setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
     const [enemyData,setEnemyData] = useState(getEnemyData(enemy))
@@ -59,21 +59,20 @@ function BattleView({gameData, enemy, nextStage}) {
     },[turn])
 
     useEffect(()=>{
-
         const checkDead = async () =>{
-            console.log(romeoHealth,enemyHealth)
-            // // if(playerOneHealth <= 0){
-            // //     await wait(2000)
-            // //     props.BattleCur("lostBattle")
-            // // }
-            // // else if(playerTwoHealth <= 0){
-            // //     await wait(2000)
-            // //     props.BattleCur("wonBattle")
-            // // }
+            
+            if(romeoHealth <= 0){
+                await wait(2000)
+                setGameMode('BattleEndLost')
+                
+            }
+            else if(enemyHealth <= 0){
+                await wait(2000)
+                setGameMode('BattleEndWon')
+                nextStage()
+            }
         }
-
         checkDead()
-
     },[romeoHealth,enemyHealth])
 
     const inflictDamage = async (move) => {
@@ -91,6 +90,7 @@ function BattleView({gameData, enemy, nextStage}) {
         }
 
     }
+
 
     return (
 
@@ -110,21 +110,25 @@ function BattleView({gameData, enemy, nextStage}) {
                     <div className={`${gameData.type}-battle ${turn} ${playerAnimation}`} ></div>
                 </div>
                 <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
-                    <div className={`frontend-battle ${enemyAnimation}`} ></div> 
+                    <div className={`${enemyData.NAME}-battle ${enemyAnimation}`} ></div> 
                 </div>
             </div>
         </div>
         <div className='row battleDialog' style={{'height':'20vh','overflow': 'hidden'}}>
             <div className='col-md-3 vstack gap-2 align-self-center'>
                 {romeoMoves.map(elem=><Tooltip disableInteractive title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}><Button id={elem.name} variant="contained" onClick={()=> (turn == "Player One") && attack(elem)}>{elem['name']}</Button></Tooltip>)}
+                <Button variant="contained" onClick={()=>setGameMode("MapView")}>Forfeit</Button>
             </div>
             <div className='col-md-9 align-self-start'>
                 <Typography variant='h3'>{turn}'s Turn!</Typography>
                 <Typography variant='h5'>{currAttack}</Typography>
             </div>
         </div>
-        <Button onClick={nextStage}>
-          Dev-Win
+        <Button onClick={()=>(setEnemyHealth(0))}>
+            Dev-Win
+        </Button>
+        <Button onClick={()=>(setRomeoHealth(0))}>
+            Dev-Lose
         </Button>
     </div>
     )

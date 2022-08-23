@@ -19,7 +19,7 @@ export function Damage(turn, romeoStats, enemyStats, move){
   if(perc>hitProb)
       return 0
 
-  return damage
+  return damage*6
 
 }
 

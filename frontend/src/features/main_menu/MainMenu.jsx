@@ -1,6 +1,17 @@
 import { Button } from "@mui/material"
+import axios from 'axios'
+
 
 function MainMenu( {user, setGameMode, gameData} ) {
+
+  const deleteChar = function(event){
+    event.preventDefault()
+    axios.delete('/gamedata').then((response)=>{
+        setGameMode('Character')
+        // window.location.reload()
+        console.log('response from server: ', response)
+     })
+}
 
   return (
     <>
@@ -20,7 +31,7 @@ function MainMenu( {user, setGameMode, gameData} ) {
       <Button 
         variant="contained"
         color="secondary"
-        onClick={()=>setGameMode("Character")}
+        onClick={(event)=>((gameData && gameData.type) ? deleteChar(event) : setGameMode("Character"))}
       >
         New Game
       </Button>
