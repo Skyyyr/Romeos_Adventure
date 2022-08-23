@@ -13,13 +13,14 @@ import {useNavigate} from "react-router-dom";
 
 
 
-function CreateCharacter({user}) {
+function CreateCharacter({user,setGameMode}) {
     const statType = ['strength','defense','accuracy','evasion']
     const [type, setType] = useState('frontend')
     const [stats, setStats] = useState(getCharacterData(type).STATS)
     const [data, setData] = useState(getCharacterData(type))
     const [update, setUpdate] = useState(false)
     const [spending, setSpending] = useState(3)
+    const nav = useNavigate()
 
 
     const handleChangeTab = (event, newType) => {
@@ -51,32 +52,11 @@ function CreateCharacter({user}) {
 
     const createChar = function(event,type){
         event.preventDefault()
-        console.log(user,data,stats)
         axios.post('/gamedata', {type:type, ...stats}).then((response)=>{
-            window.location.reload()
+            setGameMode('MapView')
             console.log('response from server: ', response)
         })
     }
-
-    // // const viewChar = async () => {
-    // //   //This is an example of an axios get call
-    // //   const response = await axios.get('/gamedata').catch((e) => {
-    // //     console.log(e)
-    // //   })
-    // //   // console.log(response)
-    // //   console.log(response.data)
-    // // }
-
-    // // const updateChar = async () => {
-    // //   //This is an example of an axios put call
-    // //   const response = await axios.put('/gamedata', {
-    // //     'data': 'this is a string, which could be data.'
-    // //   }).catch((e) => {
-    // //     console.log(e)
-    // //   })
-    // //   console.log(response)
-    // // }
-
 
 
     return (

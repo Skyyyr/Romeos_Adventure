@@ -70,6 +70,33 @@
   color: #535BF2;
 }
 
+#frontend-icon{
+  background: url(./features/assets/frontend.png);
+  margin-right: 15px;
+  background-position: -340px -907px; 
+  width: 31px;
+  height: 23px;
+  transform: scale(2);
+}
+
+#backend-icon{
+  background: url(./features/assets/backend.png);
+  margin-right: 15px;
+  background-position: -273px -136px; 
+  width: 29px;
+  height: 26px;
+  transform: scale(2);
+}
+
+#fullstack-icon{
+  background: url(./features/assets/fullstack.png);
+  margin-right: 15px;
+  background-position: -342px -908px; 
+  width: 28px;
+  height: 26px;
+  transform: scale(2);
+}
+
 
 /* GAME PAGE */
 #game-title {
@@ -78,3 +105,5 @@
   place-items: center;  
   color: whitesmoke;
 }
+
+

@@ -3,6 +3,7 @@ import MapData from './map_data.json'
 import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
 
 
+
 function MapView({gameData, setGameMode, stage, nextStage}) {
 
   function loadMapData() {
@@ -48,32 +49,11 @@ function MapView({gameData, setGameMode, stage, nextStage}) {
           <h1>
             Map
           </h1>
+          <Button variant="contained" onClick={()=>setGameMode("ViewCharacter")}>Character</Button>
+          <Button variant="contained" onClick={()=>setGameMode("MainMenu")}>Main Menu</Button>
+
         </div>
         {loadMapData()}
-        {/* <div className="col-2 border border-light">
-          <Button onClick={ ()=> {
-            setGameMode(MapData[i]['function'] === "battle" ? "BattleView" : "RiddleView")
-            setEnemy(MapData[i]['id'])
-            }}
-          >
-            Battle Adam
-          </Button>
-        </div> */}
-        {/* <div className="col-2 border border-light">
-          <Button>Riddle</Button>
-        </div>
-        <div className="col-2 border border-light">
-          <Button onClick={()=>{setGameMode("BattleView");setEnemy("Zaynab")}}>Battle Zaynab</Button>
-        </div>
-        <div className="col-2 border border-light">
-          <Button>Riddle</Button>
-        </div>
-        <div className="col-2 border border-light">
-          <Button>Riddle</Button>
-        </div>
-        <div className="col-2 border border-light">
-          <Button onClick={()=>{setGameMode("BattleView");setEnemy("Raphael")}}>Battle Raphael</Button>
-        </div> */}
       </div>
     </div>
     

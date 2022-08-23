@@ -1,3 +1,4 @@
+from locale import currency
 from django.forms import model_to_dict
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -17,9 +18,10 @@ def home(request):
 
 @api_view(['POST'])
 def sign_up(request):
+    print(request.data)
     try:
         User.objects.create_user(password=request.data['password'], username=request.data['email'],
-                                 email=request.data['email'])
+                                 email=request.data['email'],first_name=request.data['first_name'],last_name=request.data['last_name'])
         return JsonResponse({'signup': 'success'})
     except Exception as e:
         print(str(e))
@@ -63,7 +65,7 @@ def who_am_i(request):
     # raise Exception('oops')
     if request.user.is_authenticated:
         data = serializers.serialize("json", [request.user],
-                                     fields=['email', 'username', 'date_joined'])
+                                     fields=['email', 'username', 'date_joined','first_name','last_name'])
         return HttpResponse(data)
     else:
         return JsonResponse({'user': None})
@@ -100,10 +102,16 @@ def game_data(request):
                 return JsonResponse({'result' : 'success'})
 
         elif request.method == 'PUT':
-            # TODO Break response data down to determine how to update the user
-            #  * Determine which entry to update for the gameData model
-            #  * Perform the update
-            #  * Return jsonResp with the results pass/fail
-            return JsonResponse({'game_data': request.data['data']})
+            print(request.data)
+            if 'advancestage' in request.data:
+                GameData.objects.filter(user=request.user).update(stage=request.data['advancestage']['stage'],currency=request.data['advancestage']['currency'])
+                return JsonResponse({'result': 'advanced stage'})
+
+            if 'statincrease' in request.data:
+                stat = request.data['statincrease']['stat']
+                GameData.objects.filter(user=request.user).update(**{stat:request.data['statincrease']['value'],'currency':request.data['statincrease']['currency']})
+                return JsonResponse({'result': 'stat increase'})
+
+            return({'result': 'no updates'})
 
     return JsonResponse({'game_data': None})
