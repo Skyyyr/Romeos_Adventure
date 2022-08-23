@@ -78,13 +78,13 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
     const inflictDamage = async (move) => {
         const damage = Damage(turn, romeoStats, enemyData.STATS, move)
 
-        if(turn == "Player One"){
-            setCurrAttack(`Romeo used ${move.name} it did ${damage} damage${damage == 0 ? ', it missed.' : '.'}`)
+        if(turn === "Player One"){
+            setCurrAttack(`Romeo used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
 
         }
-        else if(turn == "Player Two"){
-            setCurrAttack(`Player Two used ${move.name} it did ${damage} damage${damage == 0 ? ', it missed.' : '.'}`)
+        else if(turn === "Player Two"){
+            setCurrAttack(`Player Two used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
 
         }
@@ -104,10 +104,11 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>
-        <div className='row align-items-end' style={{'height':'20vh', 'overflow': 'hidden'}}>
+        {/*<div className='row align-items-end' style={{'height':'20vh', 'overflow': 'hidden'}}>*/}
+        <div className='row align-items-end' style={{'height':'20vh'}}>
             <div className='wrapper'>
                 <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
-                    <div className={`${gameData.type}-battle ${turn} ${playerAnimation}`} ></div>
+                    <div className={`${gameData.type}-battle ${playerAnimation}`}></div>
                 </div>
                 <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
                     <div className={`${enemyData.NAME}-battle ${enemyAnimation}`} ></div> 
