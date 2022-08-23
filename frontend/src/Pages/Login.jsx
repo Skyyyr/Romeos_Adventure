@@ -20,6 +20,7 @@ export default function Login({user}) {
     const data = new FormData(event.currentTarget);
     axios.post('/login', {email: data.get('email'), password: data.get('password')}).then((response)=>{
         console.log('response from server: ', response)
+        ////nav('/')
         window.location.reload()
     })
   }

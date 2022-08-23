@@ -119,3 +119,27 @@
   .battleDialog{
     border-style: double;
   }
+
+  .Raphael-battle{
+    background: url(../../assets/raphael.png);
+    background-position: -780px -1599px; 
+    width: 110px;
+    height: 75px;
+    transform: scale(2);
+  }
+
+  .Adam-battle{
+    background: url(../../assets/adam.png);
+    background-position: -257px -326px; 
+    width: 52px;
+    height: 62px;
+    transform: scale(2);
+  }
+
+  .Zaynab-battle{
+    background: url(../../assets/zaynab.png);
+    background-position: -636px -1606px; 
+    width: 74px;
+    height: 65px;
+    transform: scale(2);
+  }

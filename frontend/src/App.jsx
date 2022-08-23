@@ -11,6 +11,8 @@ import PageNotFound from "./Pages/PageNotFound.jsx";
 import ResponsiveAppBar from './components/Navbar';
 import { themeOptions } from './components/Theme';
 import axios from 'axios'
+import Profile from "./Pages/Profile.jsx"
+import { useMediaPredicate } from "react-media-hook";
 
 
 // Create Cookie for session
@@ -38,6 +40,8 @@ function App() {
   
   const [gameData, setGameData] = useState(null)
   const [user, setUser] = useState(null)
+  const minWidth = useMediaPredicate("(min-width: 700px)");
+  const minHeight = useMediaPredicate("(min-height: 400px)");
 
   const whoAmI = async () => {
     const response = await axios.get('/whoami')
@@ -61,19 +65,23 @@ function App() {
 
   return (
       <div className="App">
-      <ThemeProvider theme={themeOptions}>
-        <Router>
-          <ResponsiveAppBar user={user} gameData={gameData}/>
-          <Routes>
-            <Route path='/' element={<Home user={user} />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/signin' element={<Login user={user} setUser={setUser}/>} />
-            <Route path='/about' element={<About />} />
-            <Route path='/game' element={user && <Game user={user} gameData={gameData}/>} />
-            <Route path='*' element={<PageNotFound />} />
-        </Routes>
-      </Router>
-      </ThemeProvider>
+        {minWidth && minHeight && <div>
+        <ThemeProvider theme={themeOptions}>
+          <Router>
+            <ResponsiveAppBar user={user} gameData={gameData}/>
+            <Routes>
+              <Route path='/' element={<Home user={user} />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/signin' element={<Login user={user} setUser={setUser}/>} />
+              <Route path='/about' element={<About />} />
+              <Route path='/profile' element={<Profile user={user}/>} />
+              <Route path='/game' element={user && <Game user={user} getGameData={getGameData} gameData={gameData}/>} />
+              <Route path='*' element={<PageNotFound />} />
+          </Routes>
+        </Router>
+        </ThemeProvider>
+        </div>}
+        {!(minWidth && minHeight) && <div>You must enlarge your screen to play</div>}
       </div>
   )
 }

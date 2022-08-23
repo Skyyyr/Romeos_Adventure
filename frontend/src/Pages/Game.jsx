@@ -1,34 +1,38 @@
 import { useState,useEffect } from 'react'
-import CreateCharacter from '../features/character_creation/components/CreateCharacter'
-import ViewCharacter from '../features/character_creation/components/ViewCharacter'
+import CreateCharacter from '../features/character/components/CreateCharacter'
+import ViewCharacter from '../features/character/components/ViewCharacter'
 import BattleView from '../features/battling/components/BattleView'
 import MapView from '../features/map_view/MapView'
-import TownView from '../features/town_view/TownView'
-import RiddleMinigameModal from '../features/riddle_minigame/RiddleMinigameModal'
 import { Button } from '@mui/material';
 import MainMenu from '../features/main_menu/MainMenu'
 import axios from "axios";
+import BattleEndView from '../features/battling/components/BattleEndView'
 
 
-function Game( {user, gameData} ) {
+function Game( {user, gameData, getGameData} ) {
 
-  const [gameMode, setGameMode] = useState('MainMenu')
-  const [stage, setStage] = useState(gameData ? gameData.stage : 0)
+  const [gameMode, setGameMode] = useState('MainMenu') 
 
   function nextStage() {
-    setStage(stage + 1)
-    setGameMode("MapView")
-    // TODO: axios PUT request to update data
+    axios.put('/gamedata', {'advancestage':{'stage':gameData.stage+1, 'currency':gameData.currency+2}}).then((response)=>{
+      getGameData()
+      console.log(response)
+   })
   }
+
+  useEffect(()=>{
+    console.log('useeffect')
+    getGameData()
+  },[gameMode])
 
   return (
     <div className="page-container">
-      {/* DEV GODMODE BUTTONS */}
+      {/* DEV GODMODE BUTTONS
       <div className="d-flex gap-3">
-        <Button variant="contained" onClick={()=>setGameMode("Character")}>Character</Button>
+        <Button variant="contained" onClick={()=>setGameMode("ViewCharacter")}>Character</Button>
         <Button variant="contained" disabled={!gameData} onClick={()=>setGameMode("MapView")}>Map View</Button>
       </div>
-      {/* GODMODE END */}
+      GODMODE END */}
       <div className="game-container">
         <>
           {
@@ -40,44 +44,57 @@ function Game( {user, gameData} ) {
               />
           }
           {
-            gameMode === "Character" && user && !gameData && 
+            gameMode === "Character" && user && 
               <CreateCharacter 
+                setGameMode={setGameMode}
                 user={user}
               />
           }
           {
-            gameMode === "Character" && user && gameData && 
+            gameMode === "ViewCharacter" && user && gameData && 
               <ViewCharacter 
                 gameData={gameData}
+                getGameData={getGameData}
+                setGameMode={setGameMode}
               />
           }
-          {
-            gameMode === "Character" && !user && 
-              <h1>
-                You need to login to create a character
-              </h1>
-          }
+
           {
             gameMode === "MapView" && 
-              <MapView 
+              gameData && <MapView 
                 gameData={gameData}
                 setGameMode={setGameMode}
-                stage={stage}
+                stage={gameData.stage}
                 nextStage={nextStage}
               />
           }
-          {
-            gameMode === "TownView" && 
-              <TownView/>
-          }
+
           {
             gameMode === "BattleView" && 
               <BattleView 
-                enemy={stage}
-                gameData={gameData}
                 nextStage={nextStage}
+                enemy={gameData.stage}
+                gameData={gameData}
+                setGameMode={setGameMode}
               />
           }
+          {
+            gameMode === "BattleEndWon" && 
+              <BattleEndView 
+                nextStage={nextStage}
+                gameData={gameData}
+                getGameData = {getGameData}
+                gameMode = {gameMode}
+                setGameMode={setGameMode}
+              />
+          }
+          {
+          gameMode === "BattleEndLost" && 
+            <BattleEndView 
+            gameMode = {gameMode}
+            setGameMode={setGameMode}
+          />
+      }
         </>
       </div>
     </div>

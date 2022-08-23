@@ -15,12 +15,13 @@ import HelpIcon from '@mui/icons-material/Help';
 import { SvgIcon } from '@mui/material';
 import {useNavigate, Link} from 'react-router-dom';
 import axios from 'axios'
+import {Icon} from '@mui/material';
 
 
 
 const pages = ['Play', 'Meet the Team'];
 const pagesObj = {"Play":'game', "Meet the Team": 'about'}
-const settings = ['Logout'];
+const settings = ['Profile','Logout'];
 
 const ResponsiveAppBar = ({user, gameData}) => {
 
@@ -38,18 +39,18 @@ const ResponsiveAppBar = ({user, gameData}) => {
   const settingHandler = function(event,key){
     event.preventDefault()
     console.log(key)
-    if(key==="About"){
-      navigate('/about');
+    if(key==="Profile"){
+      navigate('/profile');
     }
     else{
         console.log('You Logged Out')
       axios.post('/logout').then((response)=>{
         console.log('response from server: ', response)
+        navigate('/')
         window.location.reload()
       })
     }
   }
-
   return (
     <AppBar position="static">
       <Container>
@@ -83,19 +84,29 @@ const ResponsiveAppBar = ({user, gameData}) => {
             }}
           >
             Romeo's Adventure
-          </Typography>            
-          {user && <Typography style = {{marginRight:'10px'}}>{user.username}</Typography>}
+          </Typography> 
+          {gameData && gameData.type && <div id={`${gameData.type}-icon`}></div>}
+                     
+          {user && <Typography style = {{marginRight:'10px'}}>{user.first_name}</Typography>}
           {!user && <Typography as={Link} to="/signin" style = {{marginRight:'10px'}}>Log In</Typography>}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <SvgIcon 
+            {gameData && gameData.type && <Tooltip title="Open settings">
+            <SvgIcon 
                 component={
-                  gameData && gameData.type ? SecurityIcon : HelpIcon
+                  SecurityIcon
                 }
                 onClick={handleOpenUserMenu}
                 id="avatar-icon"/>
-            </Tooltip>
-            <Menu
+            </Tooltip>}
+            {!(gameData && gameData.type) && <Tooltip title="Open settings">
+            <SvgIcon 
+                component={
+                  HelpIcon
+                }
+                onClick={handleOpenUserMenu}
+                id="avatar-icon"/>
+            </Tooltip>}
+            {user && <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -116,7 +127,7 @@ const ResponsiveAppBar = ({user, gameData}) => {
                     <Typography component='a' onClick={(event)=>settingHandler(event,setting)} textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu>}
           </Box>
         </Toolbar>
       </Container>
