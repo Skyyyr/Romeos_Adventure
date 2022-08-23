@@ -7,7 +7,8 @@
 
 .frontend-battle{
   /*background: url(../../assets/frontend.png) -637px -1598px;*/
-  background: url(../../assets/frontend.png) 0 -715px;
+  background: url(../../assets/frontend.png) 0 -1987px;
+  /*background: url(../../assets/frontend.png) 0 -715px;*/
   /*background: url(../../assets/char_walk.png) 0 -20px;*/
   width: 64px;
   height: 64px;
@@ -16,10 +17,31 @@
   /*height: 50px;*/
   transform: scale(2);
   /*background-size: auto !important;*/
-  animation: anim-test 0.75s steps(9) both infinite, anim-walk 10s both linear, anim-attack 2s 5s;
+  /*animation: anim-test 0.75s steps(9) both infinite, anim-walk 10s both linear, anim-attack 1s 5s steps(6);*/
+  /*animation: full-anim 10s linear infinite;*/
   overflow: hidden;
 }
 /*testing stuff*/
+
+@keyframes full-anim {
+  50% {
+    transform: translateX(33vw) scale(2);
+  }
+  51% {
+    width: 192px;
+    background-position: 0 -1987px;
+  }
+  75% {
+    background-position: -960px -1987px;
+  }
+  76%{
+    width: 192px;
+  }
+  100% {
+    transform: translateX(0vw) scale(2);
+    background-position: -576px -715px;
+  }
+}
 
 @keyframes anim-test {
   100% {
@@ -41,13 +63,14 @@
 
 @keyframes anim-attack {
   0% {
-    animation: running;
-  }
-  50% {
-    background: url(../../assets/frontend.png) -850px -1994px;
+  /*  background: 0 -1987px;*/
+    width: 192px;
+  /*  !*height: 64px;*!*/
   }
   100% {
-    background: url(../../assets/frontend.png) -1050px -1994px;
+    /*width: 192px;*/
+    /*height: 64px;*/
+    background-position: -960px -1987px;
   }
 }
 
