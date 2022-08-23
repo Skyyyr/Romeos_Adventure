@@ -18,7 +18,6 @@ import axios from 'axios'
 import {Icon} from '@mui/material';
 
 
-
 const pages = ['Play', 'Meet the Team'];
 const pagesObj = {"Play":'game', "Meet the Team": 'about'}
 const settings = ['Profile','Logout'];
@@ -51,6 +50,7 @@ const ResponsiveAppBar = ({user, gameData}) => {
       })
     }
   }
+
   return (
     <AppBar position="static">
       <Container>
@@ -85,27 +85,27 @@ const ResponsiveAppBar = ({user, gameData}) => {
           >
             Romeo's Adventure
           </Typography> 
-          {gameData && gameData.type && <div id={`${gameData.type}-icon`}></div>}
+          {/* {gameData && gameData.type && <div id={`${gameData.type}-icon`}></div>} */}
                      
           {user && <Typography style = {{marginRight:'10px'}}>{user.first_name}</Typography>}
           {!user && <Typography as={Link} to="/signin" style = {{marginRight:'10px'}}>Log In</Typography>}
-          <Box sx={{ flexGrow: 0 }}>
-            {gameData && gameData.type && <Tooltip title="Open settings">
-            <SvgIcon 
-                component={
-                  SecurityIcon
-                }
-                onClick={handleOpenUserMenu}
-                id="avatar-icon"/>
-            </Tooltip>}
-            {!(gameData && gameData.type) && <Tooltip title="Open settings">
-            <SvgIcon 
-                component={
-                  HelpIcon
-                }
-                onClick={handleOpenUserMenu}
-                id="avatar-icon"/>
-            </Tooltip>}
+          <Box sx={{ flexGrow: 0 }} className="circle-icon-box">
+            {
+              gameData && gameData.type &&
+                <Tooltip title="Open settings">
+                  <button 
+                    className="headshot-img"
+                    id={`${gameData.type}-head`}
+                    onClick={handleOpenUserMenu}
+                  ></button>
+                </Tooltip>
+            }
+            {
+              !(gameData?.type) &&
+                <SvgIcon
+                  component={HelpIcon}
+                  id="avatar-icon"/>
+            }
             {user && <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
