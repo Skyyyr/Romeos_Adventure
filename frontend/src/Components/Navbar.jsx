@@ -101,6 +101,13 @@ const ResponsiveAppBar = ({user, gameData}) => {
                 </Tooltip>
             }
             {
+              (gameData) && !(gameData.type) &&
+                <SvgIcon
+                  component={HelpIcon}
+                  onClick={handleOpenUserMenu}
+                  id="avatar-icon"/>
+            }
+            {
               !(gameData?.type) &&
                 <SvgIcon
                   component={HelpIcon}
