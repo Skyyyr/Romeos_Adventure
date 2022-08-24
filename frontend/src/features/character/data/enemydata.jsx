@@ -4,7 +4,7 @@ export function getEnemyData(enemy) {
         case 5:
             return ({
                 'NAME':'Raphael',
-                'MOVES':[{'name':'Raph Attack', 'accuracy':5,'power':5}, {'name':'Raph Kick', 'accuracy':5,'power':5}, {'name':'Raph Punch', 'accuracy':5,'power':5}],
+                'MOVES':[{'name':'Raph ', 'accuracy':5,'power':5}, {'name':'Raph Kick', 'accuracy':5,'power':5}, {'name':'Raph Punch', 'accuracy':5,'power':5}],
                 'STATS':{
                     'strength': 8, 
                     'defense': 7,
