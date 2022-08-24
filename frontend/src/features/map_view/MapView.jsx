@@ -14,6 +14,7 @@ function MapView({gameData, setGameMode, stage, nextStage}) {
           <div className="col-2 border border-light">
             <Button
               variant="contained"
+              color="secondary"
               disabled={!(stage === i)}
               onClick={ ()=> {
                 setGameMode("BattleView")
@@ -27,10 +28,12 @@ function MapView({gameData, setGameMode, stage, nextStage}) {
         htmlContent.push(
           <div className="col-2 border border-light">
             <RiddleMinigameModal
+              currency={gameData.currency}
               disabled={!(stage === i)}
               nextStage={nextStage}
               name={MapData[i]['name']}
               riddleID={MapData[i]['riddleID']}
+              gameData={gameData}
             />
           </div>
         )
@@ -49,8 +52,20 @@ function MapView({gameData, setGameMode, stage, nextStage}) {
           <h1>
             Map
           </h1>
-          <Button variant="contained" onClick={()=>setGameMode("ViewCharacter")}>Character</Button>
-          <Button variant="contained" onClick={()=>setGameMode("MainMenu")}>Main Menu</Button>
+          <Button 
+            color="secondary"
+            variant="contained"
+            onClick={()=>setGameMode("ViewCharacter")}
+          >
+            Character
+          </Button>
+          <Button 
+            color="secondary"
+            variant="contained"
+            onClick={()=>setGameMode("MainMenu")}
+          >
+            Main Menu
+           </Button>
 
         </div>
         {loadMapData()}

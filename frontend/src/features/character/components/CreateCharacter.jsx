@@ -64,13 +64,13 @@ function CreateCharacter({user,setGameMode}) {
             <h1>
                 Choose Character
             </h1>
-            <Button variant="outlined" onClick={(event)=>createChar(event,type)}>Start Journey</Button>
+            <Button color="secondary" variant="contained" onClick={(event)=>createChar(event,type)}>Start Journey</Button>
             {/*TODO Remove these when done testing them*/}
             {/*<Button variant="outlined" onClick={viewChar}>VIEW CHARACTER</Button>*/}
             {/*TODO Remove these when done testing them*/}
             {/*<Button variant="outlined" onClick={updateChar}>UPDATE CHARACTER</Button>*/}
             <Box sx={{ width: '100%' }}>
-                <Tabs p={0} value={type} onChange={handleChangeTab} centered>
+                <Tabs p={0} value={type} onChange={handleChangeTab} centered textColor="text" indicatorColor="secondary">
                     <Tab sx={{height:150}} className="char-tab" value = "frontend" label={<span style={{'padding-top':'20px'}}>Frontend</span>} icon={<div className="frontend"></div>}/>
                     <Tab sx={{height:150}} className="char-tab" value = "backend" label={<span style={{'padding-top':'20px'}}>Backend</span>} icon={<div className="backend"></div>}/>
                     <Tab sx={{height:150}} className="char-tab" value = "fullstack" label={<span style={{'padding-top':'20px'}}>FullStack</span>} icon={<div className="fullstack"></div>}/>
