@@ -243,3 +243,17 @@
     transform: scale(1);
     background-size: auto !important;
 }
+
+.Enemy-battle{
+  background: url(./features/assets/Enemy.png) -256px -320px;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
+}
+
+.EnemyTwo-battle{
+  background: url(./features/assets/Enemy2.png) -256px -320px;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
+}

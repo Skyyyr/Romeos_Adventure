@@ -38,7 +38,7 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":25
             })
-            case 7:
+            case 6:
                 return ({
                     'NAME':'Enemy',
                     'MOVES':[{'name':'Enemy Attack', 'accuracy':5,'power':5}, {'name':'Enemy Kick', 'accuracy':5,'power':5}, {'name':'Enemy Punch', 'accuracy':5,'power':5}],
@@ -50,9 +50,9 @@ export function getEnemyData(enemy) {
                     },
                     "SUM":20
                 })
-            case 8:
+            case 7:
                 return ({
-                    'NAME':'Bad Guy',
+                    'NAME':'EnemyTwo',
                     'MOVES':[{'name':'Bad Guy Attack', 'accuracy':5,'power':5}, {'name':'Bad Guy Kick', 'accuracy':5,'power':5}, {'name':'Bad Guy Punch', 'accuracy':5,'power':5}],
                     'STATS':{
                         'strength': 5,
