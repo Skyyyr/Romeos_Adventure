@@ -34,7 +34,7 @@ function Game( {user, gameData, getGameData} ) {
         <Button variant="contained" disabled={!gameData} onClick={()=>setGameMode("MapView")}>Map View</Button>
       </div>
       GODMODE END */}
-      <div className="game-container">
+      <div className="game-container primary-bg">
         <>
           {
             gameMode === "MainMenu" && 

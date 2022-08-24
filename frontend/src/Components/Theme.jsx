@@ -1,20 +1,26 @@
-import { createTheme} from '@mui/material';
+import { createTheme, rgbToHex} from '@mui/material';
 
 export const themeOptions = createTheme({
-    // typography: {
-    //   fontFamily: ['MedievalSharp', 'cursive'].join(','),
-    // },
+    typography: {
+      // fontFamily: ['MedievalSharp', 'cursive'].join(','),
+      white: {
+        color: 'rgb(251,250,235)',
+      }
+    },
     palette: {
       type: 'dark',
       primary: {
-        main: '#020024',
+        main: 'rgb(17,85,158)',
       },
       secondary: {
-        main: '#79091a',
+        main: 'rgb(8,39,73)',
+      },
+      outline: {
+        main: 'rgb(142,228,232)'
       },
       text: {
-        primary: '#73090b',
-        secondary: 'rgba(148,36,36,0.7)',
+        primary: 'rgb(251,250,235)',
+        secondary: 'rgba(251,250,235,0.7)',
       },
     },
     shape: {
@@ -88,9 +94,13 @@ export const themeOptions = createTheme({
       MuiTextField: {
         margin: 'dense',
         size: 'small',
+        borderColor: 'white',
       },
       MuiTooltip: {
         arrow: true,
       },
+      MuiTab: {
+
+      }
     },
   })

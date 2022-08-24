@@ -14,7 +14,7 @@ const style = {
   boxShadow: 24,
 };
 
-function RiddleMinigameModal({nextStage, name, disabled, riddleID}) {
+function RiddleMinigameModal({nextStage, name, disabled, riddleID, gameData}) {
 
   const [ riddleOpen, setRiddleOpen ] = useState(false)
   const handleRiddleOpen = () => setRiddleOpen(true)
@@ -30,6 +30,7 @@ function RiddleMinigameModal({nextStage, name, disabled, riddleID}) {
       <Button 
         disabled={disabled}
         variant="contained"
+        color="secondary"
         onClick={handleRiddleOpen}
       >
         {name ? name : "minigame"}
@@ -45,7 +46,11 @@ function RiddleMinigameModal({nextStage, name, disabled, riddleID}) {
         }}
       >
         <Box sx={style}>
-          <Riddle_Minigame handleRiddleClose={handleRiddleClose} riddleID={riddleID} />
+          <Riddle_Minigame 
+            handleRiddleClose={handleRiddleClose}
+            riddleID={riddleID}
+            gameData={gameData}
+          />
         </Box>
       </Modal>
     </>
