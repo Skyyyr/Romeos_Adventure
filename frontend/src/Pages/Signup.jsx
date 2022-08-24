@@ -47,7 +47,8 @@ export default function SignUp() {
     const results = signupResponse.data['signup']
     if (results === 'success') {
         alert("You've successfully created your account.")
-        nav('/signin')
+        nav('/')
+        window.location.reload()
     } else {
       alert("The details you entered were not valid for an account to be made. Please enter a valid email, " +
           "and a password which is 7 characters or greater.")

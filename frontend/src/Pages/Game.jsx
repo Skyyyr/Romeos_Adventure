@@ -7,6 +7,7 @@ import MapView from '../features/map_view/MapView'
 import MainMenu from '../features/main_menu/MainMenu'
 import axios from "axios";
 import BattleEndView from '../features/battling/components/BattleEndView'
+import StoryMenu from '../features/story/storymenu'
 
 
 function Game( {user, gameData, getGameData} ) {
@@ -89,12 +90,15 @@ function Game( {user, gameData, getGameData} ) {
               />
           }
           {
-          gameMode === "BattleEndLost" && 
-            <BattleEndView 
-            gameMode = {gameMode}
-            setGameMode={setGameMode}
-          />
-      }
+            gameMode === "BattleEndLost" && 
+              <BattleEndView 
+              gameMode = {gameMode}
+              setGameMode={setGameMode}
+            />
+          }
+          {
+            gameMode === "Story" && <StoryMenu></StoryMenu>
+          }
         </>
       </div>
     </div>

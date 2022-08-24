@@ -1,0 +1,28 @@
+[
+    {
+        "id": 0,
+        "dialogue": "this is test dialogue",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 1,
+                "text": "Menu 1"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "dialogue": "TESTY TEST",
+        "func": "test",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 0,
+                "text": "Menu 0"
+            }
+        ]
+    }
+]
