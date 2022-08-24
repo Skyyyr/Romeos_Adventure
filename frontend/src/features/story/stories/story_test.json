@@ -14,7 +14,7 @@
     },
     {
         "id": 1,
-        "dialogue": "TESTY TEST",
+        "dialogue": "TESTY TESTY TESTY TEST",
         "func": "test",
         "anim": false,
         "animation_control": [],
