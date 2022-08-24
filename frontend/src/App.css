@@ -36,6 +36,18 @@
   width: 1000px;
   border: transparent;
   border-radius: 10px;
+ 
+}
+
+.map{
+  height: 600px;
+  width: 1000px;
+  position: relative;
+  border: transparent;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./features/assets/DungeonMap.png');
 }
 
 
