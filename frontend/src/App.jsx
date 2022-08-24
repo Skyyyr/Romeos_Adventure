@@ -40,7 +40,7 @@ function App() {
   
   const [gameData, setGameData] = useState(null)
   const [user, setUser] = useState(null)
-  const minWidth = useMediaPredicate("(min-width: 1000px)");
+  const minWidth = useMediaPredicate("(min-width: 1050px)");
   const minHeight = useMediaPredicate("(min-height: 650px)");
 
   const whoAmI = async () => {
