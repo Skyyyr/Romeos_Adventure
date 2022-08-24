@@ -8,8 +8,8 @@ import Login from "./Pages/Login.jsx";
 import About from "./Pages/About.jsx";
 import Game from "./Pages/Game.jsx";
 import PageNotFound from "./Pages/PageNotFound.jsx";
-import ResponsiveAppBar from './components/Navbar';
-import { themeOptions } from './components/Theme';
+import ResponsiveAppBar from './Components/Navbar';
+import { themeOptions } from './Components/Theme';
 import axios from 'axios'
 import Profile from "./Pages/Profile.jsx"
 import { useMediaPredicate } from "react-media-hook";
@@ -40,8 +40,8 @@ function App() {
   
   const [gameData, setGameData] = useState(null)
   const [user, setUser] = useState(null)
-  const minWidth = useMediaPredicate("(min-width: 700px)");
-  const minHeight = useMediaPredicate("(min-height: 400px)");
+  const minWidth = useMediaPredicate("(min-width: 1000px)");
+  const minHeight = useMediaPredicate("(min-height: 650px)");
 
   const whoAmI = async () => {
     const response = await axios.get('/whoami')

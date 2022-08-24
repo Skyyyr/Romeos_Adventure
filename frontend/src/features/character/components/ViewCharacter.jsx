@@ -3,13 +3,22 @@ import * as React from 'react';
 import  Button from "@mui/material/Button"
 import axios from 'axios'
 import { Typography } from '@mui/material';
-import { useEffect } from 'react';
-import MainMenu from '../../main_menu/MainMenu';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Grid from '@mui/material/Grid';
+import {getCharacterData} from '../data/characterdata';
+import { useState } from 'react';
+import {Tooltip} from '@mui/material';
+
 
 
 
 
 function ViewCharacter({gameData,getGameData,setGameMode}) {
+
+    const [romeoMoves,setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
 
     const increaseStat = function(event){
         console.log(event.target.value)
@@ -19,25 +28,97 @@ function ViewCharacter({gameData,getGameData,setGameMode}) {
         })
     }
 
+    function generateStats(gameData) {
+        let output = []
+        let dispStats = ['strength','defense','accuracy', 'evasion']
+      
+        for (const item in gameData) {
+          if(dispStats.includes(item))
+            output.push(
+            <ListItem>
+              <ListItemIcon>
+                <span class="material-symbols-outlined">swords</span>
+              </ListItemIcon>
+            <ListItemText
+              primary= {`${item.charAt(0).toUpperCase() + item.slice(1)}: ${gameData[item]}`}
+            />
+            </ListItem>)
+        }
+        return output
+      }
+
+      function generateMoves() {
+    
+        return romeoMoves.map((elem)=>{ 
+          return (      
+            <ListItem>
+              <ListItemIcon>
+                <span class="material-symbols-outlined">swords</span>
+              </ListItemIcon>
+              <Tooltip title={`Power: ${elem['power']}, Accuracy: ${elem['accuracy']}`}>
+                <ListItemText primary= {`${elem['name']}`}/> 
+              </Tooltip>
+              </ListItem>
+              )
+        })
+      
+      }
+
    
     return (
+        <div className='container'>
         <div className='row justify-content-center'>
-            <Typography variant='h2'>
+            <Typography variant='h2' style={{'margin':'10px'}}>
                 Romeo, The {`${gameData.type.charAt(0).toUpperCase() + gameData.type.slice(1)}`} Developer
             </Typography>
-            <Button color="secondary" variant="contained" onClick={()=>setGameMode("MapView")}>Return to Map</Button>
-            <div className='col-md-4 align-self-center'>
-                <div className={`${gameData.type}-view`}></div>
+            <div className='col-md-3 vstack gap-3 d-flex align-items-center justify-content-center'>
+                <div style={{'height':'300px','padding-top':'100px'}}>
+                    <div className={`${gameData.type}-view`}></div>
+                </div>
+                <div>
+                    <List style={{ columns: 2}} dense={false}>
+                        <ListItem>
+                            <ListItemText
+                            primary= {`Dinero: ${gameData.currency}`}
+                            />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText
+                            primary= {`Current Stage: ${gameData.stage}`}
+                            />
+                        </ListItem>
+                    </List>
+                </div>
             </div>
-            <div className='col-md-5 align-self-center'>
-                <Typography variant='h3'>Strength: {gameData.strength} <Button variant="outlined" disabled={gameData.currency<1} value = 'strength' onClick={(event)=>increaseStat(event)}>+</Button></Typography>
-                <Typography variant='h3'>Defense: {gameData.defense} <Button variant="outlined" disabled={gameData.currency<1} value = 'defense' onClick={(event)=>increaseStat(event)}>+</Button></Typography>
-                <Typography variant='h3'>Accuracy: {gameData.accuracy} <Button variant="outlined" disabled={gameData.currency<1} value = 'accuracy' onClick={(event)=>increaseStat(event)}>+</Button></Typography>
-                <Typography variant='h3'>Evasion: {gameData.evasion} <Button variant="outlined" disabled={gameData.currency<1} value = 'evasion' onClick={(event)=>increaseStat(event)}>+</Button> </Typography>
-                <Typography variant='h3'>Stage: {gameData.stage} </Typography>
-                <Typography variant='h3'>Dinero: ${gameData.currency} </Typography>
+            <div className='col-md-6 align-self-center'>
+            
+                <Grid container columns={{ xs: 6, sm: 6, md: 6 }} spacing={2}>
+                    <Grid item xs={6} md={6}>
+                        <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
+                            Moves
+                        </Typography>
+                        <List style={{ columns: 3}} dense={false}>
+                            {generateMoves()}
+                        </List>
+                        <hr></hr>
+                        <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
+                            Stats
+                        </Typography>
+                        <List style={{ columns: 2}} dense={false}>
+                            {generateStats(gameData,
+                            <ListItem>
+                                <ListItemText
+                                primary= "primary"
+                                />
+                            </ListItem>,
+                            )}
+                        </List>
+                    </Grid>
+                </Grid>
             </div>
-        
+            </div>
+            <Button color="secondary" variant="contained" style={{'margin':'10px', 'width':'100px','place-item':'left'}} onClick={()=>setGameMode("MapView")}>Return to Map</Button>
+
         </div>
     )
 }

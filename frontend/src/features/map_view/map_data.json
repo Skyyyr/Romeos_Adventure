@@ -1,35 +1,65 @@
 [
   {
     "id": 0,
-    "name": "Battle Adam",
+    "name": "1",
     "function": "battle"
   },
   {
     "id": 1,
-    "name": "Riddle 1",
+    "name": "2",
     "function": "riddle",
     "riddleID": "0"
   },
   {
     "id": 2,
-    "name": "Battle Zaynab",
+    "name": "3",
     "function": "battle"
   },  
   {
     "id": 3,
-    "name": "Riddle 2",
+    "name": "4",
     "function": "riddle",
     "riddleID": "1"
   },  
   {
     "id": 4,
-    "name": "Riddle 3",
+    "name": "5",
     "function": "riddle",
     "riddleID": "2"
   },  
   {
     "id": 5,
-    "name": "Battle Raphael",
+    "name": "6",
     "function": "battle"
+  },
+  {
+    "id": 6,
+    "name": "7",
+    "function": "riddle",
+    "riddleID": "2"
+  },
+  {
+    "id": 7,
+    "name": "8",
+    "function": "riddle",
+    "riddleID": "2"
+  },
+  {
+    "id": 8,
+    "name": "9",
+    "function": "riddle",
+    "riddleID": "2"
+  },
+  {
+    "id": 9,
+    "name": "10",
+    "function": "riddle",
+    "riddleID": "2"
+  },
+  {
+    "id": 10,
+    "name": "11",
+    "function": "riddle",
+    "riddleID": "2"
   }
 ]

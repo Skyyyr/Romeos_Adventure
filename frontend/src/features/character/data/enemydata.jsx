@@ -4,7 +4,7 @@ export function getEnemyData(enemy) {
         case 5:
             return ({
                 'NAME':'Raphael',
-                'MOVES':[{'name':'Raph Attack', 'accuracy':5,'power':5}, {'name':'Raph Kick', 'accuracy':5,'power':5}, {'name':'Raph Punch', 'accuracy':5,'power':5}],
+                'MOVES':[{'name':'Raph ', 'accuracy':5,'power':5}, {'name':'Raph Kick', 'accuracy':5,'power':5}, {'name':'Raph Punch', 'accuracy':5,'power':5}],
                 'STATS':{
                     'strength': 8, 
                     'defense': 7,
@@ -38,5 +38,30 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":25
             })
+            case 7:
+                return ({
+                    'NAME':'Enemy',
+                    'MOVES':[{'name':'Enemy Attack', 'accuracy':5,'power':5}, {'name':'Enemy Kick', 'accuracy':5,'power':5}, {'name':'Enemy Punch', 'accuracy':5,'power':5}],
+                    'STATS':{
+                        'strength': 4,
+                        'defense': 3,
+                        'accuracy': 6,
+                        'evasion': 7,
+                    },
+                    "SUM":20
+                })
+            case 8:
+                return ({
+                    'NAME':'Bad Guy',
+                    'MOVES':[{'name':'Bad Guy Attack', 'accuracy':5,'power':5}, {'name':'Bad Guy Kick', 'accuracy':5,'power':5}, {'name':'Bad Guy Punch', 'accuracy':5,'power':5}],
+                    'STATS':{
+                        'strength': 5,
+                        'defense': 6,
+                        'accuracy': 7,
+                        'evasion': 7,
+    
+                    },
+                    "SUM":25
+                })
     }
   }
