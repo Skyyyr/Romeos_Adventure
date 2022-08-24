@@ -31,6 +31,10 @@
     width: 126px;
     height: 126px;
 }
+.char-tab:hover { 
+    /* border: solid rgb(142, 228, 232); */
+    color: rgb(251,250,235);
+}
 
 .frontend-view{
     background: url(../../assets/frontend.png);

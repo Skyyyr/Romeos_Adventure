@@ -10,7 +10,7 @@ import riddles from './riddle_data/riddles.json';
 import NewLetterChoices from './riddle_helper_functions/NewLetterChoices';
 
 
-function Riddle_Minigame( {handleRiddleClose, riddleID} ) {
+function Riddle_Minigame( {handleRiddleClose, riddleID, gameData} ) {
 
   let isMounted = useRef(false);
 
@@ -38,6 +38,12 @@ function Riddle_Minigame( {handleRiddleClose, riddleID} ) {
   // Sets up a new riddle when riddleID changes
   useEffect( () => {
     if (riddleSolved === true && isMounted.current) {
+      resetLettersGuessed();
+      setLetterChoices(NewLetterChoices(RIDDLE_ANSWER));
+      setRiddleSolved(false);
+    }
+    // dev reset:
+    if (isMounted.current) {
       resetLettersGuessed();
       setLetterChoices(NewLetterChoices(RIDDLE_ANSWER));
       setRiddleSolved(false);
@@ -88,6 +94,7 @@ function Riddle_Minigame( {handleRiddleClose, riddleID} ) {
     })
   }
 
+
   return (
     <section id="riddle-container">
       { letterChoices ?
@@ -95,7 +102,7 @@ function Riddle_Minigame( {handleRiddleClose, riddleID} ) {
           <div className="centered" id="title-box">
             <div className="text-center">
               <h2>
-                Solve the Riddle
+                You Must Solve the Riddle
               </h2>
             </div>
           </div>
@@ -112,6 +119,8 @@ function Riddle_Minigame( {handleRiddleClose, riddleID} ) {
               letterChoices={letterChoices}
               setLetterChoices={setLetterChoices}
               resetLettersGuessed={resetLettersGuessed}
+              answer={RIDDLE_ANSWER}
+              gameData={gameData}
             />
           </div>
           <div className="centered" id="answer-box">

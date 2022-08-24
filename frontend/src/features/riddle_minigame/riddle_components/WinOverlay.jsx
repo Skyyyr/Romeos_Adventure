@@ -7,18 +7,21 @@ function RiddleWinOverlay( {answer, handleRiddleClose} ) {
   const firstAnswer = useRef(answer)
 
   return (
-    <div className="text-center" style={{color: 'gold'}}>
+    <div className="text-center">
       <h1>
         <u>Correct!</u>
       </h1>
-      <hr id="win-horiz-rule"/>
       <h3 className="mt-5 mb-5">
         The correct answer is
       </h3>
       <h2 className="mb-5">
         {firstAnswer.current}
       </h2>
-      <Button variant="contained" onClick={handleRiddleClose} id="riddle-win-button">
+      <Button
+        variant="contained"
+        onClick={handleRiddleClose}
+        id="riddle-win-button"
+      >
         Continue
       </Button>
     </div>

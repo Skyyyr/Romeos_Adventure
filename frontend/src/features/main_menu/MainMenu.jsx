@@ -4,8 +4,7 @@ import axios from 'axios'
 
 function MainMenu( {user, setGameMode, gameData} ) {
 
-  const deleteChar = function(event){
-    event.preventDefault()
+  const deleteChar = function(event) {
     axios.delete('/gamedata').then((response)=>{
         setGameMode('Character')
         // window.location.reload()
@@ -31,7 +30,7 @@ function MainMenu( {user, setGameMode, gameData} ) {
       <Button 
         variant="contained"
         color="secondary"
-        onClick={(event)=>((gameData && gameData.type) ? deleteChar(event) : setGameMode("Character"))}
+        onClick={()=>((gameData && gameData.type) ? deleteChar() : setGameMode("Character"))}
       >
         New Game
       </Button>

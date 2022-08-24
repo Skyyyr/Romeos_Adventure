@@ -3,7 +3,24 @@
   margin: 0 auto;
   padding-top: 0;
   text-align: center;
+  background-color: rgb(8,39,73);
 }
+
+
+/* COLOR PALETTE*/
+.primary-bg {
+  background-color: rgb(17,85,158) !important;
+}
+.secondary-bg {
+  background-color: rgb(8,39,73) !important;
+}
+.outline-bg {
+  background-color: rgb(142,228,232) !important;
+}
+.text {
+  color: rgb(251,250,235) !important;
+}
+
 
 
 /* GENERAL PAGE DESIGN */
@@ -13,14 +30,12 @@
   place-items: center;
   height: calc(100vh - 68.5px);
   width: 100%;
-  background-color: rgb(48,48,48);
 }
 .game-container {
   height: 600px;
   width: 1000px;
   border: transparent;
   border-radius: 10px;
-  background-color: rgb(70,70,70);
 }
 
 
@@ -31,7 +46,6 @@
   width: 100%;
   display: grid;
   place-items: center;
-  color: whitesmoke;
 }
 #home-bottom-half {
   height: 40%;
@@ -46,8 +60,8 @@
   border-radius: 30px;
   display: grid;
   place-items: center;
-  color: whitesmoke;
   box-shadow: 0 .25rem .25rem 0.2rem black;
+  background-color: rgb(17,85,158);
 }
 
 
@@ -67,15 +81,19 @@
   /* border-radius: 30px; */
   overflow: hidden;
 }
+#avatar-icon-inactive {
+  height: 60px;
+  width: 60px;
+  align-self: center;
+}
 #avatar-icon {
   height: 60px;
   width: 60px;
-  /* transform: scale(1.5); */
   align-self: center;
   cursor: pointer;
 }
 #avatar-icon:hover {
-  border: solid #535BF2;
+  border: solid rgb(142,228,232);
 }
 .headshot-img{
   position: absolute;
@@ -103,6 +121,15 @@
 #fullstack-head {
   background-image: url(./Components/headshot-imgs/fullstack-head.png);
 }
+.navbar-login {
+  margin-right: 30px !important;
+  color: rgb(251,250,235);
+}
+.navbar-login:hover {
+  text-decoration: underline;
+  color: rgb(142,228,232);
+}
+
 
 #frontend-icon{
   background: url(./features/assets/frontend.png);
@@ -136,8 +163,16 @@
 #game-title {
   height: 20%;
   display: grid;
-  place-items: center;  
-  color: whitesmoke;
+  place-items: center;
 }
 
 
+/* LOGIN & SIGNUP */
+#email {
+  color: rgb(251,250,235);
+  border: rgb(251,250,235) !important;
+  background-color: rgb(17,85,158, 0);
+}
+#password {
+  border: rgb(251,250,235);
+}

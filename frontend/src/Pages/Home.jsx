@@ -15,16 +15,16 @@ function Home( {user} ) {
               { user ?
                   <div>
                     <Link to="/game">
-                      <Button color="secondary" variant="contained">Play Game</Button>
+                      <Button color="primary" variant="contained">Play Game</Button>
                     </Link>
                   </div>
                 :
                   <div>
                     <Link to="/signin">
-                        <Button color="secondary" variant="contained">Login</Button>
+                        <Button color="primary" variant="contained">Login</Button>
                     </Link>
                     <Link to="/signup">
-                        <Button color="secondary" variant="contained">Sign Up</Button>
+                        <Button color="primary" variant="contained">Sign Up</Button>
                     </Link>
                   </div>
               }
