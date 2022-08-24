@@ -118,17 +118,17 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
         <div className='row battleDialog' style={{'height':'20vh','overflow': 'hidden'}}>
             <div className='col-md-3 vstack gap-2 align-self-center'>
                 {romeoMoves.map(elem=><Tooltip disableInteractive title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}><Button id={elem.name} variant="contained" onClick={()=> (turn == "Player One") && attack(elem)}>{elem['name']}</Button></Tooltip>)}
-                <Button variant="contained" onClick={()=>setGameMode("MapView")}>Forfeit</Button>
+                <Button color="secondary" variant="contained" onClick={()=>setGameMode("MapView")}>Forfeit</Button>
             </div>
             <div className='col-md-9 align-self-start'>
                 <Typography variant='h3'>{turn}'s Turn!</Typography>
                 <Typography variant='h5'>{currAttack}</Typography>
             </div>
         </div>
-        <Button onClick={()=>(setEnemyHealth(0))}>
+        <Button color="secondary" variant="contained" onClick={()=>(setEnemyHealth(0))}>
             Dev-Win
         </Button>
-        <Button onClick={()=>(setRomeoHealth(0))}>
+        <Button color="secondary" variant="contained" onClick={()=>(setRomeoHealth(0))}>
             Dev-Lose
         </Button>
     </div>
