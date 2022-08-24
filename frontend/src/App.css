@@ -198,3 +198,48 @@
   width: 20px;
   
 }
+
+#skyler-icon{
+  background: url(./features/assets/Skyler.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#justin-icon{
+  background: url(./features/assets/Justin.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#garrett-icon{
+  background: url(./features/assets/Garrett.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#meredith-icon{
+  background: url(./features/assets/Meredith.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#zack-icon{
+  background: url(./features/assets/Zack.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
