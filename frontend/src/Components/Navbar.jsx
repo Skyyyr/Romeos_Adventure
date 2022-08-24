@@ -10,7 +10,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import SecurityIcon from '@mui/icons-material/Security';
 import HelpIcon from '@mui/icons-material/Help';
 import { SvgIcon } from '@mui/material';
 import {useNavigate, Link} from 'react-router-dom';
@@ -52,7 +51,7 @@ const ResponsiveAppBar = ({user, gameData}) => {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="primary">
       <Container>
         <Toolbar disableGutters sx={{position: 'relative'}}>
           <div id="navbar-center">
@@ -75,7 +74,7 @@ const ResponsiveAppBar = ({user, gameData}) => {
             href="/"
             sx={{
               textAlign: 'left',
-              flexGrow: 1,
+              flexGrow: 0,
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -85,9 +84,25 @@ const ResponsiveAppBar = ({user, gameData}) => {
           >
             Romeo's Adventure
           </Typography> 
-                     
-          {user && <Typography style = {{marginRight:'10px'}}>{user.first_name}</Typography>}
-          {!user && <Typography as={Link} to="/signin" style = {{marginRight:'10px'}}>Log In</Typography>}
+          <div className="flex-grow-1"></div>
+          {
+            user && 
+              <Typography 
+                style = {{marginRight:'10px'}}
+              >
+                {user.first_name}
+              </Typography>
+          }
+          {
+            !user && 
+              <Typography 
+                as={Link}
+                to="/signin" 
+                className="navbar-login"
+              >
+                Log In
+              </Typography>
+          }
           <Box sx={{ flexGrow: 0 }} className="circle-icon-box">
             {
               gameData && gameData.type &&
@@ -98,18 +113,21 @@ const ResponsiveAppBar = ({user, gameData}) => {
                   ></button>
             }
             {
-              (gameData) && !(gameData.type) &&
+              user && !gameData &&
                 <SvgIcon
                   component={HelpIcon}
                   onClick={handleOpenUserMenu}
-                  id="avatar-icon"/>
+                  id="avatar-icon"
+                  sx={{border: 'transparent'}}
+                />
             }
             {
-              !(gameData?.type) &&
+              !user &&
                 <SvgIcon
                   component={HelpIcon}
                   onClick={handleOpenUserMenu}
-                  id="avatar-icon"/>
+                  id="avatar-icon-inactive"
+                />
             }
             {user && <Menu
               sx={{ mt: '45px' }}

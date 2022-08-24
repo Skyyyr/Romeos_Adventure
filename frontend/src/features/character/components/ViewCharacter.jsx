@@ -25,7 +25,7 @@ function ViewCharacter({gameData,getGameData,setGameMode}) {
             <Typography variant='h2'>
                 Romeo, The {`${gameData.type.charAt(0).toUpperCase() + gameData.type.slice(1)}`} Developer
             </Typography>
-            <Button variant="contained" onClick={()=>setGameMode("MapView")}>Return to Map</Button>
+            <Button color="secondary" variant="contained" onClick={()=>setGameMode("MapView")}>Return to Map</Button>
             <div className='col-md-4 align-self-center'>
                 <div className={`${gameData.type}-view`}></div>
             </div>
