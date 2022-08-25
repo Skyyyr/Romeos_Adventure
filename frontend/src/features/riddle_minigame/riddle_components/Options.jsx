@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import axios from 'axios';
 
 
-function RiddleOptions( {letterChoices, setLetterChoices, resetLettersGuessed, gameData, answer} ) {
+function RiddleOptions( {letterChoices, setLetterChoices, resetLettersGuessed, gameData, answer, getGameData} ) {
 
   const shuffleLetterChoiceTiles = () => {
     let newChoices = ShuffleArray(letterChoices)
@@ -17,6 +17,7 @@ function RiddleOptions( {letterChoices, setLetterChoices, resetLettersGuessed, g
         console.log(response)
     })
     if (resp.data['result']) {
+      getGameData()
       const i = Math.floor(Math.random() * answer.length)
       alert(`
       RNGesus has revealed that letter number ${i} is ${answer[i]}...

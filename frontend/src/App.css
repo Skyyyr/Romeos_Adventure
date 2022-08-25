@@ -36,6 +36,18 @@
   width: 1000px;
   border: transparent;
   border-radius: 10px;
+ 
+}
+
+.map{
+  height: 600px;
+  width: 1000px;
+  position: relative;
+  border: transparent;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./features/assets/DungeonMap.png');
 }
 
 
@@ -175,4 +187,73 @@
 }
 #password {
   border: rgb(251,250,235);
+}
+
+
+/* ABOUT */
+
+.github-icon {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  
+}
+
+#skyler-icon{
+  background: url(./features/assets/Skyler.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#justin-icon{
+  background: url(./features/assets/Justin.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#garrett-icon{
+  background: url(./features/assets/Garrett.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#meredith-icon{
+  background: url(./features/assets/Meredith.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+#zack-icon{
+  background: url(./features/assets/Zack.png);
+    background-position: 0px -640px; 
+    width: 64px;
+    height: 64px;
+    transform: scale(1);
+    background-size: auto !important;
+}
+
+.Enemy-battle{
+  background: url(./features/assets/Enemy.png) -256px -320px;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
+}
+
+.EnemyTwo-battle{
+  background: url(./features/assets/Enemy2.png) -256px -320px;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
 }

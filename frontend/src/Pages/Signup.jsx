@@ -8,11 +8,24 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import { useEffect } from 'react';
+import { useState,useEffect } from 'react';
+import { Alert, getBottomNavigationActionUtilityClass } from '@mui/material';
 
 
 export default function SignUp() {
   const nav = useNavigate()
+  const [signUpAttempt, setSignUpAttempt] = useState(false)
+  const [warning,setWarning] = useState(null)
+  const [firstNameInput, setFirstNameInput] = useState('')
+  const [lastNameInput, setLastNameInput] = useState('')
+  const [userNameInput, setUserNameInput] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
+  const [firstNameInputVal, setFirstNameInputVal] = useState(false)
+  const [lastNameInputVal, setLastNameInputVal] = useState(false)
+  const [userNameInputVal, setUserNameInputVal] = useState(false)
+  const [passwordInputVal, setPasswordInputVal] = useState(false)
+
+
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,39 +34,32 @@ export default function SignUp() {
     const inputLastName = data.get('lastName')
     const inputEmail = data.get('email')
     const inputPassword = data.get('password')
-    console.log({
-      email: inputEmail,
-      password: inputPassword,
-    });
+    setSignUpAttempt(true)
 
-    if (!inputEmail.includes("@") || !inputEmail.includes(".com")) {
-      console.log("Not a valid email")
-      return
-    }
-    if (inputPassword.split("").length <= 6) {
-      console.log("pw too short")
-      return
-    }
-    const signupResponse = await axios.post('/signup', {
-      first_name: inputFirstName,
-      last_name: inputLastName,
-      email: inputEmail,
-      password: inputPassword
-    }).catch((response) => {
-      console.log('response from server: ', response)
-    })
+    if(firstNameInputVal && lastNameInputVal && userNameInputVal && passwordInputVal){
+      const signupResponse = await axios.post('/signup', {
+        first_name: inputFirstName,
+        last_name: inputLastName,
+        email: inputEmail,
+        password: inputPassword
+      }).catch((response) => {
+        console.log('response from server: ', response)
+      })
 
-    console.log("signupResponse", signupResponse)
-    const results = signupResponse.data['signup']
-    if (results === 'success') {
-        alert("You've successfully created your account.")
-        nav('/')
-        window.location.reload()
-    } else {
-      alert("The details you entered were not valid for an account to be made. Please enter a valid email, " +
-          "and a password which is 7 characters or greater.")
+      const results = signupResponse.data['signup']
+      if (results === 'success') {
+          alert("You've successfully created your account.")
+          nav('/')
+          window.location.reload()
+      }else if(results=="username_used"){
+          setWarning("This username/email is already used.")
+      }else{
+        alert('error on backend')
+      }
+
+      }
     }
-  }
+
 
   return (
       <Container component="main" maxWidth="xs">
@@ -69,7 +75,8 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          {warning && <Alert severity="error">{warning}</Alert>}
+          <Box component="form" noValidate onSubmit={(event)=>handleSubmit(event)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
             <TextField
@@ -80,6 +87,9 @@ export default function SignUp() {
               id="firstName"
               label="First Name"
               autoFocus
+              error={(firstNameInput=="" || !firstNameInputVal) && signUpAttempt}
+              helperText={((firstNameInput=="" || !firstNameInputVal) && signUpAttempt) ? "Must be at least 4 characters" : ''}
+              onChange={(e)=>(setFirstNameInput(e.target.value),setFirstNameInputVal(e.target.value.length>3))}
             />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -90,6 +100,9 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
+                onChange={(e)=>(setLastNameInput(e.target.value),setLastNameInputVal(e.target.value.length>3))}
+                error={(lastNameInput=="" || !lastNameInputVal) && signUpAttempt}
+                helperText={((lastNameInput=="" || !lastNameInputVal) && signUpAttempt) ? "Must be at least 4 characters" : ''}
               />
             </Grid>
               <Grid item xs={12}>
@@ -100,6 +113,9 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e)=>(setUserNameInput(e.target.value),setUserNameInputVal(e.target.value.includes("@") && e.target.value.includes(".com")))}
+                  error={(userNameInput==""  || !userNameInputVal) && signUpAttempt}
+                  helperText={((userNameInput=="" || !userNameInputVal) && signUpAttempt) ? "Must be a valid email" : ''}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,6 +127,9 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e)=>(setPasswordInput(e.target.value), setPasswordInputVal((e.target.value.length > 6)))}
+                  error={(passwordInput==""  || !passwordInputVal) && signUpAttempt}
+                  helperText={((passwordInput=="" || !passwordInputVal) && signUpAttempt) ? "Must be at least 7 characters" : ''}
                 />
               </Grid>
             </Grid>

@@ -2,11 +2,12 @@ import '../styling/battle.css'
 import {Bar} from './HealthBar'
 import {getCharacterData} from '../../character/data/characterdata'
 import {getEnemyData} from '../../character/data/enemydata'
-import { useState,useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import  Button from "@mui/material/Button" 
 import { Typography, Tooltip } from '@mui/material'
 import {wait, Damage} from '../helpers/helpers'
 
+import CanvasWalk from '../helpers/animations'
 
 
 function BattleView({gameData, enemy, setGameMode,nextStage}) {
@@ -21,34 +22,84 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
     const [enemyAnimation, setEnemyAnimation] = useState('')
     const [playerAnimation, setPlayerAnimation] = useState('')
 
+    const [ moveAnimation, setMoveAnimation ] = useState('')
+    const [ flip, setFlip ] = useState(false)
+
+    const newKey = useRef(0)
+
+    // walk right: -705px, 64x64, 9 frames
+    // big atk right: -1921px, 192x192, 6 frames
+    // big atk left: -1537px, 192x192, 6 frames
+
+    const walkRight = {
+      oversize: false,
+      row: 12,
+      frames: 9,
+      repeat: true,
+      type: 'walk',
+    }
+    const lgAtkRight = {
+      oversize: true,
+      row: 11,
+      frames: 6,
+      repeat: false,
+      type: 'atk',
+    }
+    const walkLeft = {
+      oversize: false,
+      row: 10,
+      frames: 9,
+      repeat: true,
+      type: 'walk',
+    }
+    const lgAtkLeft = {
+      oversize: true,
+      row: 9,
+      frames: 6,
+      repeat: false,
+      type: 'atk',
+    }
+    
 
     const enemyAttack = async (move) => {
-
         await wait(3000)
-        setEnemyAnimation('eneAttack')
-        await wait(500)
-        setEnemyAnimation("eneReset")
-        setPlayerAnimation('hit')
-        await wait(500)
-        setPlayerAnimation('')
-        inflictDamage(move)
+        // setEnemyAnimation('eneAttack')
+        // await wait(500)
+        // setEnemyAnimation("eneReset")
+        // setPlayerAnimation('hit')
+        // await wait(500)
+        // setPlayerAnimation('')
+        // inflictDamage(move)
         setTurn("Player One")
-        
     }
 
     const attack = async (move) => {
-        
         document.getElementById(move.name).disabled = true;
-        setPlayerAnimation('attack')
-        await wait(500)
-        setPlayerAnimation("reset")
-        setEnemyAnimation('hit')
-        await wait(500)
+        setMoveAnimation('user-walk')
+        newKey.current++
+        setPlayerAnimation(walkRight)
+        await wait(2200)
+        newKey.current++
+        setPlayerAnimation(lgAtkRight)
+        await wait(600)
         inflictDamage(move)
-        setEnemyAnimation('')
-        setTurn("Player Two")
+        newKey.current++
+        setFlip('flip-sprite')
+        setPlayerAnimation(walkLeft)
+        await wait(2200)
+        newKey.current++
+        setMoveAnimation('')
+        setPlayerAnimation('')
+        setFlip('')
+        // setPlayerAnimation('attack')
+        // await wait(500)
+        // setPlayerAnimation("reset")
+        // setEnemyAnimation('hit')
+        // await wait(500)
+        // inflictDamage(move)
+        // setEnemyAnimation('')
+        // setTurn("Player Two")
         document.getElementById(move.name).disabled = false;
-        
     }
 
     useEffect(()=>{
@@ -60,11 +111,9 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
 
     useEffect(()=>{
         const checkDead = async () =>{
-            
             if(romeoHealth <= 0){
                 await wait(2000)
                 setGameMode('BattleEndLost')
-                
             }
             else if(enemyHealth <= 0){
                 await wait(2000)
@@ -77,25 +126,20 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
 
     const inflictDamage = async (move) => {
         const damage = Damage(turn, romeoStats, enemyData.STATS, move)
-
         if(turn === "Player One"){
             setCurrAttack(`Romeo used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
-
         }
         else if(turn === "Player Two"){
             setCurrAttack(`Player Two used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
-
         }
-
     }
 
 
     return (
-
-        <div className='container'>
-            <div className='row align-items-center' style={{'height':'20vh', 'overflow': 'hidden'}}>
+        <>
+            <div className='row  m-0 align-items-center' style={{'height':'20%'}}>
                 <div className='col-md-3'>
                     <Bar label="Romeo" value={romeoHealth}/>
                 </div>
@@ -104,34 +148,61 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>
-        {/*<div className='row align-items-end' style={{'height':'20vh', 'overflow': 'hidden'}}>*/}
-        <div className='row align-items-end' style={{'height':'20vh'}}>
-            <div className='wrapper'>
-                <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
-                    <div className={`${gameData.type}-battle ${playerAnimation}`}></div>
+            {/*<div className='row align-items-end' style={{'height':'20vh', 'overflow': 'hidden'}}>*/}
+            <div className='row m-0 align-items-end' style={{'height':'40%'}}>
+                <div className='wrapper'>
+                    <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
+                        <div id='canvas-container' className={`${moveAnimation} ${flip.current}`}>
+                          { playerAnimation ? 
+                              <CanvasWalk key={newKey.current} {...playerAnimation} />
+                            : <div className='frontend-battle'></div>}
+                        </div>
+
+                    </div>
+                    <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
+                        <div className={`${enemyData.NAME}-battle ${enemyAnimation}`}></div> 
+                    </div>
                 </div>
-                <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
-                    <div className={`${enemyData.NAME}-battle ${enemyAnimation}`} ></div> 
+            </div>
+            <div className='row m-0 battleDialog' style={{'height':'30%'}}>
+                <div className='col-md-3 vstack my-2 align-self-center'>
+                    {
+                      romeoMoves.map(elem => 
+                        <Tooltip 
+                          disableInteractive
+                          title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}
+                        >
+                          <Button 
+                            id={elem.name}
+                            color="secondary"
+                            variant="contained"
+                            onClick={()=> (turn == "Player One") && attack(elem)}
+                          >
+                            {elem['name']}
+                          </Button>
+                        </Tooltip>
+                      )
+                    }
+                    <Button 
+                      color="outline"
+                      variant="outlined"
+                      onClick={()=>setGameMode("MapView")}
+                    >
+                      Forfeit
+                    </Button>
+                </div>
+                <div className='col-md-9 align-self-start'>
+                    <Typography variant='h3'>{turn}'s Turn!</Typography>
+                    <Typography variant='h5'>{currAttack}</Typography>
                 </div>
             </div>
-        </div>
-        <div className='row battleDialog' style={{'height':'20vh','overflow': 'hidden'}}>
-            <div className='col-md-3 vstack gap-2 align-self-center'>
-                {romeoMoves.map(elem=><Tooltip disableInteractive title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}><Button id={elem.name} variant="contained" onClick={()=> (turn == "Player One") && attack(elem)}>{elem['name']}</Button></Tooltip>)}
-                <Button color="secondary" variant="contained" onClick={()=>setGameMode("MapView")}>Forfeit</Button>
-            </div>
-            <div className='col-md-9 align-self-start'>
-                <Typography variant='h3'>{turn}'s Turn!</Typography>
-                <Typography variant='h5'>{currAttack}</Typography>
-            </div>
-        </div>
-        <Button color="secondary" variant="contained" onClick={()=>(setEnemyHealth(0))}>
-            Dev-Win
-        </Button>
-        <Button color="secondary" variant="contained" onClick={()=>(setRomeoHealth(0))}>
-            Dev-Lose
-        </Button>
-    </div>
+            <Button color="secondary" variant="contained" onClick={()=>(setEnemyHealth(0))}>
+                Dev-Win
+            </Button>
+            <Button color="secondary" variant="contained" onClick={()=>(setRomeoHealth(0))}>
+                Dev-Lose
+            </Button>
+        </>
     )
 }
 
