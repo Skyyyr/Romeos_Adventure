@@ -72,7 +72,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
         // inflictDamage(move)
         setTurn("Player One")
     }
-    console.log(newKey.current)
+
     const attack = async (move) => {
         document.getElementById(move.name).disabled = true;
         setMoveAnimation('user-walk')
