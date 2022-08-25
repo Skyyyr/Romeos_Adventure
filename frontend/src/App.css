@@ -36,6 +36,7 @@
   width: 1000px;
   border: transparent;
   border-radius: 10px;
+  overflow: hidden;
  
 }
 
@@ -257,3 +258,39 @@
   height: 64px;
   transform: scale(2);
 }
+
+.story-container{
+  height: 100%;
+  width: 100%;
+  background-image: url('./features/assets/field_night_bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.menu-section{
+  /* transform:translateY(370px); */
+
+}
+
+.menu-option{
+  width:1000px;
+  height: 23%;
+
+}
+
+/* .fix-buttons{
+  position: fixed;
+  transform:translate(-112px, 26px)
+} */
+
+#story-top{
+  height: 419px;
+
+}
+
+.story-bottom{
+  height: 181px;
+
+}
+

@@ -1,14 +1,26 @@
 [
     {
         "id": 0,
-        "dialogue": "this is test dialogue",
+        "dialogue": "Welcome to ",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
                 "id": 1,
-                "text": "Menu 1"
+                "text": "Menu 17326491872634098170359871230845-12034895-1023498-0129734987123894yo217i3ytriuqweghfkljasdblf"
+            },
+            {
+                "id": 3,
+                "text": "Battle"
+            },
+            {
+                "id": 4,
+                "text": "Map"
+            },
+            {
+                "id": 2,
+                "text": "Menu 2"
             }
         ]
     },
@@ -23,6 +35,41 @@
                 "id": 0,
                 "text": "Menu 0"
             }
+        ]
+    },
+    {
+        "id": 2,
+        "dialogue": "this is test dialogue!!!!!!",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 1,
+                "text": "Menu 1"
+            },
+            {
+                "id": 3,
+                "text": "Menu 3"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "dialogue": "An evil villain has stolen the magical fork.",
+        "func": "battle",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+        ]
+    },
+    {
+        "id": 4,
+        "dialogue": "You shouldn't see this! You should see a map!",
+        "func": "map",
+        "anim": false,
+        "animation_control": [],
+        "options": [
         ]
     }
 ]
