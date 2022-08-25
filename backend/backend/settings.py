@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-mtafk=($4@)cr5n)o+85#c5mi-l*e23ot6@0y3b5j38#3&b-0@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://romeosadventure.com', 'http://romeosadventure.com']
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'romeo',
-        'USER': 'postgres',
-        'PASSWORD': '123'
+       # 'USER': 'postgres',
+       # 'PASSWORD': '123'
     }
 }
 
@@ -129,8 +131,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if DEBUG:
-    import mimetypes
-    mimetypes.add_type("application/javascript", ".js", True)
+#if DEBUG:
+import mimetypes
+mimetypes.add_type("application/javascript", ".js", True)
 
 AUTH_USER_MODEL = 'api.AppUser'
