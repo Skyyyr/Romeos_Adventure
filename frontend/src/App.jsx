@@ -40,8 +40,8 @@ function App() {
   
   const [gameData, setGameData] = useState(null)
   const [user, setUser] = useState(null)
-  const minWidth = useMediaPredicate("(min-width: 1050px)");
-  const minHeight = useMediaPredicate("(min-height: 650px)");
+  const minWidth = useMediaPredicate("(min-width: 0px)");
+  const minHeight = useMediaPredicate("(min-height: 0px)");
 
   const whoAmI = async () => {
     const response = await axios.get('/whoami')

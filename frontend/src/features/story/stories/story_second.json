@@ -1,0 +1,27 @@
+[
+    {
+        "id": 0,
+        "dialogue": "This is our 2nd JSON ",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 1,
+                "text": "Doo"
+            },
+            {
+                "id": 3,
+                "text": "Boop"
+            },
+            {
+                "id": 4,
+                "text": "Beep"
+            },
+            {
+                "id": 2,
+                "text": "Bop"
+            }
+        ]
+    }
+]
