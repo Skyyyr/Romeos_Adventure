@@ -11,21 +11,28 @@
   height:100%;
 }
 
-.frontend-battle{
-  background: url(../../assets/frontend.png) 0 -705px;
+/* PLAYER BATTLE */
+.player-battle-stance {
   width: 64px;
   height: 64px;
   transform: scale(2);
   overflow: hidden;
 }
-
+.frontend-battle {
+  background: url(../../assets/frontend.png) 0 -705px;
+}
+.backend-battle {
+  background: url(../../assets/backend.png) 0px -705px;
+}
+.fullstack-battle {
+  background: url(../../assets/fullstack.png) 0px -705px;
+}
+.flip {
+  transform: rotateY(180deg);
+}
 .user-walk {
   animation: user-walk 5s linear;
 }
-.flip-sprite {
-  transform: rotateY(180deg);
-}
-
 @keyframes user-walk {
   40% {
     transform: translateX(560px);
@@ -37,66 +44,38 @@
     transform: translateX(0px);
   }
 }
-
-@keyframes user-walk-backward {
-  100% { 
-    transform: translateX(-500px);
+.enemy-walk {
+  animation: enemy-walk 5s linear;
+}
+@keyframes enemy-walk {
+  40% {
+    transform: translateX(-560px);
   }
-}
-
-@keyframes user-anim-walk-left {
-  100% { transform: translateX(-500px) }
-}
-
-@keyframes anim-attack {
-  0% {
-  /*  background: 0 -1987px;*/
-    width: 192px;
-  /*  !*height: 64px;*!*/
+  60% {
+    transform: translateX(-560px);
   }
   100% {
-    /*width: 192px;*/
-    /*height: 64px;*/
-    background-position: -960px -1987px;
+    transform: translateX(0px);
   }
 }
-
-/*end testing stuff*/
-
-.backend-battle{
-  background: url(../../assets/backend.png) -195px -1223px;
-  width: 65px;
-  height: 63px;
-  transform: scale(2);
-  background-size: auto !important;
+.magic-hover {
+  animation: magic-hover 3s linear;
 }
-
-.fullstack-battle{
-  background: url(../../assets/fullstack.png) -202px -966px;
-  width: 61px;
-  height: 64px;
-  transform: scale(2);
-  background-size: auto !important;
-}
-
-.flip
-{
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-
-.color{
-  background-color: #d34549;
+@keyframes magic-hover {
+  33% {
+    transform: translateY(-32px);
+  }
+  66% {
+    transform: translateY(-32px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .attack{
   transition: 0.1s;
   transform: scale(2) translateX(10px) translateY(-10px);
-}
-
-.reset{
-  transition: 0.1s;
-  animation: .3s .3s infinite;
 }
 
 .eneAttack{
@@ -110,18 +89,15 @@
 
 .hit {
   opacity: 1;
-  animation: flash 0.3s 0.3s infinite;
+  animation: flash 0.5s 0s infinite running;
 }
 
 @keyframes flash {
   0% {
     opacity: 0;
   }
-  50% {
-    opacity: 1;
-  }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -164,23 +140,19 @@
   border: double rgb(142,228,232);
 }
 
-.Raphael-battle{
-  background: url(../../assets/raphael.png) -780px -1599px;
-  width: 110px;
-  height: 75px;
+
+.enemy-battle-stance {
+  width: 64px;
+  height: 64px;
   transform: scale(2);
+  overflow: hidden;
 }
-
+.Raphael-battle{
+  background: url(../../assets/raphael.png) 0px -577px;
+}
 .Adam-battle{
-    background: url(../../assets/adam.png) -257px -326px;
-    width: 52px;
-    height: 62px;
-    transform: scale(2);
-  }
-
+    background: url(../../assets/adam.png) 0px -577px;
+}
 .Zaynab-battle{
-    background: url(../../assets/zaynab.png) -636px -1606px;
-    width: 74px;
-    height: 65px;
-    transform: scale(2);
-  }
+    background: url(../../assets/zaynab.png) 0px -577px;
+}
