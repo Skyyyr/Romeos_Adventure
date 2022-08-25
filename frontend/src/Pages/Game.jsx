@@ -7,6 +7,7 @@ import MapView from '../features/map_view/MapView'
 import MainMenu from '../features/main_menu/MainMenu'
 import axios from "axios";
 import BattleEndView from '../features/battling/components/BattleEndView'
+import StoryMenu from '../features/story/storymenu'
 
 
 function Game( {user, gameData, getGameData} ) {
@@ -33,6 +34,18 @@ function Game( {user, gameData, getGameData} ) {
         <Button variant="contained" disabled={!gameData} onClick={()=>setGameMode("MapView")}>Map View</Button>
       </div>
       GODMODE END */}
+      { gameMode === "MapView" && 
+      gameData && <div className='map primary-bg'>
+        <>
+          <MapView 
+              gameData={gameData}
+              setGameMode={setGameMode}
+              stage={gameData.stage}
+              nextStage={nextStage}
+            />
+        </>
+      </div>}
+      {!(gameMode === "MapView") &&
       <div className="game-container primary-bg">
         <>
           {
@@ -60,16 +73,6 @@ function Game( {user, gameData, getGameData} ) {
           }
 
           {
-            gameMode === "MapView" && 
-              gameData && <MapView 
-                gameData={gameData}
-                setGameMode={setGameMode}
-                stage={gameData.stage}
-                nextStage={nextStage}
-              />
-          }
-
-          {
             gameMode === "BattleView" && 
               <BattleView 
                 nextStage={nextStage}
@@ -89,14 +92,17 @@ function Game( {user, gameData, getGameData} ) {
               />
           }
           {
-          gameMode === "BattleEndLost" && 
-            <BattleEndView 
-            gameMode = {gameMode}
-            setGameMode={setGameMode}
-          />
-      }
+            gameMode === "BattleEndLost" && 
+              <BattleEndView 
+              gameMode = {gameMode}
+              setGameMode={setGameMode}
+            />
+          }
+          {
+            gameMode === "Story" && <StoryMenu></StoryMenu>
+          }
         </>
-      </div>
+      </div>}
     </div>
   )
 }

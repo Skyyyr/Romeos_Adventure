@@ -50,13 +50,14 @@
 
 @keyframes anim-attack {
   0% {
-    animation: running;
-  }
-  50% {
-    background: url(../../assets/frontend.png) -850px -1994px;
+  /*  background: 0 -1987px;*/
+    width: 192px;
+  /*  !*height: 64px;*!*/
   }
   100% {
-    background: url(../../assets/frontend.png) -1050px -1994px;
+    /*width: 192px;*/
+    /*height: 64px;*/
+    background-position: -960px -1987px;
   }
 }
 

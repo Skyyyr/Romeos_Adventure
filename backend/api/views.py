@@ -20,8 +20,9 @@ def home(request):
 def sign_up(request):
     print(request.data)
     try:
-        User.objects.create_user(password=request.data['password'], username=request.data['email'],
-                                 email=request.data['email'],first_name=request.data['first_name'],last_name=request.data['last_name'])
+        user = User.objects.create_user(password=request.data['password'], username=request.data['email'],
+                                        email=request.data['email'], first_name=request.data['first_name'], last_name=request.data['last_name'])
+        login(request._request, user)
         return JsonResponse({'signup': 'success'})
     except Exception as e:
         print(str(e))
@@ -65,7 +66,7 @@ def who_am_i(request):
     # raise Exception('oops')
     if request.user.is_authenticated:
         data = serializers.serialize("json", [request.user],
-                                     fields=['email', 'username', 'date_joined','first_name','last_name'])
+                                     fields=['email', 'username', 'date_joined', 'first_name', 'last_name'])
         return HttpResponse(data)
     else:
         return JsonResponse({'user': None})
@@ -99,12 +100,13 @@ def game_data(request):
         elif request.method == 'DELETE':
             if results:
                 GameData.objects.get(user=request.user).delete()
-                return JsonResponse({'result' : 'success'})
+                return JsonResponse({'result': 'success'})
 
         elif request.method == 'PUT':
             print(request.data)
             if 'advancestage' in request.data:
-                GameData.objects.filter(user=request.user).update(stage=request.data['advancestage']['stage'],currency=request.data['advancestage']['currency'])
+                GameData.objects.filter(user=request.user).update(
+                    stage=request.data['advancestage']['stage'], currency=request.data['advancestage']['currency'])
                 return JsonResponse({'result': 'advanced stage'})
 
             if 'statincrease' in request.data:
