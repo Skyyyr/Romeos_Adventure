@@ -3,40 +3,49 @@
   justify-content: space-between;
   gap: 2rem;
 }
-
+#canvas-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  height:100%;
+}
 
 .frontend-battle{
-  /*background: url(../../assets/frontend.png) -637px -1598px;*/
-  background: url(../../assets/frontend.png) 0 -715px;
-  /*background: url(../../assets/char_walk.png) 0 -20px;*/
+  background: url(../../assets/frontend.png) 0 -705px;
   width: 64px;
   height: 64px;
-  margin: 1em auto;
-  /*width: 37px;*/
-  /*height: 50px;*/
   transform: scale(2);
-  /*background-size: auto !important;*/
-  animation: anim-test 0.75s steps(9) both infinite, anim-walk 10s both linear, anim-attack 2s 5s;
   overflow: hidden;
 }
-/*testing stuff*/
 
-@keyframes anim-test {
+.user-walk {
+  animation: user-walk 5s linear;
+}
+.flip-sprite {
+  transform: rotateY(180deg);
+}
+
+@keyframes user-walk {
+  40% {
+    transform: translateX(560px);
+  }
+  60% {
+    transform: translateX(560px);
+  }
   100% {
-    /*transform: translate3d(100%, 0, 0) scale(2);*/
-    background-position: -576px -715px;
+    transform: translateX(0px);
   }
 }
 
-@keyframes anim-walk {
-  50% {
-    transform: translateX(33vw) scale(2);
-    /*transform: translateX(560px) scale(2);*/
+@keyframes user-walk-backward {
+  100% { 
+    transform: translateX(-500px);
   }
-  100% {
-    transform: translateX(0vw) scale(2);
-    /*transform: translateX(560px) scale(2);*/
-  }
+}
+
+@keyframes user-anim-walk-left {
+  100% { transform: translateX(-500px) }
 }
 
 @keyframes anim-attack {
@@ -151,7 +160,7 @@
 }
 
 .battleDialog{
-  border-style: double;
+  border: double rgb(142,228,232);
 }
 
 .Raphael-battle{
