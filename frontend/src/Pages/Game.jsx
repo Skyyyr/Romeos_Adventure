@@ -42,6 +42,7 @@ function Game( {user, gameData, getGameData} ) {
               setGameMode={setGameMode}
               stage={gameData.stage}
               nextStage={nextStage}
+              getGameData={getGameData}
             />
         </>
       </div>}

@@ -10,7 +10,7 @@ import riddles from './riddle_data/riddles.json';
 import NewLetterChoices from './riddle_helper_functions/NewLetterChoices';
 
 
-function Riddle_Minigame( {handleRiddleClose, riddleID, gameData} ) {
+function Riddle_Minigame( {handleRiddleClose, riddleID, gameData,getGameData} ) {
 
   let isMounted = useRef(false);
 
@@ -121,6 +121,7 @@ function Riddle_Minigame( {handleRiddleClose, riddleID, gameData} ) {
               resetLettersGuessed={resetLettersGuessed}
               answer={RIDDLE_ANSWER}
               gameData={gameData}
+              getGameData={getGameData}
             />
           </div>
           <div className="centered" id="answer-box">
