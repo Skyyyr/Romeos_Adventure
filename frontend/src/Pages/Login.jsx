@@ -10,21 +10,29 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom';
 import { rgbToHex } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
+import { useState,useEffect } from 'react';
+import { Alert, getBottomNavigationActionUtilityClass } from '@mui/material';
 
 
 export default function Login({user}) {
     const nav = useNavigate()
+    const [warning,setWarning] = useState(null)
 
 
-  const handleSubmit = (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    axios.post('/login', {email: data.get('email'), password: data.get('password')}).then((response)=>{
-        console.log('response from server: ', response)
-        nav('/')
-        window.location.reload()
+    const response = await axios.post('/login', {email: data.get('email'), password: data.get('password')}).catch((resp)=>{
+      console.log(resp.data['result'])
     })
+
+    if(response.data['result']=='success'){
+      nav('/')
+      window.location.reload()
+    }
+    else if(response.data['result']=='invalid_login'){
+      setWarning("Email or Password is incorrect, try again")
+    }
   }
 
   const LoginTextField = styled(TextField)({
@@ -63,6 +71,7 @@ export default function Login({user}) {
           <Typography variant="white" component="h2">
             Sign In
           </Typography>
+          {warning && <Alert severity="error">{warning}</Alert>}
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <LoginTextField
               variant="outlined"
