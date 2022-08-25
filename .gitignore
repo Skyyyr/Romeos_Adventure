@@ -2,7 +2,7 @@
 .idea/
 /backend/venv/
 #/backend/static/assets/
-/backend/static/
+#/backend/static/
 #backend/api/__pycache__/
 
 # Django #
