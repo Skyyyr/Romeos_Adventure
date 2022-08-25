@@ -4,7 +4,7 @@ import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
 import './map.css'
 
 
-function MapView({gameData, setGameMode, stage, nextStage}) {
+function MapView({gameData, setGameMode, stage, nextStage,getGameData}) {
 
   function loadMapData() {
     let htmlContent = []
@@ -34,6 +34,7 @@ function MapView({gameData, setGameMode, stage, nextStage}) {
               name={MapData[i]['name']}
               riddleID={MapData[i]['riddleID']}
               gameData={gameData}
+              getGameData={getGameData}
             />
           </div>
         )

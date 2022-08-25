@@ -19,6 +19,8 @@ def home(request):
 @api_view(['POST'])
 def sign_up(request):
     print(request.data)
+    if User.objects.filter(username=request.data['email']).exists():
+          return JsonResponse({'signup': 'username_used'})  
     try:
         user = User.objects.create_user(password=request.data['password'], username=request.data['email'],
                                         email=request.data['email'], first_name=request.data['first_name'], last_name=request.data['last_name'])
@@ -44,13 +46,13 @@ def log_in(request):
             except Exception as e:
                 print('except')
                 print(str(e))
-            return HttpResponse('success!')
+            return JsonResponse({'result': 'success'})
             # Redirect to a success page.
         else:
-            return HttpResponse('not active!')
+            return JsonResponse({'result': 'disabled account'})
             # Return a 'disabled account' error message
     else:
-        return HttpResponse('no user!')
+        return JsonResponse({'result': 'invalid_login'})
         # Return an 'invalid login' error message.
 
 
