@@ -8,11 +8,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import { useEffect } from 'react';
+import { useState,useEffect } from 'react';
+import { Alert } from '@mui/material';
 
 
 export default function SignUp() {
   const nav = useNavigate()
+  const [warning,setWarning] = useState(null)
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -27,11 +29,13 @@ export default function SignUp() {
     });
 
     if (!inputEmail.includes("@") || !inputEmail.includes(".com")) {
-      console.log("Not a valid email")
+      ////console.log("Not a valid email")
+      setWarning("This is not a valid email")
       return
     }
     if (inputPassword.split("").length <= 6) {
       console.log("pw too short")
+      setWarning("Password is too short, make it 6 characters ")
       return
     }
     const signupResponse = await axios.post('/signup', {
@@ -69,6 +73,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          {warning && <Alert severity="error">{warning}</Alert>}
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>

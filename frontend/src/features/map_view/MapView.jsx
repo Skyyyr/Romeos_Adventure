@@ -47,6 +47,10 @@ function MapView({gameData, setGameMode, stage, nextStage}) {
 
   return (
     <div>
+      <button 
+        className="headshot-img"
+        id={`${gameData.type}-head`}
+      ></button>
       <Button 
         className="character-button"
         color="secondary"

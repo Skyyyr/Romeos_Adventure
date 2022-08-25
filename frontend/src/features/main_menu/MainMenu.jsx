@@ -1,15 +1,19 @@
 import { Button } from "@mui/material"
 import axios from 'axios'
+import DeleteWarning from "./DeleteWarning"
 
 
 function MainMenu( {user, setGameMode, gameData} ) {
 
   const deleteChar = function(event) {
+    event.preventDefault()
     axios.delete('/gamedata').then((response)=>{
+        //window.location.reload()
         setGameMode('Character')
-        // window.location.reload()
         console.log('response from server: ', response)
      })
+
+     
 }
 
   return (
@@ -27,13 +31,7 @@ function MainMenu( {user, setGameMode, gameData} ) {
       >
         Continue
       </Button>
-      <Button 
-        variant="contained"
-        color="secondary"
-        onClick={()=>((gameData && gameData.type) ? deleteChar() : setGameMode("Character"))}
-      >
-        New Game
-      </Button>
+      <DeleteWarning gameData={gameData} deleteChar={deleteChar} setGameMode={setGameMode}/>
     </>
   )
 }
