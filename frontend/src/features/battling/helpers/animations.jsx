@@ -32,7 +32,10 @@ export default function CanvasWalk({oversize, row, frames, repeat}) {
 
   const ref = useRef();
   const frame = useRef(1);
-  const frameCount = useRef(0);
+
+  const frameCount = useRef(0)
+  const FRAMES_PER_SECOND = 15
+  const FRAME_MIN_TIME = (1000/60) * (60/FRAMES_PER_SECOND) - (1000/60) * 0.5;
 
   const canvasBoxStyle = {
     position: 'absolute',
@@ -60,26 +63,29 @@ export default function CanvasWalk({oversize, row, frames, repeat}) {
       )
     }
 
-    function frameStep() {
-      if (isMounted.current) {
-        frameCount.current++;
-        if (frameCount.current < 12 && firstRender.current == false) {
-          window.requestAnimationFrame(frameStep);
-          return
-        }
-        frameCount.current = 0;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        drawFrame(frame.current, row-1, 0, 0);
-        frame.current++;
-        if (frame.current >= frames) {
-          if (repeat == false) return
-          frame.current = 1;
-        }
-        firstRender.current = false
-        window.requestAnimationFrame(frameStep)
+    function frameStep(time) {
+      if (time-frameCount.current < FRAME_MIN_TIME) {
+        requestAnimationFrame(frameStep);
+        return;
       }
+      frameCount.current = time
+      // frameCount.current++;
+      // if (frameCount.current < 12 && firstRender.current == false) {
+      //   window.requestAnimationFrame(frameStep);
+      //   return
+      // }
+      // frameCount.current = 0;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      drawFrame(frame.current, row-1, 0, 0);
+      frame.current++;
+      if (frame.current >= frames) {
+        if (repeat == false) return
+        frame.current = 1;
+      }
+      firstRender.current = false
+      requestAnimationFrame(frameStep)
     }
-    window.requestAnimationFrame(frameStep)
+    requestAnimationFrame(frameStep)
   })
 
   return (
