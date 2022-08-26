@@ -11,6 +11,7 @@ import  Button from "@mui/material/Button"
 import axios from 'axios'
 import {useNavigate} from "react-router-dom";
 import StatBar from './StatBar';
+import StatWarning from './StatWarning';
 
 
 
@@ -73,7 +74,7 @@ function CreateCharacter({user,setGameMode}) {
     const createChar = function(event,type){
         event.preventDefault()
         axios.post('/gamedata', {type:type, ...stats}).then((response)=>{
-            setGameMode('MapView')
+            setGameMode('Story')
             console.log('response from server: ', response)
         })
     }
@@ -121,7 +122,7 @@ function CreateCharacter({user,setGameMode}) {
                 </List>
             </div>
             </div>
-            <Button color="secondary" variant="contained" style={{'margin':'10px', 'width':'100px','place-item':'bottom'}} onClick={(event)=>createChar(event,type)}>Start Journey</Button>
+            <StatWarning createChar={(event)=>createChar(event,type)} spending={spending} setGameMode={setGameMode}/>
 
         </div>
     )

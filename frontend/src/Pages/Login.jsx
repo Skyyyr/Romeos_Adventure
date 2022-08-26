@@ -16,7 +16,7 @@ import { Alert, getBottomNavigationActionUtilityClass } from '@mui/material';
 
 export default function Login({user}) {
     const nav = useNavigate()
-    const [warning,setWarning] = useState(null)
+    const [invalidLogin,setInvalidLogin] = useState(false)
 
 
   async function handleSubmit(event) {
@@ -31,7 +31,7 @@ export default function Login({user}) {
       window.location.reload()
     }
     else if(response.data['result']=='invalid_login'){
-      setWarning("Email or Password is incorrect, try again")
+      setInvalidLogin(true) 
     }
   }
 
@@ -71,7 +71,6 @@ export default function Login({user}) {
           <Typography variant="white" component="h2">
             Sign In
           </Typography>
-          {warning && <Alert severity="error">{warning}</Alert>}
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <LoginTextField
               variant="outlined"
@@ -83,6 +82,8 @@ export default function Login({user}) {
               name="email"
               autoComplete="email"
               autoFocus
+              error={invalidLogin}
+              helperText={invalidLogin && "Password and email combination are invalid"}
             />
             <LoginTextField
               variant="outlined"
@@ -94,6 +95,8 @@ export default function Login({user}) {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={invalidLogin}
+              helperText={invalidLogin && "Password and email combination are invalid"}
             />
 
             <Button
