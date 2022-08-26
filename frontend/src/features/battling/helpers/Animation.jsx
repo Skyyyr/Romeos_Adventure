@@ -7,12 +7,13 @@ import Adam from '../../assets/adam.png';
 import Zaynab from '../../assets/zaynab.png';
 import EnemyOne from '../../assets/Enemy.png';
 import EnemyTwo from '../../assets/Enemy2.png';
+import WhiteHit from '../../assets/whitehit.png';
+import FireHit from '../../assets/firehit.png';
 
-export default function Animation({height, width, row, frames, repeat, type}) {
-
+export default function Animation({key, height, width, row, frames, repeat, scale = 2, type, zIndex=0}) {
+  
   const firstRender = useRef(true)
 
-  const scale = 2;
   const scaledWidth = scale * width;
   const scaledHeight = scale * height;
   const spritesheet = new Image();
@@ -25,10 +26,6 @@ export default function Animation({height, width, row, frames, repeat, type}) {
   const FRAMES_PER_SECOND = 15
   const FRAME_MIN_TIME = (1000/60) * (60/FRAMES_PER_SECOND) - (1000/60) * 0.5;
 
-  useEffect( () => {
-    firstRender.current = true
-  }, [])
-
   function getSpritesheet() {
     if (type === 'frontend') return frontend
     if (type === 'backend') return backend
@@ -38,12 +35,14 @@ export default function Animation({height, width, row, frames, repeat, type}) {
     if (type === 'Zaynab') return Zaynab
     if (type === 'EnemyOne') return EnemyOne
     if (type === 'EnemyTwo') return EnemyTwo
+    if (type === 'whiteHit') return WhiteHit
+    if (type === 'fireHit') return FireHit
   }
 
   useEffect( () => {
     let canvas = ref.current;
     let context = canvas.getContext('2d')
-
+    requestAnimationFrame(frameStep)
     function drawFrame(frameX, frameY, canvasX, canvasY) {
       context.drawImage(
         spritesheet,
@@ -62,14 +61,13 @@ export default function Animation({height, width, row, frames, repeat, type}) {
       drawFrame(frames[frame.current], row-1, 0, 0);
       frame.current++;
       if (frame.current >= frames.length) {
-        if (repeat) frame.current = 0
+        if (repeat) frame.current = 0;
         else return
       }
       firstRender.current = false
       requestAnimationFrame(frameStep)
     }
-    requestAnimationFrame(frameStep)
-  })
+  }, [])
 
   const canvasBoxStyle = {
     position: 'absolute',
@@ -79,6 +77,7 @@ export default function Animation({height, width, row, frames, repeat, type}) {
     width: `${width}`,
     marginTop: `-${height/2}`,
     marginLeft: `-${width/2}`,
+    zIndex: {zIndex},
   }
   const canvasStyle = {
     display: 'grid',
@@ -88,8 +87,8 @@ export default function Animation({height, width, row, frames, repeat, type}) {
   return (
     <div style={{...canvasBoxStyle}}>
       <canvas
+        key = {key}
         ref = {ref}
-        id = "canvas"
         style = {{...canvasStyle}}
         width = {scaledWidth}
         height = {scaledHeight}
