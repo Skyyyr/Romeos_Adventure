@@ -83,6 +83,7 @@ def game_data(request):
             char_data = request.data
 
             new_data = GameData.objects.create(
+                currency=5,
                 type=char_data['type'],
                 accuracy=char_data['accuracy'],
                 evasion=char_data['evasion'],

@@ -3,9 +3,13 @@ import ShuffleIcon from '@mui/icons-material/Shuffle';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { Button } from '@mui/material';
 import axios from 'axios';
+import HintAlert from './HintAlert';
+import React from 'react';
 
 
 function RiddleOptions( {letterChoices, setLetterChoices, resetLettersGuessed, gameData, answer, getGameData} ) {
+
+  const [open, setOpen] = React.useState(false);
 
   const shuffleLetterChoiceTiles = () => {
     let newChoices = ShuffleArray(letterChoices)
@@ -18,10 +22,7 @@ function RiddleOptions( {letterChoices, setLetterChoices, resetLettersGuessed, g
     })
     if (resp.data['result']) {
       getGameData()
-      const i = Math.floor(Math.random() * answer.length)
-      alert(`
-      RNGesus has revealed that letter number ${i} is ${answer[i]}...
-      `)
+      setOpen(true)
     }
 }
 
@@ -40,6 +41,7 @@ function RiddleOptions( {letterChoices, setLetterChoices, resetLettersGuessed, g
         >
           Hint ($1)
         </Button>
+        {open && <HintAlert open={open} answer={answer} setOpen={()=>setOpen(false)} />}
       </div>
     </>
   )

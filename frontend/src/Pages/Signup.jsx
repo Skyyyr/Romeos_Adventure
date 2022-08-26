@@ -12,10 +12,12 @@ import { useState,useEffect } from 'react';
 import { Alert, getBottomNavigationActionUtilityClass } from '@mui/material';
 
 
+
+
+
 export default function SignUp() {
   const nav = useNavigate()
   const [signUpAttempt, setSignUpAttempt] = useState(false)
-  const [warning,setWarning] = useState(null)
   const [firstNameInput, setFirstNameInput] = useState('')
   const [lastNameInput, setLastNameInput] = useState('')
   const [userNameInput, setUserNameInput] = useState('')
@@ -24,8 +26,14 @@ export default function SignUp() {
   const [lastNameInputVal, setLastNameInputVal] = useState(false)
   const [userNameInputVal, setUserNameInputVal] = useState(false)
   const [passwordInputVal, setPasswordInputVal] = useState(false)
+  const [emailTaken,setEmailTaken] = useState(false)
 
 
+  //Validators
+  const emailReg = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
+  const passwordMinLength = 5
+  const firstNameMinLen = 2
+  const lastNameMinLen = 2
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -52,7 +60,7 @@ export default function SignUp() {
           nav('/')
           window.location.reload()
       }else if(results=="username_used"){
-          setWarning("This username/email is already used.")
+          setEmailTaken(true)
       }else{
         alert('error on backend')
       }
@@ -75,7 +83,6 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          {warning && <Alert severity="error">{warning}</Alert>}
           <Box component="form" noValidate onSubmit={(event)=>handleSubmit(event)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -88,8 +95,8 @@ export default function SignUp() {
               label="First Name"
               autoFocus
               error={(firstNameInput=="" || !firstNameInputVal) && signUpAttempt}
-              helperText={((firstNameInput=="" || !firstNameInputVal) && signUpAttempt) ? "Must be at least 4 characters" : ''}
-              onChange={(e)=>(setFirstNameInput(e.target.value),setFirstNameInputVal(e.target.value.length>3))}
+              helperText={((firstNameInput=="" || !firstNameInputVal) && signUpAttempt) ? `Must be at least ${firstNameMinLen} characters` : ''}
+              onChange={(e)=>(setFirstNameInput(e.target.value),setFirstNameInputVal(e.target.value.length>=firstNameMinLen))}
             />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -100,9 +107,9 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
-                onChange={(e)=>(setLastNameInput(e.target.value),setLastNameInputVal(e.target.value.length>3))}
+                onChange={(e)=>(setLastNameInput(e.target.value),setLastNameInputVal(e.target.value.length>=lastNameMinLen))}
                 error={(lastNameInput=="" || !lastNameInputVal) && signUpAttempt}
-                helperText={((lastNameInput=="" || !lastNameInputVal) && signUpAttempt) ? "Must be at least 4 characters" : ''}
+                helperText={((lastNameInput=="" || !lastNameInputVal) && signUpAttempt) ? `Must be at least ${lastNameMinLen} characters` : ''}
               />
             </Grid>
               <Grid item xs={12}>
@@ -113,9 +120,12 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  onChange={(e)=>(setUserNameInput(e.target.value),setUserNameInputVal(e.target.value.includes("@") && e.target.value.includes(".com")))}
-                  error={(userNameInput==""  || !userNameInputVal) && signUpAttempt}
-                  helperText={((userNameInput=="" || !userNameInputVal) && signUpAttempt) ? "Must be a valid email" : ''}
+                  onChange={(e)=>(setUserNameInput(e.target.value),setUserNameInputVal(emailReg.test(e.target.value)))}
+                  error={((userNameInput==""  || !userNameInputVal) && signUpAttempt) || emailTaken}
+                  helperText={
+                    (((userNameInput=="" || !userNameInputVal) && signUpAttempt) ? "Must be a valid email" : '')
+                    || (emailTaken ? "Username/Email is already in use" : '')
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -127,9 +137,9 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  onChange={(e)=>(setPasswordInput(e.target.value), setPasswordInputVal((e.target.value.length > 6)))}
+                  onChange={(e)=>(setPasswordInput(e.target.value), setPasswordInputVal((e.target.value.length >= passwordMinLength)))}
                   error={(passwordInput==""  || !passwordInputVal) && signUpAttempt}
-                  helperText={((passwordInput=="" || !passwordInputVal) && signUpAttempt) ? "Must be at least 7 characters" : ''}
+                  helperText={((passwordInput=="" || !passwordInputVal) && signUpAttempt) ? `Must be at least ${passwordMinLength} characters` : ''}
                 />
               </Grid>
             </Grid>
