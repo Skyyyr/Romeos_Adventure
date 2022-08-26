@@ -13,16 +13,15 @@ import { useState } from 'react';
 import {Tooltip} from '@mui/material';
 
 
-
-
-
 function ViewCharacter({gameData,getGameData,setGameMode}) {
 
     const [romeoMoves,setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
 
-    const increaseStat = function(event){
-        console.log(event.target.value)
-        axios.put('/gamedata', {'statincrease':{'stat':event.target.value, 'value':(gameData[event.target.value]+1),'currency':(gameData.currency-1)}}).then((response)=>{
+    const increaseStat = function(){
+        const statsArr = ['strength','defense','accuracy','evasion']
+        let rand = Math.floor(Math.random() * 4);
+        let stat = statsArr[rand]
+        axios.put('/gamedata', {'statincrease':{'stat':stat, 'value':(gameData[stat]+1),'currency':(gameData.currency-1)}}).then((response)=>{
             getGameData()
             console.log(response)
         })
@@ -117,6 +116,7 @@ function ViewCharacter({gameData,getGameData,setGameMode}) {
                 </Grid>
             </div>
             </div>
+            <Button color="secondary" disabled={gameData.currency<=0} variant="contained" style={{'margin':'10px', 'width':'100px','place-item':'left'}} onClick={increaseStat}>Purchase Stat</Button>
             <Button color="secondary" variant="contained" style={{'margin':'10px', 'width':'100px','place-item':'left'}} onClick={()=>setGameMode("MapView")}>Return to Map</Button>
 
         </div>

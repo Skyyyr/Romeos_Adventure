@@ -34,6 +34,7 @@ const ResponsiveAppBar = ({user, gameData}) => {
     setAnchorElUser(null);
   };
 
+
   const settingHandler = function(event,key){
     event.preventDefault()
     console.log(key)

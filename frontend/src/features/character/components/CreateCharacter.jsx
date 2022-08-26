@@ -12,7 +12,10 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom";
 import StatBar from './StatBar';
 import StatWarning from './StatWarning';
-
+import Grid from '@mui/material/Grid';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import {Tooltip} from '@mui/material';
 
 
 function CreateCharacter({user,setGameMode}) {
@@ -22,12 +25,12 @@ function CreateCharacter({user,setGameMode}) {
     const [data, setData] = useState(getCharacterData(type))
     const [update, setUpdate] = useState(false)
     const [spending, setSpending] = useState(3)
+    const [romeoMoves,setRomeoMoves] = useState(getCharacterData(type).MOVES)
+
 
     useEffect(()=>{
-
     },[stats])
   
-
 
     const handleChangeTab = (event, newType) => {
       setType(newType)
@@ -37,11 +40,42 @@ function CreateCharacter({user,setGameMode}) {
       setSpending(3)
     };
 
+    function generateMoves() {
+        return romeoMoves.map((elem)=>{ 
+          return (      
+            <ListItem>
+              <ListItemIcon>
+                <span class="material-symbols-outlined">swords</span>
+              </ListItemIcon>
+              <Tooltip title={`Power: ${elem['power']}, Accuracy: ${elem['accuracy']}`}>
+                <ListItemText primary= {`${elem['name']}`}/> 
+              </Tooltip>
+              </ListItem>
+              )
+        })
+      
+      }
+
+      function generateStats() {
+        
+        return statType.map((val, ind)=>{
+            return (
+                <ListItemText key={ind}> 
+                    <StatBar 
+                        stats={stats} 
+                        type={type} 
+                        val={val} 
+                        statName={`${val.charAt(0).toUpperCase() + val.slice(1)}`} 
+                        addStat={addStat}
+                        removeStat={removeStat}
+                        />
+                </ListItemText>)
+        })
+      }
+
 
     function addStat(val){
-        let baseStat = getCharacterData(type).STATS[val]
 
-        console.log(stats[val])
         if(stats[val]< 10 && spending>0){
             setStats((prevState)=>{
                 let stats = prevState
@@ -72,6 +106,7 @@ function CreateCharacter({user,setGameMode}) {
     }
 
     const createChar = function(event,type){
+        console.log('seen')
         event.preventDefault()
         axios.post('/gamedata', {type:type, ...stats}).then((response)=>{
             setGameMode('Story')
@@ -90,37 +125,29 @@ function CreateCharacter({user,setGameMode}) {
                     <Tab sx={{height:150}} className="char-tab" value = "fullstack" label={<span style={{'padding-top':'20px'}}>FullStack</span>} icon={<div className="fullstack"></div>}/>
                 </Tabs>
             </Box>
-            <div className='col-4 align-self-center'>
-                <h1>Stats</h1>
-                <h5>Spending: {spending}</h5>
-                <List>
-                    {statType.map((val, ind)=>{
-                        return (
-                            <ListItemText key={ind}> 
-                                <StatBar 
-                                    stats={stats} 
-                                    type={type} 
-                                    val={val} 
-                                    statName={`${val.charAt(0).toUpperCase() + val.slice(1)}`} 
-                                    addStat={addStat}
-                                    removeStat={removeStat}
-                                    />
-                            </ListItemText>)
-                    })}
-                </List>
-            </div>
-            <div className='col-4 align-self-start'>
-                <h1>Moves</h1>
-                <List>
-                    {data.MOVES.map((val, ind)=>{
-                        return (
-                            <ListItemText>
-                                <h5>{val.name}</h5>
-                                <h6>Accuracy: {val.accuracy}/Power: {val.power}</h6>
-                            </ListItemText>)
-                    })}
-                </List>
-            </div>
+            <Grid container columns={{ xs: 6, sm: 6, md: 6 }} spacing={2}>
+                    <Grid item xs={6} md={6}>
+                        <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
+                            Moves
+                        </Typography>
+                        <List style={{ columns: 3}} dense={false}>
+                            {generateMoves()}
+                        </List>
+                        <hr></hr>
+                        <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
+                            Stats,Spending: {spending}
+                        </Typography>
+                        <List style={{ columns: 2}} dense={false}>
+                            {generateStats(
+                            <ListItem>
+                                <ListItemText
+                                primary= "primary"
+                                />
+                            </ListItem>,
+                            )}
+                        </List>
+                    </Grid>
+                </Grid>
             </div>
             <StatWarning createChar={(event)=>createChar(event,type)} spending={spending} setGameMode={setGameMode}/>
 

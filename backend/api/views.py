@@ -114,7 +114,7 @@ def game_data(request):
 
             if 'statincrease' in request.data:
                 stat = request.data['statincrease']['stat']
-                GameData.objects.filter(user=request.user).update(**{stat:request.data['statincrease']['value'],' ':request.data['statincrease']['currency']})
+                GameData.objects.filter(user=request.user).update(**{stat:request.data['statincrease']['value'],'currency':request.data['statincrease']['currency']})
                 return JsonResponse({'result': 'stat increase'})
               
             if 'riddlepurchase' in request.data:
