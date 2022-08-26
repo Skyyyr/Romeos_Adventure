@@ -9,7 +9,8 @@ function MainMenu( {user, setGameMode, gameData} ) {
     event.preventDefault()
     axios.delete('/gamedata').then((response)=>{
         //window.location.reload()
-        setGameMode('Character')
+        ////setGameMode('Character')
+        setGameMode('Story')
         console.log('response from server: ', response)
      })
 
