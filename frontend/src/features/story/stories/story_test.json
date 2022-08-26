@@ -49,8 +49,8 @@
                 "text": "Menu 1"
             },
             {
-                "id": 3,
-                "text": "Menu 3"
+                "id": 5,
+                "text": "Create Character"
             }
         ]
     },
@@ -67,6 +67,15 @@
         "id": 4,
         "dialogue": "You shouldn't see this! You should see a map!",
         "func": "map",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+        ]
+    },
+    {
+        "id": 5,
+        "dialogue": "You should see character creation",
+        "func": "newGame",
         "anim": false,
         "animation_control": [],
         "options": [

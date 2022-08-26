@@ -5,7 +5,7 @@ import StoryOption from "./storyoption"
 import { useState } from "react"
 import background from "../assets/field_night_bg.png"
 
-function StoryMenu({setGameMode}) {
+function StoryMenu({setGameMode,stage}) {
 
     const [playerChoices, setPlayerChoices] = useState(story_second[0])
     const [convo, setConvo] = useState('')
@@ -54,6 +54,53 @@ function StoryMenu({setGameMode}) {
                 break
             }
         }
+    }
+
+    function determineStage(){
+        switch(stage){
+            case 0:
+                console.log('stage 0')
+                setJsonStory(story_test)
+                break
+            case 1:
+                console.log('stage 1')
+                setJsonStory(story_second)
+                break
+            case 2:
+                console.log('stage 2')
+                break
+            case 3:
+                console.log('stage 3')
+                break
+            case 4:
+                console.log('stage 4')
+                break
+            case 5:
+                console.log('stage 5')
+                break
+            case 6:
+                console.log('stage 6')
+                break
+            case 7:
+                console.log('stage 7')
+                break
+            case 8:
+                console.log('stage 8')
+                break
+            case 9:
+                console.log('stage 9')
+                break
+            case 10:
+                console.log('stage 10')
+                break
+            case 11:
+                console.log('stage 11')
+                break
+            default:
+                console.log('none')
+                break
+        }
+           
     }
 
 
@@ -109,6 +156,10 @@ function StoryMenu({setGameMode}) {
         return <div className={'dialog text-center'}>{dialog}</div>
     }
 
+    useEffect(()=>{
+        determineStage()
+    },[])
+
     useEffect(() => {
         updateMenu(0)
         // createMenuOptions(playerChoices.options)
@@ -127,6 +178,8 @@ function StoryMenu({setGameMode}) {
             case 'map':
                 setGameMode("MapView")
                 break
+            case 'newGame':
+                setGameMode("Character")
             default:
                 console.log("DEFAULT")
                 break
@@ -136,7 +189,7 @@ function StoryMenu({setGameMode}) {
     return (
         <div className="story-container">
             
-            <button onClick={testSwap}>TEST</button>
+            {/*<button onClick={testSwap}>TEST</button>*/}
             <div className="convo" id="story-top">
             {convo}
             </div>

@@ -4,7 +4,9 @@ export function getCharacterData(character) {
         case 'frontend':
             return ({
                 'CLASS':'frontend',
-                'MOVES':[{'name':'React', 'accuracy':5,'power':5}, {'name':'HTML', 'accuracy':5,'power':5}, {'name':'CSS', 'accuracy':5,'power':5}],
+                'MOVES':[ {'name':'Melee', 'label':'slashRight', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Ranged', 'label':'rngAtkRight', 'type':'ranged', 'power':5, 'accuracy':5},
+                          {'name':'Magic', 'label':'magAtkRight', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 8, 
                     'defense': 7,
@@ -16,7 +18,9 @@ export function getCharacterData(character) {
         case 'backend':
             return ({
                 'CLASS':'backend',
-                'MOVES':[{'name':'Django', 'accuracy':5,'power':5}, {'name':'Python', 'accuracy':5,'power':5}, {'name':'Postgres', 'accuracy':5,'power':5}],
+                'MOVES':[ {'name':'Melee', 'label':'pierceRight', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Ranged', 'label':'rngAtkRight', 'type':'ranged', 'power':5, 'accuracy':5},
+                          {'name':'Magic', 'label':'magAtkRight', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 4,
                     'defense': 3,
@@ -28,13 +32,14 @@ export function getCharacterData(character) {
         case 'fullstack':
             return ({
                 'CLASS':'fullstack',
-                'MOVES':[{'name':'React', 'accuracy':5,'power':5}, {'name':'Django', 'accuracy':5,'power':5}, {'name':'Postgres', 'accuracy':5,'power':5}],
+                'MOVES':[ {'name':'Melee', 'label':'bashRight', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Ranged', 'label':'rngAtkRight', 'type':'ranged', 'power':5, 'accuracy':5},
+                          {'name':'Magic', 'label':'magAtkRight', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 5,
                     'defense': 6,
                     'accuracy': 7,
                     'evasion': 7,
-
                 },
                 "SUM":25
             })

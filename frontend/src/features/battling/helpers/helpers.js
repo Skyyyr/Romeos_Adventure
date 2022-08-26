@@ -11,7 +11,7 @@ export function Damage(turn, romeoStats, enemyStats, move){
   let damage = 0
   turn === 'Player One' ? (attacker = romeoStats, defender = enemyStats) : (attacker = enemyStats, defender = romeoStats)
  
-  damage = ((attacker['strength']/defender['defense'])*move.power*(Math.random() * (1.10 - .90) + .90)).toFixed(2)
+  damage = Math.floor((attacker['strength']/defender['defense'])*move.power*(Math.random() * (1.10 - .90) + .90))
   
 
   const hitProb = (5*move['accuracy']+45+((attacker['accuracy']-defender['evasion'])/2))*(Math.random() * (1.10 - .90) + .90)
@@ -19,7 +19,6 @@ export function Damage(turn, romeoStats, enemyStats, move){
   if(perc>hitProb)
       return 0
 
-  return damage*6
-
+  return damage
 }
 
