@@ -12,7 +12,7 @@ import StoryMenu from '../features/story/storymenu'
 
 function Game( {user, gameData, getGameData} ) {
 
-  const [gameMode, setGameMode] = useState('Story') 
+  const [gameMode, setGameMode] = useState('MainMenu') 
 
   function nextStage() {
     axios.put('/gamedata', {'advancestage':{'stage':gameData.stage+1, 'currency':gameData.currency+2}}).then((response)=>{
@@ -100,7 +100,7 @@ function Game( {user, gameData, getGameData} ) {
             />
           }
           {
-            gameMode === "Story" && <StoryMenu setGameMode={setGameMode}/>
+            gameMode === "Story" && <StoryMenu stage={ gameData ? gameData.stage : 0} setGameMode={setGameMode}/>
           }
         </>
       </div>}

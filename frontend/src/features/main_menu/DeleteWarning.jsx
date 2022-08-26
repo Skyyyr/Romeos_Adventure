@@ -18,13 +18,14 @@ export default function DeleteWarning({gameData, deleteChar, setGameMode}) {
   const handleClose = () => {
     setOpen(false);
   };
+  
 
   return (
     <>
       <Button 
         variant="contained"
         color="secondary"
-        onClick={()=>((gameData && gameData.type) ? handleClickOpen() : setGameMode("Character"))}
+        onClick={()=>((gameData && gameData.type) ? handleClickOpen() : setGameMode("Story"))}
       >
         New Game
       </Button>
