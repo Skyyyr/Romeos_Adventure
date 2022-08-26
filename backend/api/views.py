@@ -20,7 +20,7 @@ def home(request):
 def sign_up(request):
     print(request.data)
     if User.objects.filter(username=request.data['email']).exists():
-          return JsonResponse({'signup': 'username_used'})  
+        return JsonResponse({'signup': 'username_used'})
     try:
         user = User.objects.create_user(password=request.data['password'], username=request.data['email'],
                                         email=request.data['email'], first_name=request.data['first_name'], last_name=request.data['last_name'])
@@ -89,6 +89,7 @@ def game_data(request):
                 evasion=char_data['evasion'],
                 strength=char_data['strength'],
                 defense=char_data['defense'],
+                stage=1,
                 user=request.user).save()
 
             return JsonResponse({'game_data': new_data})
@@ -114,11 +115,13 @@ def game_data(request):
 
             if 'statincrease' in request.data:
                 stat = request.data['statincrease']['stat']
-                GameData.objects.filter(user=request.user).update(**{stat:request.data['statincrease']['value'],'currency':request.data['statincrease']['currency']})
+                GameData.objects.filter(user=request.user).update(
+                    **{stat: request.data['statincrease']['value'], 'currency': request.data['statincrease']['currency']})
                 return JsonResponse({'result': 'stat increase'})
-              
+
             if 'riddlepurchase' in request.data:
-                GameData.objects.filter(user=request.user).update(currency=request.data['riddlepurchase']['currency'])
+                GameData.objects.filter(user=request.user).update(
+                    currency=request.data['riddlepurchase']['currency'])
                 return JsonResponse({'result': True})
 
             return({'result': 'no updates'})
