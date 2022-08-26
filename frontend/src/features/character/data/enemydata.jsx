@@ -19,7 +19,7 @@ export function getEnemyData(enemy) {
             return ({
                 'NAME':'Adam',
                 'MOVES':[ {'name':'Adam Jab', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Adam Bolt', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
+                          {'name':'Adam Slap', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
                           {'name':'Adam Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 4,

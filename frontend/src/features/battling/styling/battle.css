@@ -1,6 +1,6 @@
 .wrapper{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 2rem;
 }
 #canvas-container {
@@ -35,10 +35,10 @@
 }
 @keyframes user-walk {
   40% {
-    transform: translateX(560px);
+    transform: translateX(400px);
   }
   60% {
-    transform: translateX(560px);
+    transform: translateX(400px);
   }
   100% {
     transform: translateX(0px);
@@ -49,10 +49,10 @@
 }
 @keyframes enemy-walk {
   40% {
-    transform: translateX(-560px);
+    transform: translateX(-400px);
   }
   60% {
-    transform: translateX(-560px);
+    transform: translateX(-400px);
   }
   100% {
     transform: translateX(0px);
@@ -71,6 +71,21 @@
   100% {
     transform: translateY(0px);
   }
+}
+.enemy-hit {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  z-index: 10;
+  background: url('../../assets/whitehit.png') 0px 0px;
+  animation: enemy-hit .5s steps(7) 0s 1
+}
+@keyframes enemy-hit {
+  to { background-position: 700px; }
 }
 
 .attack{
@@ -102,12 +117,11 @@
 }
 
 .main {
-  display: flex;
   border-radius: 5px;
   gap: 5px;
   padding: 5px;
   align-items: center;
-  background-color: white;
+  background-color: rgb(8,39,73);
 }
 
 .label {
@@ -118,7 +132,7 @@
   align-items: center;
   justify-content: center;
   flex-basis: 50px;
-  color: black;
+  color: rgb(251,250,235);
 }
   
 .max {
@@ -132,12 +146,14 @@
 
 .value {
   height: 100%;
-  background-color: #020025;
+  background-color: darkred;
   transition: 0.35s;
 }
 
 .battleDialog{
   border: double rgb(142,228,232);
+  width: 90%;
+  margin-inline: auto;
 }
 
 

@@ -4,7 +4,7 @@ import '../styling/battle.css'
 export const Bar = ({ value, label }) => (
   <div className='main'>
     <Typography variant="h4" className='label'>{label}</Typography>
-    <div className='max' style={{color:"#808080" }}>
+    <div className='max' style={{color:"red" }}>
       <div
         className='value'
         style={{ width: `${value}%` }}

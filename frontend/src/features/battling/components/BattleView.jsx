@@ -8,7 +8,7 @@ import { Typography, Tooltip } from '@mui/material'
 import {wait, Damage} from '../helpers/helpers'
 
 import Animation from '../helpers/Animation'
-import { walkRight, walkLeft, getAttackAnimation } from '../helpers/AnimationConstants'
+import { walkRight, walkLeft, whiteHit, fireHit, getAttackAnimation } from '../helpers/AnimationConstants'
 
 function BattleView({gameData, enemy, setGameMode,nextStage}) {
     
@@ -32,11 +32,10 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
     const [playerFlip, setPlayerFlip] = useState('')
 
     const newKey = useRef(0)
-    
 
     useEffect(()=>{
         if(turn === "Player Two"){
-            let rand = Math.floor(Math.random() * (3))
+            let rand = Math.floor(Math.random() * 3)
             enemyAttack(enemyData.MOVES[rand])
         }
     },[turn])
@@ -56,17 +55,16 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
         checkDead()
     },[romeoHealth,enemyHealth])
     
-    const attack = async(move) => {
+    const attack = (move) => {
         document.getElementById(move.name).disabled = true;
-        const atkAnim = getAttackAnimation(move.label)
+        let atkAnim = getAttackAnimation(move.label)
         if (move.type === 'melee') playerMelee(move, atkAnim)
         if (move.type === 'ranged') playerRanged(move, atkAnim)
         if (move.type === 'magic') playerMagic(move, atkAnim)
     }
 
-    const enemyAttack = async(move) => {
-        await wait(1000)
-        const atkAnim = getAttackAnimation(move.label)
+    const enemyAttack = (move) => {
+        let atkAnim = getAttackAnimation(move.label)
         if (move.type === 'melee') enemyMelee(move, atkAnim)
         if (move.type === 'ranged') enemyRanged(move, atkAnim)
         if (move.type === 'magic') enemyMagic(move, atkAnim)
@@ -82,12 +80,13 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
             setCurrAttack(`Player Two used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
         }
+        if (damage === 0) return false
+        else return true
     }
 
     function reverseMagic(anim) {
       let revFrames = anim.frames.reverse()
       anim.frames = [...revFrames]
-      console.log('reversed?', anim)
       return anim
     }
 
@@ -98,33 +97,38 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       await wait(2000)
       newKey.current++
       setPlayerAnimation(atkAnim)
-      await wait(500)
-      // setEnemyEffect('hit')
-      inflictDamage(move)
-      await wait(500)
-      // setEnemyEffect('')
+      await wait(400)
+      newKey.current++
+      setPlayerAnimation('')
+      newKey.current++
+      await inflictDamage(move) ? setEnemyEffect(whiteHit) : null
+      await wait(600)
+      newKey.current++
+      setEnemyEffect('')
       newKey.current++
       setPlayerFlip('flip')
       setPlayerAnimation(walkLeft)
       await wait(2000)
       newKey.current++
-      setPlayerMoveEffect('')
       setPlayerAnimation('')
+      setPlayerMoveEffect('')
       setPlayerFlip('')
       await wait(1000)
       document.getElementById(move.name).disabled = false;
       setTurn("Player Two")
     }
     async function playerRanged(move, atkAnim) {
+      await wait(500)
       newKey.current++
       setPlayerAnimation(atkAnim)
-      await wait(1000)
-      // setEnemyEffect('hit')
-      inflictDamage(move)
-      await wait(1000)
-      // setEnemyEffect('')
+      await wait(300)
       newKey.current++
       setPlayerAnimation('')
+      newKey.current++
+      await inflictDamage(move) ? setEnemyEffect(whiteHit) : null
+      await wait(1000)
+      newKey.current++
+      setEnemyEffect('')
       await wait(1000)
       document.getElementById(move.name).disabled = false;
       setTurn("Player Two")
@@ -133,17 +137,19 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       setPlayerMoveEffect('magic-hover')
       newKey.current++
       setPlayerAnimation(atkAnim)
-      await wait(1500)
-      // setEnemyEffect('hit')
-      inflictDamage(move)
+      await wait(1000)
+      newKey.current++
+      await inflictDamage(move) ? setEnemyEffect(fireHit) : null
+      await wait(1000)
+      newKey.current++
+      setEnemyEffect('')
       newKey.current++
       setPlayerAnimation(reverseMagic(atkAnim))
-      await wait(1500)
-      // setEnemyEffect('')
+      await wait(1000)
+      setPlayerMoveEffect('')
       newKey.current++
       setPlayerAnimation('')
       await wait(500)
-      setPlayerMoveEffect('')
       document.getElementById(move.name).disabled = false;
       setTurn("Player Two")
     }
@@ -155,62 +161,79 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       await wait(2000)
       newKey.current++
       setEnemyAnimation(atkAnim)
-      await wait(500)
-      // setPlayerEffect('hit')
-      inflictDamage(move)
-      await wait(500)
-      // setPlayerEffect('')
+      await wait(400)
+      newKey.current++
+      setEnemyAnimation('')
+      newKey.current++
+      await inflictDamage(move) ? setPlayerEffect(whiteHit) : null
+      await wait(600)
+      newKey.current++
+      setPlayerEffect('')
       newKey.current++
       setEnemyFlip('flip')
       setEnemyAnimation(walkRight)
       await wait(2000)
       newKey.current++
-      setEnemyMoveEffect('')
       setEnemyAnimation('')
+      setEnemyMoveEffect('')
       setEnemyFlip('')
       await wait(1000)
       setTurn("Player One")
     }
     async function enemyRanged(move, atkAnim) {
+      await wait(500)
       newKey.current++
       setEnemyAnimation(atkAnim)
-      await wait(1000)
-      // setPlayerEffect('hit')
-      inflictDamage(move)
-      await wait(1000)
-      // setPlayerEffect('')
+      await wait(300)
       newKey.current++
       setEnemyAnimation('')
+      newKey.current++
+      await inflictDamage(move) ? setPlayerEffect(whiteHit) : null
+      await wait(1000)
+      newKey.current++
+      setPlayerEffect('')
       await wait (1000)
       setTurn("Player One")
     }
     async function enemyMagic(move, atkAnim) {
+      console.log('enemy magic:', atkAnim)
       setEnemyMoveEffect('magic-hover')
       newKey.current++
       setEnemyAnimation(atkAnim)
-      await wait(1500)
-      // setPlayerEffect('hit')
-      inflictDamage(move)
+      await wait(1000)
+      newKey.current++
+      await inflictDamage(move) ? setPlayerEffect(fireHit) : null
+      await wait(1000)
+      newKey.current++
+      setPlayerEffect('')
       newKey.current++
       setEnemyAnimation(reverseMagic(atkAnim))
-      await wait(1500)
-      // setPlayerEffect('')
+      await wait(1000)
+      setEnemyMoveEffect('')
       newKey.current++
       setEnemyAnimation('')
       await wait(500)
-      setEnemyMoveEffect('')
-      await wait(1000)
       setTurn("Player One")
     }
 
     return (
         <>
             <div className='row  m-0 align-items-center' style={{'height':'20%'}}>
-                <div className='col-md-3'>
+                <div className='col-3'>
                     <Bar label="Romeo" value={romeoHealth}/>
                 </div>
-                <div className='col-md-6'></div>
-                <div className='col-md-3'>
+                <div className='col-6 justify-content-center align-items-center'>
+                    <div>
+                        <Typography variant="h4">
+                          Turn
+                        </Typography>
+                        <hr className="w-50 mx-auto p-0 my-0"/>
+                        <Typography variant="h3">
+                          { turn === "Player One" ? "Romeo" : enemyData.NAME }
+                        </Typography>
+                    </div>
+                </div>
+                <div className='col-3'>
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>
@@ -219,21 +242,43 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                     <div className ="row align-items-center justify-content-center" style={{'width':"300px", 'height': "200px"}}>
                         <div id='canvas-container' className={`${playerMoveEffect} ${playerFlip}`}>
                           { playerAnimation ? 
-                              <Animation key={newKey.current} {...playerAnimation} type={gameData.type}/>
+                              <Animation 
+                                key={newKey.current} 
+                                {...playerAnimation}
+                                type={gameData.type}
+                              />
                             : <div className={`${gameData.type}-battle player-battle-stance`}></div> }
+                          { playerEffect ? 
+                              <Animation 
+                                key={newKey.current}
+                                {...playerEffect}
+                                zIndex={10}
+                              />
+                            : null }
                         </div>
                     </div>
                     <div className = {"row align-items-center justify-content-center"} style={{'width':"300px", 'height': "200px"}}>
                         <div id='canvas-container' className={`${enemyMoveEffect} ${enemyFlip}`}>
                           { enemyAnimation ?
-                              <Animation key={newKey.current} {...enemyAnimation} type={enemyData.NAME}/>
+                              <Animation
+                                key={newKey.current}
+                                {...enemyAnimation}
+                                type={enemyData.NAME}
+                              />
                             : <div className={`${enemyData.NAME}-battle enemy-battle-stance`}></div> }
+                          { enemyEffect ? 
+                              <Animation
+                                key={newKey.current}
+                                {...enemyEffect}
+                                zIndex={10}
+                              />
+                            : null }
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='row m-0 battleDialog' style={{'height':'30%'}}>
-                <div className='col-md-3 vstack my-2 align-self-center'>
+            <div className='row my-0 battleDialog' style={{'height':'32%'}}>
+                <div className='col-3 vstack align-self-center'>
                     {
                       romeoMoves.map(elem => 
                         <Tooltip 
@@ -245,6 +290,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                             color="secondary"
                             variant="contained"
                             onClick={()=> (turn == "Player One") && attack(elem)}
+                            className="my-1"
                           >
                             {elem['name']}
                           </Button>
@@ -252,15 +298,14 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                       )
                     }
                     <Button 
-                      color="outline"
-                      variant="outlined"
+                      variant="contained"
                       onClick={()=>setGameMode("MapView")}
+                      sx={{'background':"darkred"}}
                     >
                       Forfeit
                     </Button>
                 </div>
-                <div className='col-md-9 align-self-start'>
-                    <Typography variant='h3'>{turn}'s Turn!</Typography>
+                <div className='col-8 align-self-center'>
                     <Typography variant='h5'>{currAttack}</Typography>
                 </div>
             </div>
