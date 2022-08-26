@@ -70,13 +70,34 @@ function App() {
           <Router>
             <ResponsiveAppBar user={user} gameData={gameData}/>
             <Routes>
-              <Route path='/' element={<Home user={user} />} />
-              <Route path='/signup' element={<Signup />} />
-              <Route path='/signin' element={<Login user={user} setUser={setUser}/>} />
-              {user && <Route path='/about' element={<About />} />}
-              {user && <Route path='/profile' element={<Profile user={user}/>} />}
-              {user && <Route path='/game' element={user && <Game user={user} getGameData={getGameData} gameData={gameData}/>} />}
-              <Route path='*' element={<PageNotFound />} />
+              <Route 
+                exact path='/' 
+                element={<Home user={user} />} 
+              />
+              <Route 
+                exact path='/signup' 
+                element={<Signup />} 
+              />
+              <Route 
+                exact path='/signin' 
+                element={<Login user={user} setUser={setUser}/>} 
+              />
+              {user && <Route 
+                exact path='/about' 
+                element={<About />} 
+              />}
+              {user && <Route 
+                path='/profile' 
+                element={<Profile 
+                user={user}/>} 
+              />}
+              {user && <Route 
+                exact path='/game' 
+                element={user && <Game user={user} getGameData={getGameData} gameData={gameData}/>} 
+              />}
+              <Route path='*' 
+                element={<PageNotFound />} 
+              />
           </Routes>
         </Router>
         </ThemeProvider>
