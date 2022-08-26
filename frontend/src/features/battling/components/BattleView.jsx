@@ -114,7 +114,6 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       setPlayerMoveEffect('')
       setPlayerFlip('')
       await wait(1000)
-      document.getElementById(move.name).disabled = false;
       setTurn("Player Two")
     }
     async function playerRanged(move, atkAnim) {
@@ -130,7 +129,6 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       newKey.current++
       setEnemyEffect('')
       await wait(1000)
-      document.getElementById(move.name).disabled = false;
       setTurn("Player Two")
     }
     async function playerMagic(move, atkAnim) {
@@ -150,7 +148,6 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       newKey.current++
       setPlayerAnimation('')
       await wait(500)
-      document.getElementById(move.name).disabled = false;
       setTurn("Player Two")
     }
 
@@ -178,6 +175,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       setEnemyMoveEffect('')
       setEnemyFlip('')
       await wait(1000)
+      document.getElementById(move.name).disabled = false;
       setTurn("Player One")
     }
     async function enemyRanged(move, atkAnim) {
@@ -193,6 +191,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       newKey.current++
       setPlayerEffect('')
       await wait (1000)
+      document.getElementById(move.name).disabled = false;
       setTurn("Player One")
     }
     async function enemyMagic(move, atkAnim) {
@@ -213,6 +212,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       newKey.current++
       setEnemyAnimation('')
       await wait(500)
+      document.getElementById(move.name).disabled = false;
       setTurn("Player One")
     }
 

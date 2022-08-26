@@ -43,7 +43,7 @@ export function getAttackAnimation(type) {
         frames: [0,1,2,3,4,5,6,7],
         repeat: false,
       })
-    case 'bashRight:':
+    case 'bashRight':
       return ({
         height: 64,
         width: 64,
