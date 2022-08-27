@@ -156,7 +156,6 @@
   margin-inline: auto;
 }
 
-
 .enemy-battle-stance {
   width: 64px;
   height: 64px;
@@ -171,4 +170,13 @@
 }
 .Zaynab-battle{
     background: url(../../assets/zaynab.png) 0px -577px;
+}
+
+#battle-background {
+  background-image: url('../../assets/dirt-path-banner.png');
+  background-repeat: no-repeat;
+  background-position-y: 20%;
+  overflow: hidden;
+  box-shadow: inset 0px 35px 16px -20px rgb(17,85,158),
+              inset 0px -35px 16px -20px rgb(17,85,158);
 }

@@ -19,6 +19,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
     const [romeoHealth, setRomeoHealth] = useState(100)
     const [enemyHealth, setEnemyHealth] = useState(100)
     const [currAttack, setCurrAttack] = useState('')
+    const [disabled, setDisabled] = useState(false)
 
     const [playerEffect, setPlayerEffect] = useState('')
     const [enemyEffect, setEnemyEffect] = useState('')
@@ -56,7 +57,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
     },[romeoHealth,enemyHealth])
     
     const attack = (move) => {
-        document.getElementById(move.name).disabled = true;
+        setDisabled(true)
         let atkAnim = getAttackAnimation(move.label)
         if (move.type === 'melee') playerMelee(move, atkAnim)
         if (move.type === 'ranged') playerRanged(move, atkAnim)
@@ -147,7 +148,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       setPlayerMoveEffect('')
       newKey.current++
       setPlayerAnimation('')
-      await wait(500)
+      await wait(2000)
       setTurn("Player Two")
     }
 
@@ -174,8 +175,8 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       setEnemyAnimation('')
       setEnemyMoveEffect('')
       setEnemyFlip('')
-      await wait(1000)
-      document.getElementById(move.name).disabled = false;
+      await wait(2000)
+      setDisabled(false)
       setTurn("Player One")
     }
     async function enemyRanged(move, atkAnim) {
@@ -191,7 +192,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       newKey.current++
       setPlayerEffect('')
       await wait (1000)
-      document.getElementById(move.name).disabled = false;
+      setDisabled(false)
       setTurn("Player One")
     }
     async function enemyMagic(move, atkAnim) {
@@ -212,7 +213,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       newKey.current++
       setEnemyAnimation('')
       await wait(500)
-      document.getElementById(move.name).disabled = false;
+      setDisabled(false)
       setTurn("Player One")
     }
 
@@ -237,7 +238,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>
-            <div className='row m-0 align-items-end' style={{'height':'40%'}}>
+            <div className='row m-0 align-items-end' id="battle-background" style={{'height':'40%'}}>
                 <div className='wrapper'>
                     <div className ="row align-items-center justify-content-center" style={{'width':"300px", 'height': "200px"}}>
                         <div id='canvas-container' className={`${playerMoveEffect} ${playerFlip}`}>
@@ -291,6 +292,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                             variant="contained"
                             onClick={()=> (turn == "Player One") && attack(elem)}
                             className="my-1"
+                            disabled={disabled}
                           >
                             {elem['name']}
                           </Button>
