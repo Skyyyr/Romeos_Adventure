@@ -8,15 +8,18 @@ import MainMenu from '../features/main_menu/MainMenu'
 import axios from "axios";
 import BattleEndView from '../features/battling/components/BattleEndView'
 import StoryMenu from '../features/story/storymenu'
+import stages, { STAGE_TEST_INTRO } from '../Components/Stages'
 
 
 function Game( {user, gameData, getGameData} ) {
 
   const [gameMode, setGameMode] = useState('MainMenu') 
+  const [stateStage, setStateStage] = useState(STAGE_TEST_INTRO)
 
   function nextStage() {
     axios.put('/gamedata', {'advancestage':{'stage':gameData.stage+1, 'currency':gameData.currency+2}}).then((response)=>{
       getGameData()
+      setStateStage(stateStage+1)
       console.log(response)
    })
   }
@@ -62,6 +65,7 @@ function Game( {user, gameData, getGameData} ) {
               <CreateCharacter 
                 setGameMode={setGameMode}
                 user={user}
+                setStateStage={setStateStage}
               />
           }
           {
@@ -77,7 +81,8 @@ function Game( {user, gameData, getGameData} ) {
             gameMode === "BattleView" && 
               <BattleView 
                 nextStage={nextStage}
-                enemy={gameData.stage}
+                enemy={gameData.stage ? gameData.stage : stateStage}
+                // enemy={gameData.stage}
                 gameData={gameData}
                 setGameMode={setGameMode}
               />
@@ -100,7 +105,12 @@ function Game( {user, gameData, getGameData} ) {
             />
           }
           {
-            gameMode === "Story" && <StoryMenu stage={ gameData ? gameData.stage : 0} setGameMode={setGameMode}/>
+            gameMode === "Story" && <StoryMenu 
+            stage={ gameData ? gameData.stage : 0} 
+            setGameMode={setGameMode}
+            setStateStage={setStateStage}
+            stateStage={stateStage}
+            />
           }
         </>
       </div>}

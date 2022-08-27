@@ -1,3 +1,5 @@
+import { STAGE_TEST_OUTRO } from "../../../Components/Stages"
+
 //function to return characters,stats,moves
 export function getEnemyData(enemy) {
     switch (enemy) {
@@ -15,11 +17,11 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":31
             })
-        case 0:
+        case STAGE_TEST_OUTRO:
             return ({
                 'NAME':'Adam',
                 'MOVES':[ {'name':'Adam Jab', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Adam Bolt', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
+                          {'name':'Adam Slap', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
                           {'name':'Adam Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 4,

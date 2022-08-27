@@ -4,7 +4,7 @@ export function getCharacterData(character) {
         case 'frontend':
             return ({
                 'CLASS':'frontend',
-                'MOVES':[ {'name':'Melee', 'label':'slashRight', 'type':'melee', 'power':5, 'accuracy':5},
+                'MOVES':[ {'name':'Melee', 'label':'slashRight', 'type':'melee', 'power':4, 'accuracy':5},
                           {'name':'Ranged', 'label':'rngAtkRight', 'type':'ranged', 'power':5, 'accuracy':5},
                           {'name':'Magic', 'label':'magAtkRight', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{

@@ -1,5 +1,4 @@
 /* MOVEMENT */
-
 export const walkRight = {
   height: 64,
   width: 64,
@@ -14,6 +13,24 @@ export const walkLeft = {
   frames: [0,1,2,3,4,5,6,7,8],
   repeat: true,
 }
+export const whiteHit = {
+  height: 100,
+  width: 100,
+  row: 1,
+  frames: [0,1,2,3,4,5,6,7],
+  repeat: false,
+  scale: 1,
+  type: 'whiteHit',
+}
+export const fireHit = {
+  height: 192,
+  width: 192,
+  row: 1,
+  frames: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+  repeat: false,
+  scale: 0.7,
+  type: 'fireHit',
+}
 
 
 export function getAttackAnimation(type) {
@@ -26,7 +43,7 @@ export function getAttackAnimation(type) {
         frames: [0,1,2,3,4,5,6,7],
         repeat: false,
       })
-    case 'bashRight:':
+    case 'bashRight':
       return ({
         height: 64,
         width: 64,
@@ -66,7 +83,7 @@ export function getAttackAnimation(type) {
         frames: [0,1,2,3,4,5,6,7],
         repeat: false,
       })
-    case 'bashLeft:':
+    case 'bashLeft':
       return ({
         height: 64,
         width: 64,

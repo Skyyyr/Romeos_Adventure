@@ -28,7 +28,7 @@ export default function StatWarning({setGameMode,createChar,spending}) {
         color="secondary" 
         variant="contained" 
         style={{'margin':'10px', 'width':'100px','place-item':'bottom'}} 
-        onClick={()=> (spending > 0 ? handleClickOpen() : setGameMode("Story"))}>
+        onClick={spending > 0 ? handleClickOpen : createChar}>
         Start Journey
     </Button>
 
