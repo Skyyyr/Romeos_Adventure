@@ -13,6 +13,13 @@ export const walkLeft = {
   frames: [0,1,2,3,4,5,6,7,8],
   repeat: true,
 }
+export const walkForward = {
+  height: 64,
+  width: 64,
+  row: 11,
+  frames: [0,1,2,3,4,5,6,7,8],
+  repeat: true,
+}
 export const whiteHit = {
   height: 100,
   width: 100,
