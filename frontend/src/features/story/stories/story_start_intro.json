@@ -1,0 +1,50 @@
+[
+    {
+        "id": 0,
+        "dialogue": "Welcome to Romeo's Adventure. Insert details about character and background.",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 1,
+                "text": "Continue..."
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "dialogue": "Continue with details about background story.. and call to action.",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 2,
+                "text": "Continue..."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "dialogue": "Character selection buildup. Create your character.",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 3,
+                "text": "Start your journey!"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "dialogue": "",
+        "func": "newGame",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+        ]
+    }
+]

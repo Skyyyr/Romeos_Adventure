@@ -17,7 +17,7 @@ function MapView({gameData, setGameMode, stage, nextStage,getGameData}) {
               color="secondary"
               disabled={!(stage === i)}
               onClick={ ()=> {
-                setGameMode("BattleView")
+                setGameMode("Story")
               }}
             >
               {MapData[i]['name']}

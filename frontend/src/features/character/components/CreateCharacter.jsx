@@ -16,9 +16,10 @@ import Grid from '@mui/material/Grid';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import {Tooltip} from '@mui/material';
+import { STAGE_TEST_OUTRO } from '../../../Components/Stages';
 
 
-function CreateCharacter({user,setGameMode}) {
+function CreateCharacter({user,setGameMode,setStateStage}) {
     const statType = ['strength','defense','accuracy','evasion']
     const [type, setType] = useState('frontend')
     const [stats, setStats] = useState(getCharacterData(type).STATS)
@@ -38,6 +39,7 @@ function CreateCharacter({user,setGameMode}) {
       setStats(data.STATS)
       setData(data)
       setSpending(3)
+      
     };
 
     function generateMoves() {
@@ -109,6 +111,7 @@ function CreateCharacter({user,setGameMode}) {
         console.log('seen')
         event.preventDefault()
         axios.post('/gamedata', {type:type, ...stats}).then((response)=>{
+            setStateStage(STAGE_TEST_OUTRO)
             setGameMode('Story')
             console.log('response from server: ', response)
         })
