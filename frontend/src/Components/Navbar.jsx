@@ -15,13 +15,14 @@ import { SvgIcon } from '@mui/material';
 import {useNavigate, Link} from 'react-router-dom';
 import axios from 'axios'
 import {Icon} from '@mui/material';
+import { useEffect } from 'react';
 
 
 const pages = ['Play', 'Meet the Team'];
 const pagesObj = {"Play":'game', "Meet the Team": 'about'}
 const settings = ['Profile','Logout'];
 
-const ResponsiveAppBar = ({user, gameData}) => {
+const ResponsiveAppBar = ({user, gameData,getGameData}) => {
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
@@ -36,19 +37,22 @@ const ResponsiveAppBar = ({user, gameData}) => {
 
   const settingHandler = function(event,key){
     event.preventDefault()
-    console.log(key)
     if(key==="Profile"){
       navigate('/profile');
     }
     else{
-        console.log('You Logged Out')
+        //console.log('You Logged Out')
       axios.post('/logout').then((response)=>{
-        console.log('response from server: ', response)
+        //console.log('response from server: ', response)
         navigate('/')
         window.location.reload()
       })
     }
   }
+
+  useEffect(()=>{
+
+  },[gameData])
 
   return (
     <AppBar position="static" color="primary">

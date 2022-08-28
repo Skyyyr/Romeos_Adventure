@@ -10,10 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function StatWarning({setGameMode,createChar,spending}) {
   const [open, setOpen] = React.useState(false);
 
-  console.log('spending',spending)
-
   const handleClickOpen = () => {
-    console.log("opened")
     setOpen(true);
   };
 

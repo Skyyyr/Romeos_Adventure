@@ -1,9 +1,9 @@
-import { STAGE_TEST_OUTRO } from "../../../Components/Stages"
+import { STAGES } from "../../../Components/Stages"
 
 //function to return characters,stats,moves
 export function getEnemyData(enemy) {
     switch (enemy) {
-        case 5:
+        case STAGES.indexOf('STAGE_11_BATTLE'):
             return ({
                 'NAME':'Raphael',
                 'MOVES':[ {'name':'Raph Poke', 'label':'slashLeft', 'type':'melee', 'power':5, 'accuracy':5},
@@ -17,7 +17,7 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":31
             })
-        case STAGE_TEST_OUTRO:
+        case STAGES.indexOf('STAGE_1_BATTLE'):
             return ({
                 'NAME':'Adam',
                 'MOVES':[ {'name':'Adam Jab', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
@@ -31,7 +31,21 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":20
             })
-        case 2:
+        case STAGES.indexOf('STAGE_INTRO_BATTLE'):
+            return ({
+                'NAME':'BoarMan',
+                'MOVES':[ {'name':'Adam Jab', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                            {'name':'Adam Slap', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
+                            {'name':'Adam Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'STATS':{
+                    'strength': 4,
+                    'defense': 3,
+                    'accuracy': 6,
+                    'evasion': 7,
+                },
+                "SUM":20
+            })
+        case STAGES.indexOf('STAGE_3_BATTLE'):
             return ({
                 'NAME':'Zaynab',
                 'MOVES':[ {'name':'Zaynab Slash', 'label':'slashLeft', 'type':'melee', 'power':5, 'accuracy':5},
@@ -45,7 +59,7 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":25
             })
-        case 6:
+        case STAGES.indexOf('STAGE_6_BATTLE'):
             return ({
                 'NAME':'EnemyOne',
                 'MOVES':[ {'name':'Enemy Punch', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
@@ -59,7 +73,7 @@ export function getEnemyData(enemy) {
                 },
                 "SUM":20
             })
-        case 7:
+        case STAGES.indexOf('STAGE_7_BATTLE'):
             return ({
                 'NAME':'EnemyTwo',
                 'MOVES':[ {'name':'Bad Guy Punch', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},

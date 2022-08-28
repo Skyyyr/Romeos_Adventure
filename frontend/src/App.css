@@ -58,6 +58,10 @@
   width: 100%;
   display: grid;
   place-items: center;
+  background-image: url(./features/assets/romeologo.png);
+  background-repeat: no-repeat;
+  background-size: auto auto;
+  background-position: top;
 }
 #home-bottom-half {
   height: 40%;
@@ -241,6 +245,14 @@
   width:1000px;
   height: 23%;
 
+}
+
+.evil-raph{
+  background: url(./features/assets/badraphael.png) 0px -577px;
+  z-index: 10;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
 }
 
 /* .fix-buttons{

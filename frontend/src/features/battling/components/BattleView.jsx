@@ -6,11 +6,13 @@ import { useState, useEffect, useRef } from 'react'
 import Button from "@mui/material/Button" 
 import { Typography, Tooltip } from '@mui/material'
 import {wait, Damage} from '../helpers/helpers'
+import { STAGES } from '../../../Components/Stages'
 
 import Animation from '../helpers/Animation'
 import { walkRight, walkLeft, whiteHit, fireHit, getAttackAnimation } from '../helpers/AnimationConstants'
 
-function BattleView({gameData, enemy, setGameMode,nextStage}) {
+function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
+
     
     const [romeoStats, setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
     const [romeoMoves, setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
@@ -45,12 +47,18 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
         const checkDead = async () =>{
             if(romeoHealth <= 0){
                 await wait(3000)
-                setGameMode('BattleEndLost')
+                setStateStage(prev=>prev-1)
+                setGameMode('MapView')
             }
             else if(enemyHealth <= 0){
                 await wait(3000)
-                setGameMode('BattleEndWon')
-                nextStage()
+                if(stateStage===STAGES.indexOf('STAGE_11_BATTLE')){
+                  setStateStage(prev=>prev+1)
+                  setGameMode('Story')
+                }else{
+                  setStateStage(prev=>prev+1)
+                  setGameMode('MapView')
+                }
             }
         }
         checkDead()
@@ -196,7 +204,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
       setTurn("Player One")
     }
     async function enemyMagic(move, atkAnim) {
-      console.log('enemy magic:', atkAnim)
+      //console.log('enemy magic:', atkAnim)
       setEnemyMoveEffect('magic-hover')
       newKey.current++
       setEnemyAnimation(atkAnim)
@@ -301,7 +309,7 @@ function BattleView({gameData, enemy, setGameMode,nextStage}) {
                     }
                     <Button 
                       variant="contained"
-                      onClick={()=>setGameMode("MapView")}
+                      onClick={()=>(setGameMode("MapView"), setStateStage(prev=>prev-1))}
                       sx={{'background':"darkred"}}
                     >
                       Forfeit

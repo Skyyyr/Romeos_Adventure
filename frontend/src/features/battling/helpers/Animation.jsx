@@ -65,7 +65,7 @@ export default function Animation({key, height, width, row, frames, repeat, scal
       }
       canvas.addEventListener('mousemove', function(event) {
         let mousePos = getMousePosition(canvas, event)
-        console.log('mouse position: ', mousePos.x, ',', mousePos.y)
+        //log('mouse position: ', mousePos.x, ',', mousePos.y)
         if (mousePos.x <= 32) {
           theRow.current = row-1
         }

@@ -140,11 +140,14 @@
 .Zaynab-battle {
     background: url(../../assets/zaynab.png) 0px -577px;
 }
-.Enemy-battle {
-  background: url(./features/assets/Enemy.png) -256px -320px;
+.EnemyOne-battle {
+  background: url(../../assets/Enemy.png) 0px -577px;
 }
 .EnemyTwo-battle {
-  background: url(./features/assets/Enemy2.png) -256px -320px;
+  background: url(../../assets/Enemy2.png) 0px -577px;
+}
+.BoarMan-battle {
+  background: url(../../assets/BoarMan.png) 0px -577px;
 }
 
 #battle-background {

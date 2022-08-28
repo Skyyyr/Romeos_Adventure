@@ -1,0 +1,41 @@
+[
+    {
+        "id": 0,
+        "dialogue": "You have encoutered room ten, a riddle",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 1,
+                "text": "Wait! I'm not ready!"
+            },
+            {
+                "id": 2,
+                "text": "I'm ready for the riddle!"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "dialogue": "Imposter syndrome getting you down? Not to worry. There are battle options that come with your character. Trust your gut, and look below your feet!",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 2,
+                "text": "Alright, fine! I trust myself! Let's get going!"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "dialogue": "",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+        ]
+    }
+]
