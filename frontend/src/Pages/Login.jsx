@@ -23,7 +23,7 @@ export default function Login({user}) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const response = await axios.post('/login', {email: data.get('email'), password: data.get('password')}).catch((resp)=>{
-      console.log(resp.data['result'])
+      //console.log(resp.data['result'])
     })
 
     if(response.data['result']=='success'){

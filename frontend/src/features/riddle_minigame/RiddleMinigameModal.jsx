@@ -14,21 +14,22 @@ const style = {
   boxShadow: 24,
 };
 
-function RiddleMinigameModal({nextStage, name, disabled, riddleID, gameData,getGameData}) {
+function RiddleMinigameModal({setGameMode, name, riddleID, gameData,getGameData,setStateStage}) {
 
   const [ riddleOpen, setRiddleOpen ] = useState(false)
   const handleRiddleOpen = () => setRiddleOpen(true)
   const handleRiddleClose = (condition = false) => {
     if (condition) {
-      nextStage()
+      setStateStage(prev=>prev+1)
+      setGameMode('MapView')
     }
     setRiddleOpen(false)
   }
 
+
   return (
     <>
       <Button 
-        disabled={disabled}
         variant="contained"
         color="secondary"
         onClick={handleRiddleOpen}
@@ -39,8 +40,6 @@ function RiddleMinigameModal({nextStage, name, disabled, riddleID, gameData,getG
         open={riddleOpen}
         onClose={(reason) => {
           if (reason != 'backdropClick') {
-            console.log('test')
-            console.log(event)
             handleRiddleClose();
           }
         }}

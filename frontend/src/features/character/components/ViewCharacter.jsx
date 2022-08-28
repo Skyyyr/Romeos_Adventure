@@ -23,7 +23,7 @@ function ViewCharacter({gameData,getGameData,setGameMode}) {
         let stat = statsArr[rand]
         axios.put('/gamedata', {'statincrease':{'stat':stat, 'value':(gameData[stat]+1),'currency':(gameData.currency-1)}}).then((response)=>{
             getGameData()
-            console.log(response)
+            //console.log(response)
         })
     }
 
@@ -75,17 +75,20 @@ function ViewCharacter({gameData,getGameData,setGameMode}) {
                     <div className={`${gameData.type}-view`}></div>
                 </div>
                 <div>
-                    <List style={{ columns: 2}} dense={false}>
+                    <List style={{ columns: 1}} dense={false}>
                         <ListItem>
+                            <ListItemIcon>
+                            <span class="material-symbols-outlined">paid</span>
+                            </ListItemIcon>
                             <ListItemText
                             primary= {`Dinero: ${gameData.currency}`}
                             />
                         </ListItem>
-                        <ListItem>
+                        {/*<ListItem>
                             <ListItemText
                             primary= {`Current Stage: ${gameData.stage}`}
                             />
-                        </ListItem>
+                        </ListItem>*/}
                     </List>
                 </div>
             </div>

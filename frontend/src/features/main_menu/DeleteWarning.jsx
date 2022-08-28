@@ -11,7 +11,6 @@ export default function DeleteWarning({gameData, deleteChar, setGameMode}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-    console.log("opened")
     setOpen(true);
   };
 

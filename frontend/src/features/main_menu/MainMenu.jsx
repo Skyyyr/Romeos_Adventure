@@ -1,17 +1,19 @@
 import { Button } from "@mui/material"
 import axios from 'axios'
+import { useEffect } from "react"
 import DeleteWarning from "./DeleteWarning"
 
 
-function MainMenu( {user, setGameMode, gameData} ) {
+function MainMenu( {user, setGameMode, gameData,setStateStage,setGameData} ) {
 
   const deleteChar = function(event) {
     event.preventDefault()
     axios.delete('/gamedata').then((response)=>{
-        //window.location.reload()
-        ////setGameMode('Character')
+        setStateStage(0)
         setGameMode('Story')
-        console.log('response from server: ', response)
+        setGameData(null)
+        //window.location.reload()
+        //console.log('response from server: ', response)
      })
 
      

@@ -1,0 +1,24 @@
+[
+    {
+        "id": 0,
+        "dialogue": "You beat the game, congrats!!",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 2,
+                "text": "Take me home"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "dialogue": "",
+        "func": "map",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+        ]
+    }
+]

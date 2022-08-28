@@ -43,6 +43,7 @@ function App() {
   const minWidth = useMediaPredicate("(min-width: 0px)");
   const minHeight = useMediaPredicate("(min-height: 0px)");
 
+
   const whoAmI = async () => {
     const response = await axios.get('/whoami')
     const user = response.data && response.data[0] && response.data[0].fields
@@ -51,7 +52,7 @@ function App() {
 
   const getGameData = async () => {
     const response = await axios.get('/gamedata').catch((e) => {
-      console.log(e)
+      //console.log(e)
     })
     if (response.data['results']) {
       setGameData(response.data['get_data'])
@@ -68,7 +69,7 @@ function App() {
         {minWidth && minHeight && <div>
         <ThemeProvider theme={themeOptions}>
           <Router>
-            <ResponsiveAppBar user={user} gameData={gameData}/>
+            <ResponsiveAppBar user={user} gameData={gameData} getGameData={getGameData}/>
             <Routes>
               <Route 
                 exact path='/' 
@@ -93,7 +94,7 @@ function App() {
               />}
               {user && <Route 
                 exact path='/game' 
-                element={user && <Game user={user} getGameData={getGameData} gameData={gameData}/>} 
+                element={user && <Game user={user} getGameData={getGameData} gameData={gameData} setGameData={setGameData} />} 
               />}
               <Route path='*' 
                 element={<PageNotFound />} 
