@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "dialogue": "You have encoutered room ten, a riddle",
+        "dialogue": "You have encoutered a wild Zuckerborg in room ten!",
         "func": "",
         "anim": false,
         "animation_control": [],
@@ -32,7 +32,7 @@
     {
         "id": 2,
         "dialogue": "",
-        "func": "",
+        "func": "battle",
         "anim": false,
         "animation_control": [],
         "options": [

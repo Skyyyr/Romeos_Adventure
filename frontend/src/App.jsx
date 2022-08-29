@@ -70,37 +70,39 @@ function App() {
         <ThemeProvider theme={themeOptions}>
           <Router>
             <ResponsiveAppBar user={user} gameData={gameData} getGameData={getGameData}/>
-            <Routes>
-              <Route 
-                exact path='/' 
-                element={<Home user={user} />} 
-              />
-              <Route 
-                exact path='/signup' 
-                element={<Signup />} 
-              />
-              <Route 
-                exact path='/signin' 
-                element={<Login user={user} setUser={setUser}/>} 
-              />
-              {user && <Route 
-                exact path='/about' 
-                element={<About />} 
-              />}
-              {user && <Route 
-                path='/profile' 
-                element={<Profile 
-                user={user}/>} 
-              />}
-              {user && <Route 
-                exact path='/game' 
-                element={user && <Game user={user} getGameData={getGameData} gameData={gameData} setGameData={setGameData} />} 
-              />}
-              <Route path='*' 
-                element={<PageNotFound />} 
-              />
-          </Routes>
-        </Router>
+            <div className="body-container">
+              <Routes>
+                <Route 
+                  exact path='/' 
+                  element={<Home user={user} />} 
+                />
+                <Route 
+                  exact path='/signup' 
+                  element={<Signup />} 
+                />
+                <Route 
+                  exact path='/signin' 
+                  element={<Login user={user} setUser={setUser}/>} 
+                />
+                <Route 
+                  exact path='/about'
+                  element={<About />} 
+                />
+                {user && <Route 
+                  path='/profile' 
+                  element={<Profile 
+                  user={user}/>} 
+                />}
+                {user && <Route 
+                  exact path='/game' 
+                  element={user && <Game user={user} getGameData={getGameData} gameData={gameData} setGameData={setGameData} />} 
+                />}
+                <Route path='*' 
+                  element={<PageNotFound />} 
+                />
+              </Routes>
+            </div>
+          </Router>
         </ThemeProvider>
         </div>}
         {!(minWidth && minHeight) && <div>You must enlarge your screen to play</div>}

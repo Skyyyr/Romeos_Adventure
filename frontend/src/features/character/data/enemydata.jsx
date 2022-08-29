@@ -6,87 +6,94 @@ export function getEnemyData(enemy) {
         case STAGES.indexOf('STAGE_11_BATTLE'):
             return ({
                 'NAME':'Raphael',
-                'MOVES':[ {'name':'Raph Poke', 'label':'slashLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Raph Slap', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Raph Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'MOVES':[ {'name':'Fork Slash', 'label':'slashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Excuse Me Backhand', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Why Not? Magic Blast', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 8, 
                     'defense': 7,
                     'accuracy': 8,
                     'evasion': 8,
-                },
-                "SUM":31
+                }
             })
-        case STAGES.indexOf('STAGE_1_BATTLE'):
+        case STAGES.indexOf('STAGE_10_BATTLE'):
+            return ({
+                'NAME':'Zuckerborg',
+                'MOVES':[ {'name':'Borg Slash', 'label':'slashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Borg Slap', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Assimilate', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'STATS':{
+                    'strength': 8, 
+                    'defense': 7,
+                    'accuracy': 8,
+                    'evasion': 8,
+                }
+            })
+        case STAGES.indexOf('STAGE_3_BATTLE'):
             return ({
                 'NAME':'Adam',
-                'MOVES':[ {'name':'Adam Jab', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Adam Slap', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
-                          {'name':'Adam Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'MOVES':[ {'name':'Stab of Approval', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Pat on the Back', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
+                          {'name':'Adam-magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 4,
                     'defense': 3,
                     'accuracy': 6,
                     'evasion': 7,
-                },
-                "SUM":20
+                }
             })
         case STAGES.indexOf('STAGE_INTRO_BATTLE'):
             return ({
                 'NAME':'BoarMan',
-                'MOVES':[ {'name':'Adam Jab', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                            {'name':'Adam Slap', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
-                            {'name':'Adam Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'MOVES':[ {'name':'Punch', 'label':'pierceLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                            {'name':'Boar Bash', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
+                            {'name':'Molotov', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 4,
                     'defense': 3,
                     'accuracy': 6,
                     'evasion': 7,
-                },
-                "SUM":20
+                }
             })
-        case STAGES.indexOf('STAGE_3_BATTLE'):
+        case STAGES.indexOf('STAGE_7_BATTLE'):
             return ({
                 'NAME':'Zaynab',
-                'MOVES':[ {'name':'Zaynab Slash', 'label':'slashLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Zaynab Slap', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Zaynab Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'MOVES':[ {'name':'Caring Slash', 'label':'slashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Friendly Bash', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Mentor Insight', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 5,
                     'defense': 6,
                     'accuracy': 7,
                     'evasion': 7,
-                },
-                "SUM":25
+                }
             })
-        case STAGES.indexOf('STAGE_6_BATTLE'):
+        case STAGES.indexOf('STAGE_1_BATTLE'):
             return ({
-                'NAME':'EnemyOne',
-                'MOVES':[ {'name':'Enemy Punch', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Enemy Bolt', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
-                          {'name':'Enemy Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'NAME':'Skeleton',
+                'MOVES':[ {'name':'Punch', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Bolt', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
+                          {'name':'Bone Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 4,
                     'defense': 3,
                     'accuracy': 6,
                     'evasion': 7,
-                },
-                "SUM":20
+                }
             })
-        case STAGES.indexOf('STAGE_7_BATTLE'):
+        case STAGES.indexOf('STAGE_6_BATTLE'):
             return ({
-                'NAME':'EnemyTwo',
-                'MOVES':[ {'name':'Bad Guy Punch', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Bad Guy Bolt', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
-                          {'name':'Bad Guy Magic', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'NAME':'Dragon',
+                'MOVES':[ {'name':'Dragon Punch', 'label':'bashLeft', 'type':'melee', 'power':5, 'accuracy':5},
+                          {'name':'Wing Attack', 'label':'bashLeft', 'type':'magic', 'power':5, 'accuracy':5},
+                          {'name':'Fire Breath', 'label':'magAtkLeft', 'type':'magic', 'power':5, 'accuracy':5} ],
                 'STATS':{
                     'strength': 5,
                     'defense': 6,
                     'accuracy': 7,
                     'evasion': 7,
 
-                },
-                "SUM":25
+                }
             })
     }
   }
