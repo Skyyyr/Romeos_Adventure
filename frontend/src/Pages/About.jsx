@@ -21,9 +21,9 @@ function About() {
   ]
 
   return (
-    <div classname="justify-content-center">
+    <div classname="page-container">
       <div className="row justify-content-center text-center">
-        <h2 className="my-3 mt-4">
+        <h2 className="py-3 pt-4">
           <b>Meet the Team</b>
         </h2>
         <hr style={{width:"400px", opacity:1, color:"rgb(251,250,235)"}}></hr>
