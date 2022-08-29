@@ -2,28 +2,25 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HelpIcon from '@mui/icons-material/Help';
 import { SvgIcon } from '@mui/material';
 import {useNavigate, Link} from 'react-router-dom';
 import axios from 'axios'
-import {Icon} from '@mui/material';
 import { useEffect } from 'react';
 
 
-const pages = ['Play', 'Meet the Team'];
-const pagesObj = {"Play":'game', "Meet the Team": 'about'}
-const settings = ['Profile','Logout'];
+// const pages = ['Play', 'Meet the Team'];
+// const pagesObj = {"Play":'game', "Meet the Team": 'about'}
+const settings = ['My Profile', 'Meet the Team', 'Logout'];
 
 const ResponsiveAppBar = ({user, gameData, getGameData}) => {
 
+  const [title, setTitle] = React.useState(window.innerWidth > 900 ? "Romeo's Adventure" : "R.A.")
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
 
@@ -37,56 +34,61 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
 
   const settingHandler = function(event,key){
     event.preventDefault()
-    if(key==="Profile"){
+    if(key==="My Profile"){
       navigate('/profile');
-    }
-    else{
-        //console.log('You Logged Out')
-      axios.post('/logout').then((response)=>{
-        //console.log('response from server: ', response)
+    } else if (key==="Logout") {
+      axios.post('/logout').then((resp)=>{
         navigate('/')
         window.location.reload()
       })
+    } else if (key==="Meet the Team") {
+      navigate('/about');
     }
   }
 
-  useEffect(()=>{
-
-  },[gameData])
+  useEffect( () => {
+    function handleResize() {
+      if (window.innerWidth > 900) {
+        setTitle("ROMEO's Adventure")
+      } else {
+        setTitle('R.A.')
+      }
+    }
+    window.addEventListener('resize', handleResize)
+  })
 
   return (
     <AppBar position="static" color="primary">
       <Container>
         <Toolbar disableGutters sx={{position: 'relative'}}>
-          <div id="navbar-center">
-            <Box sx={{ display: 'flex' }}>
-              { user && 
-                  <Button
-                    href={`#/about`}
-                    sx={{ my: 2, color: 'white', display: 'block', fontSize:18 }}
-                  >
-                    Meet the Team
-                  </Button>
-              }
-            </Box>
-          </div>
+          <Box sx={{ display: 'flex' }} id="navbar-center">
+            <Button
+              href={`#/about`}
+              sx={{
+                my: 2,
+                color: 'white',
+                display: { md:'block', xs:'none' },
+                fontSize:18
+              }}
+            >
+              Meet the Team
+            </Button>
+          </Box>
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/"
             sx={{
-              textAlign: 'left',
-              flexGrow: 0,
-              fontWeight: 800,
               fontSize: 25,
+              fontWeight: 800,
               letterSpacing: '.25rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            Romeo's Adventure
-          </Typography> 
+            {title}
+          </Typography>
           <div className="flex-grow-1"></div>
           {
             user && 
@@ -150,7 +152,14 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography component='a' onClick={(event)=>settingHandler(event,setting)} textAlign="center">{setting}</Typography>
+                    <Typography 
+                      component='a'
+                      onClick={ (event) => settingHandler(event,setting) }
+                      textAlign="center"
+                      sx={ setting === 'Meet the Team' ? { display: { xs: 'block', md: 'none' } } : null }
+                    >
+                      {setting}
+                    </Typography>
                 </MenuItem>
               ))}
             </Menu>}
