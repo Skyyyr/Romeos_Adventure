@@ -7,7 +7,6 @@ import MapView from '../features/map_view/MapView'
 import MainMenu from '../features/main_menu/MainMenu'
 import axios from "axios";
 import StoryMenu from '../features/story/storymenu'
-import stages, { STAGE_TEST_INTRO } from '../Components/Stages'
 
 
 function Game( {user, gameData, getGameData,setGameData} ) {
