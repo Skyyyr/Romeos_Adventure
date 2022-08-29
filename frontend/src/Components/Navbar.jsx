@@ -22,7 +22,7 @@ const pages = ['Play', 'Meet the Team'];
 const pagesObj = {"Play":'game', "Meet the Team": 'about'}
 const settings = ['Profile','Logout'];
 
-const ResponsiveAppBar = ({user, gameData,getGameData}) => {
+const ResponsiveAppBar = ({user, gameData, getGameData}) => {
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
@@ -59,17 +59,16 @@ const ResponsiveAppBar = ({user, gameData,getGameData}) => {
       <Container>
         <Toolbar disableGutters sx={{position: 'relative'}}>
           <div id="navbar-center">
-          <Box sx={{ display: 'flex' }}>
-            {user && pages.map((page) => (
-              <Button
-                href={`#/${pagesObj[page]}`}
-                key={page}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+            <Box sx={{ display: 'flex' }}>
+              { user && 
+                  <Button
+                    href={`#/about`}
+                    sx={{ my: 2, color: 'white', display: 'block', fontSize:18 }}
+                  >
+                    Meet the Team
+                  </Button>
+              }
+            </Box>
           </div>
           <Typography
             variant="h6"
@@ -79,9 +78,9 @@ const ResponsiveAppBar = ({user, gameData,getGameData}) => {
             sx={{
               textAlign: 'left',
               flexGrow: 0,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
+              fontWeight: 800,
+              fontSize: 25,
+              letterSpacing: '.25rem',
               color: 'inherit',
               textDecoration: 'none',
             }}

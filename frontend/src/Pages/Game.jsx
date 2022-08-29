@@ -35,10 +35,10 @@ function Game( {user, gameData, getGameData,setGameData} ) {
         <Button variant="contained" disabled={!gameData} onClick={()=>setGameMode("MapView")}>Map View</Button>
       </div>
       GODMODE END */}
-      { gameMode === "MapView" && 
-      gameData && <div className='map primary-bg'>
-        <>
-          <MapView 
+      { 
+        gameMode === "MapView" && gameData && 
+          <div className='map primary-bg'>
+            <MapView 
               gameData={gameData}
               setGameMode={setGameMode}
               stage={gameData.stage}
@@ -46,8 +46,8 @@ function Game( {user, gameData, getGameData,setGameData} ) {
               stateStage={stateStage}
               saveGame={saveGame}
             />
-        </>
-      </div>}
+          </div>
+      }
       {!(gameMode === "MapView") &&
       <div className="game-container primary-bg">
         <>
@@ -90,14 +90,15 @@ function Game( {user, gameData, getGameData,setGameData} ) {
               />
           }
           {
-            gameMode === "Story" && <StoryMenu 
-            stage={ gameData ? gameData.stage : 0} 
-            setGameMode={setGameMode}
-            setStateStage={setStateStage}
-            gameData={gameData}
-            stateStage={stateStage}
-            getGameData={getGameData}
-            />
+            gameMode === "Story" && 
+              <StoryMenu 
+                stage={ gameData ? gameData.stage : 0} 
+                setGameMode={setGameMode}
+                setStateStage={setStateStage}
+                gameData={gameData}
+                stateStage={stateStage}
+                getGameData={getGameData}
+              />
           }
         </>
       </div>}

@@ -28,7 +28,9 @@
   display: grid;
   place-items: center;
   height: calc(100vh - 68.5px);
-  width: 100%;
+  max-width: 1152px;
+  margin-inline: auto;
+  padding-top: 20px;
 }
 .game-container {
   height: 600px;
@@ -53,22 +55,32 @@
 
 /* HOME PAGE */ 
 
-#home-top-half {
-  height: 60%;
-  width: 100%;
-  display: grid;
-  place-items: center;
-  background-image: url(./features/assets/romeologo.png);
+#game-logo {
+  padding-inline: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: transparent;
+  border-radius: 30px;
+  overflow: visible;
+  box-shadow: 12px 12px 10px 10px rgba(0,0,0,.4),
+        inset 0px 0px 150px 150px rgb(255,255,255,.8);
+}
+#game-logo-image {
+  filter: drop-shadow(0px 0px 1px rgba(255,255,255,1));
+}
+#homepage-background-image {
+  background-image: url('./features/assets/homepage-adventure-background.jpg');
   background-repeat: no-repeat;
-  background-size: auto auto;
-  background-position: top;
+  background-size: cover;
+  background-position: center;
+  width: 80%;
+  min-height: 532px;
 }
-#home-bottom-half {
-  height: 40%;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
+.home-buttons {
+  width: 225px;
+  height: 60px;
 }
+
 .home-details {
   width: calc(90%/3);
   height: 94%;
@@ -88,6 +100,8 @@
   width: 220px;
   margin-left: -110px;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .circle-icon-box {
   position: relative;
@@ -168,7 +182,7 @@
 #fullstack-icon{
   background: url(./features/assets/fullstack.png);
   margin-right: 15px;
-  background-position: -342px -908px; 
+  background-position: -342px -908px;
   width: 28px;
   height: 26px;
   transform: scale(2);
