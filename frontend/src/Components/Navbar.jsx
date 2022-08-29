@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,7 +11,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import { SvgIcon } from '@mui/material';
 import {useNavigate, Link} from 'react-router-dom';
 import axios from 'axios'
-import { useEffect } from 'react';
+
 
 
 // const pages = ['Play', 'Meet the Team'];
@@ -20,12 +20,13 @@ const settings = ['My Profile', 'Meet the Team', 'Logout'];
 
 const ResponsiveAppBar = ({user, gameData, getGameData}) => {
 
-  const [title, setTitle] = React.useState(window.innerWidth > 900 ? "Romeo's Adventure" : "R.A.")
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [title, setTitle] = useState(window.innerWidth > 900 ? "Romeo's Adventure" : "R.A.")
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
+  const ref = useRef()
 
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+    setAnchorElUser(ref.current);
   };
 
   const handleCloseUserMenu = () => {
@@ -49,7 +50,7 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
   useEffect( () => {
     function handleResize() {
       if (window.innerWidth > 900) {
-        setTitle("ROMEO's Adventure")
+        setTitle("Romeo's Adventure")
       } else {
         setTitle('R.A.')
       }
@@ -57,15 +58,19 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
     window.addEventListener('resize', handleResize)
   })
 
+  
+
   return (
     <AppBar position="static" color="primary">
       <Container>
         <Toolbar disableGutters sx={{position: 'relative'}}>
           <Box sx={{ display: 'flex' }} id="navbar-center">
             <Button
-              href={`#/about`}
+              className="hover-underline-animation"
+              as={Link}
+              to={'/about'}
               sx={{
-                my: 2,
+                padding: 0,
                 color: 'white',
                 display: { md:'block', xs:'none' },
                 fontSize:18
@@ -75,6 +80,7 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
             </Button>
           </Box>
           <Typography
+            className="hover-underline-animation"
             variant="h6"
             noWrap
             component="a"
@@ -92,18 +98,20 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
           <div className="flex-grow-1"></div>
           {
             user && 
-              <Typography 
-                style = {{marginRight:'10px'}}
+              <Typography
+                className="hover-underline-animation"
+                onClick={handleOpenUserMenu}
+                style = {{marginRight:'10px', cursor:'pointer'}}
               >
                 {user.first_name}
               </Typography>
           }
           {
             !user && 
-              <Typography 
+              <Typography
+                className="navbar-login hover-underline-animation"
                 as={Link}
                 to="/signin" 
-                className="navbar-login"
               >
                 Log In
               </Typography>
@@ -112,6 +120,7 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
             {
               gameData && gameData.type &&
                   <button 
+                    ref={ref}
                     className="headshot-img"
                     id={`${gameData.type}-head`}
                     onClick={handleOpenUserMenu}
@@ -120,6 +129,7 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
             {
               user && !gameData &&
                 <SvgIcon
+                  ref={ref}
                   component={HelpIcon}
                   onClick={handleOpenUserMenu}
                   id="avatar-icon"
@@ -129,6 +139,7 @@ const ResponsiveAppBar = ({user, gameData, getGameData}) => {
             {
               !user &&
                 <SvgIcon
+                  ref={ref}
                   component={HelpIcon}
                   onClick={handleOpenUserMenu}
                   id="avatar-icon-inactive"

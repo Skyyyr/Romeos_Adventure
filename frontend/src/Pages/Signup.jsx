@@ -8,11 +8,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import { useState,useEffect } from 'react';
-import { Alert, getBottomNavigationActionUtilityClass } from '@mui/material';
-
-
-
+import { useState,useEffectm, useRef } from 'react';
+import { ThemeProvider } from '@mui/material';
+import { themeOptions } from '../Components/Theme';
 
 
 export default function SignUp() {
@@ -65,101 +63,134 @@ export default function SignUp() {
         alert('error on backend')
       }
 
-      }
     }
+  }
+
+  // const SignupTextField = styled(TextField)({
+  //   '& input:valid + fieldset': {
+  //     borderColor: 'rgb(17,85,158)',
+  //     borderWidth: 2,
+  //   },
+  //   '& input:invalid + fieldset': {
+  //     borderColor: 'warning',
+  //     borderWidth: 2,
+  //   },
+  //   '& input:valid:hover + fieldset': {
+  //     borderColor: 'rgb(142,228,232)',
+  //     borderLeftWidth: 2,
+  //     padding: '4px !important',
+  //   },
+  //   '& input:valid:focus + fieldset': {
+  //     color: 'rgb(251,250,235) !important',
+  //     borderColor: 'rgb(142,228,232)',
+  //     borderLeftWidth: 6,
+  //     padding: '4px !important',
+  //   },
+  // });
+
+  const inputStyle = {
+    "&.MuiInputLabel-root": {color:'white'},
+  }
 
 
   return (
-      <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <Box component="form" noValidate onSubmit={(event)=>handleSubmit(event)} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+    <Container className="page-bg" maxWidth="xs">
+      <Box
+        sx={{
+          paddingTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="white" component="h2">
+          Sign up
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 5 }}>
+          <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+          <ThemeProvider theme={themeOptions}>
+          <TextField
+            autoFocus
+            variant="outlined"
+            autoComplete="given-name"
+            name="firstName"
+            required
+            fullWidth
+            id="firstName"
+            label="First Name"
+            helperText={((firstNameInput=="" || !firstNameInputVal) && signUpAttempt) ? `Must be at least ${firstNameMinLen} characters` : ''}
+            onChange={(e)=>(setFirstNameInput(e.target.value),setFirstNameInputVal(e.target.value.length>=firstNameMinLen))}
+          />
+          </ThemeProvider>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <TextField
-              autoComplete="given-name"
-              name="firstName"
+              variant="outlined"
               required
               fullWidth
-              id="firstName"
-              label="First Name"
-              autoFocus
-              error={(firstNameInput=="" || !firstNameInputVal) && signUpAttempt}
-              helperText={((firstNameInput=="" || !firstNameInputVal) && signUpAttempt) ? `Must be at least ${firstNameMinLen} characters` : ''}
-              onChange={(e)=>(setFirstNameInput(e.target.value),setFirstNameInputVal(e.target.value.length>=firstNameMinLen))}
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              autoComplete="family-name"
+              onChange={(e)=>(setLastNameInput(e.target.value),setLastNameInputVal(e.target.value.length>=lastNameMinLen))}
+              error={(lastNameInput=="" || !lastNameInputVal) && signUpAttempt}
+              helperText={((lastNameInput=="" || !lastNameInputVal) && signUpAttempt) ? `Must be at least ${lastNameMinLen} characters` : ''}
             />
-            </Grid>
-            <Grid item xs={12} sm={6}>
+          </Grid>
+            <Grid item xs={12}>
               <TextField
+                variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="family-name"
-                onChange={(e)=>(setLastNameInput(e.target.value),setLastNameInputVal(e.target.value.length>=lastNameMinLen))}
-                error={(lastNameInput=="" || !lastNameInputVal) && signUpAttempt}
-                helperText={((lastNameInput=="" || !lastNameInputVal) && signUpAttempt) ? `Must be at least ${lastNameMinLen} characters` : ''}
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                onChange={(e)=>(setUserNameInput(e.target.value),setUserNameInputVal(emailReg.test(e.target.value)))}
+                error={((userNameInput==""  || !userNameInputVal) && signUpAttempt) || emailTaken}
+                helperText={
+                  (((userNameInput=="" || !userNameInputVal) && signUpAttempt) ? "Must be a valid email" : '')
+                  || (emailTaken ? "Username/Email is already in use" : '')
+                }
               />
             </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={(e)=>(setUserNameInput(e.target.value),setUserNameInputVal(emailReg.test(e.target.value)))}
-                  error={((userNameInput==""  || !userNameInputVal) && signUpAttempt) || emailTaken}
-                  helperText={
-                    (((userNameInput=="" || !userNameInputVal) && signUpAttempt) ? "Must be a valid email" : '')
-                    || (emailTaken ? "Username/Email is already in use" : '')
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  onChange={(e)=>(setPasswordInput(e.target.value), setPasswordInputVal((e.target.value.length >= passwordMinLength)))}
-                  error={(passwordInput==""  || !passwordInputVal) && signUpAttempt}
-                  helperText={((passwordInput=="" || !passwordInputVal) && signUpAttempt) ? `Must be at least ${passwordMinLength} characters` : ''}
-                />
-              </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+                onChange={(e)=>(setPasswordInput(e.target.value), setPasswordInputVal((e.target.value.length >= passwordMinLength)))}
+                error={(passwordInput==""  || !passwordInputVal) && signUpAttempt}
+                helperText={((passwordInput=="" || !passwordInputVal) && signUpAttempt) ? `Must be at least ${passwordMinLength} characters` : ''}
+              />
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/#/signin" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 5, mb: 5 }}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="center">
+            <Grid item display="flex">
+              <Typography variant="body1">
+                Already have an account?
+              </Typography>
+              <Link href="/#/signin" variant="body1" sx={{ mx: 2, color:"rgb(142,228,232)" }}>
+                Sign in
+              </Link>
             </Grid>
-          </Box>
+          </Grid>
         </Box>
-      </Container>
+      </Box>
+    </Container>
   );
 }

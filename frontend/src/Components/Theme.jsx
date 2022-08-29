@@ -1,4 +1,5 @@
-import { createTheme, rgbToHex} from '@mui/material';
+import { createTheme } from '@mui/material';
+import { experimental_sx as sx } from '@mui/material';
 
 export const themeOptions = createTheme({
     // body: {
@@ -44,6 +45,38 @@ export const themeOptions = createTheme({
           color: '#9e4696',
           height: 48,
           padding: '0 30px',
+        },
+      },
+    },
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: sx({
+            "& .MuiOutlinedInput-root": {
+              "& > fieldset": {
+                borderColor: "#10539A",
+              },
+              '& input:valid + fieldset': {
+                borderColor: 'rgb(17,85,158)',
+                borderWidth: 2,
+              },
+              '& input:invalid + fieldset': {
+                borderColor: 'warning',
+                borderWidth: 2,
+              },
+              '& input:valid:hover + fieldset': {
+                borderColor: 'rgb(142,228,232)',
+                borderLeftWidth: 2,
+                padding: '4px',
+              },
+              '& input:valid:focus + fieldset': {
+                color: 'rgb(251,250,235)',
+                borderColor: 'rgb(142,228,232)',
+                borderLeftWidth: 6,
+                padding: '4px',
+              },
+            },
+          }),
         },
       },
     },
@@ -106,8 +139,5 @@ export const themeOptions = createTheme({
       MuiTooltip: {
         arrow: true,
       },
-      MuiTab: {
-
-      }
     },
   })

@@ -33,7 +33,7 @@ function Home( {user} ) {
               <>
                 <Link to="/game">
                   <Button 
-                    className="home-buttons"
+                    className="home-buttons button-shadow"
                     color="primary"
                     variant="contained"
                     sx={{fontSize:25}}
@@ -46,7 +46,7 @@ function Home( {user} ) {
               <div className="d-flex flex-column">
                 <Link to="/signin">
                     <Button 
-                      className="home-buttons" 
+                      className="home-buttons button-shadow" 
                       color="primary" 
                       variant="contained"
                       sx={{fontSize:25, marginBottom:2}}
@@ -56,7 +56,7 @@ function Home( {user} ) {
                 </Link>
                 <Link to="/signup">
                     <Button 
-                      className="home-buttons"
+                      className="home-buttons button-shadow"
                       color="primary"
                       variant="contained"
                       sx={{fontSize:25}}

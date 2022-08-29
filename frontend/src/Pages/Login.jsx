@@ -8,15 +8,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom';
-import { rgbToHex } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useState,useEffect } from 'react';
-import { Alert, getBottomNavigationActionUtilityClass } from '@mui/material';
 
 
 export default function Login({user}) {
-    const nav = useNavigate()
-    const [invalidLogin,setInvalidLogin] = useState(false)
+  const nav = useNavigate()
+  const [invalidLogin,setInvalidLogin] = useState(false)
 
 
   async function handleSubmit(event) {
@@ -35,44 +33,43 @@ export default function Login({user}) {
     }
   }
 
-  const LoginTextField = styled(TextField)({
-    '& input:valid + fieldset': {
-      borderColor: 'rgb(17,85,158)',
-      borderWidth: 2,
-    },
-    '& input:invalid + fieldset': {
-      borderColor: 'warning',
-      borderWidth: 2,
-    },
-    '& input:valid:hover + fieldset': {
-      borderColor: 'rgb(142,228,232)',
-      borderLeftWidth: 2,
-      padding: '4px !important',
-    },
-    '& input:valid:focus + fieldset': {
-      color: 'rgb(251,250,235) !important',
-      borderColor: 'rgb(142,228,232)',
-      borderLeftWidth: 6,
-      padding: '4px !important',
-    },
-  });
+  // const LoginTextField = styled(TextField)({
+    // '& input:valid + fieldset': {
+    //   borderColor: 'rgb(17,85,158)',
+    //   borderWidth: 2,
+    // },
+    // '& input:invalid + fieldset': {
+    //   borderColor: 'warning',
+    //   borderWidth: 2,
+    // },
+    // '& input:valid:hover + fieldset': {
+    //   borderColor: 'rgb(142,228,232)',
+    //   borderLeftWidth: 2,
+    //   padding: '4px !important',
+    // },
+    // '& input:valid:focus + fieldset': {
+    //   color: 'rgb(251,250,235) !important',
+    //   borderColor: 'rgb(142,228,232)',
+    //   borderLeftWidth: 6,
+    //   padding: '4px !important',
+    // },
+  // });
 
   return (
       <Container className="page-bg" maxWidth="xs">
         <Box
           sx={{
-            marginTop: 8,
+            paddingTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-
           <Typography variant="white" component="h2">
             Sign In
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <LoginTextField
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 5 }}>
+            <TextField
               variant="outlined"
               margin="normal"
               required
@@ -85,7 +82,7 @@ export default function Login({user}) {
               error={invalidLogin}
               helperText={invalidLogin && "Password and email combination are invalid"}
             />
-            <LoginTextField
+            <TextField
               variant="outlined"
               margin="normal"
               required
@@ -103,14 +100,17 @@ export default function Login({user}) {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 5, mb: 5 }}
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link  href="/#/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+            <Grid container justifyContent="center">
+              <Grid item display="flex">
+                <Typography variant="body1">
+                  Don't have an account?
+                </Typography>
+                <Link  href="/#/signup" variant="body1" sx={{ mx: 2, color:"rgb(142,228,232)" }}>
+                  Sign Up
                 </Link>
               </Grid>
             </Grid>
