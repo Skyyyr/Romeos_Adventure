@@ -108,10 +108,10 @@ def game_data(request):
 
         elif request.method == 'PUT':
             print(request.data)
-            if 'advancestage' in request.data:
+            if 'savegame' in request.data:
                 GameData.objects.filter(user=request.user).update(
-                    stage=request.data['advancestage']['stage'], currency=request.data['advancestage']['currency'])
-                return JsonResponse({'result': 'advanced stage'})
+                    stage=request.data['savegame']['stage'], currency=request.data['savegame']['currency'])
+                return JsonResponse({'result': 'game is saved'})
 
             if 'statincrease' in request.data:
                 stat = request.data['statincrease']['stat']

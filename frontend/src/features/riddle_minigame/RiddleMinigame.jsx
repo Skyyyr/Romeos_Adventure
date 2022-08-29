@@ -94,7 +94,6 @@ function Riddle_Minigame( {handleRiddleClose, riddleID, gameData,getGameData} ) 
     })
   }
 
-
   return (
     <section id="riddle-container">
       { letterChoices ?

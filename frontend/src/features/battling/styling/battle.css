@@ -84,37 +84,6 @@
   background: url('../../assets/whitehit.png') 0px 0px;
   animation: enemy-hit .5s steps(7) 0s 1
 }
-@keyframes enemy-hit {
-  to { background-position: 700px; }
-}
-
-.attack{
-  transition: 0.1s;
-  transform: scale(2) translateX(10px) translateY(-10px);
-}
-
-.eneAttack{
-  transition: 0.1s;
-  transform: scale(2) translateX(-10px) translateY(-10px);
-}
-
-.eneReset{
-  transition: 0.1s;
-}
-
-.hit {
-  opacity: 1;
-  animation: flash 0.5s 0s infinite running;
-}
-
-@keyframes flash {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 .main {
   border-radius: 5px;
@@ -162,14 +131,23 @@
   transform: scale(2);
   overflow: hidden;
 }
-.Raphael-battle{
+.Raphael-battle {
   background: url(../../assets/raphael.png) 0px -577px;
 }
-.Adam-battle{
+.Adam-battle {
     background: url(../../assets/adam.png) 0px -577px;
 }
-.Zaynab-battle{
+.Zaynab-battle {
     background: url(../../assets/zaynab.png) 0px -577px;
+}
+.EnemyOne-battle {
+  background: url(../../assets/Enemy.png) 0px -577px;
+}
+.EnemyTwo-battle {
+  background: url(../../assets/Enemy2.png) 0px -577px;
+}
+.BoarMan-battle {
+  background: url(../../assets/BoarMan.png) 0px -577px;
 }
 
 #battle-background {

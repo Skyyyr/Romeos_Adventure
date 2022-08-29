@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function HintAlert({open,setOpen,answer}) {
 
     const i = Math.floor(Math.random() * answer.length)
-    const message = `RNGesus has revealed that letter number ${i} is ${answer[i]}...`
+    const message = `RNGesus has revealed that letter number ${i+1} is ${answer[i]}...`
 
   return (
     <div>

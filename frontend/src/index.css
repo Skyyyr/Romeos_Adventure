@@ -1,8 +1,10 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
   font-size: 16px;
   line-height: 24px;
-  font-weight: 400;
+  /* font-weight: 400; */
 
   color: rgb(251,250,235);
 
@@ -15,7 +17,7 @@
 
 a {
   font-weight: 500;
-  color: rgb(17,85,158);
+  color: rgb(23, 106, 194);
   text-decoration: inherit;
 }
 a:hover {
@@ -25,14 +27,13 @@ a:hover {
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100%;
   color: rgb(251,250,235);
   background-color: rgb(8,39,73);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3.2rem;
 }
 
 button {

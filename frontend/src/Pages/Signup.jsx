@@ -51,7 +51,7 @@ export default function SignUp() {
         email: inputEmail,
         password: inputPassword
       }).catch((response) => {
-        console.log('response from server: ', response)
+        //console.log('response from server: ', response)
       })
 
       const results = signupResponse.data['signup']

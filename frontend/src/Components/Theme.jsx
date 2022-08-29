@@ -1,11 +1,18 @@
 import { createTheme, rgbToHex} from '@mui/material';
 
 export const themeOptions = createTheme({
+    // body: {
+    //   fontFamily: ['Poppins', 'sans-serif'].join(','),
+    //   fontWeight: 800,
+    // },
     typography: {
-      // fontFamily: ['MedievalSharp', 'cursive'].join(','),
+      fontFamily: `"Poppins", sans-serif`,
       white: {
         color: 'rgb(251,250,235)',
-      }
+      },
+      fontWeightLight: 600,
+      fontWeightRegular: 700,
+      fontWeightMedium: 800
     },
     palette: {
       type: 'dark',

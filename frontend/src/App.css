@@ -28,7 +28,9 @@
   display: grid;
   place-items: center;
   height: calc(100vh - 68.5px);
-  width: 100%;
+  max-width: 1152px;
+  margin-inline: auto;
+  padding-top: 20px;
 }
 .game-container {
   height: 600px;
@@ -53,18 +55,32 @@
 
 /* HOME PAGE */ 
 
-#home-top-half {
-  height: 60%;
-  width: 100%;
-  display: grid;
-  place-items: center;
+#game-logo {
+  padding-inline: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: transparent;
+  border-radius: 30px;
+  overflow: visible;
+  box-shadow: 12px 12px 10px 10px rgba(0,0,0,.4),
+        inset 0px 0px 150px 150px rgb(255,255,255,.8);
 }
-#home-bottom-half {
-  height: 40%;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
+#game-logo-image {
+  filter: drop-shadow(0px 0px 1px rgba(255,255,255,1));
 }
+#homepage-background-image {
+  background-image: url('./features/assets/homepage-adventure-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 80%;
+  min-height: 532px;
+}
+.home-buttons {
+  width: 225px;
+  height: 60px;
+}
+
 .home-details {
   width: calc(90%/3);
   height: 94%;
@@ -84,6 +100,8 @@
   width: 220px;
   margin-left: -110px;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .circle-icon-box {
   position: relative;
@@ -164,7 +182,7 @@
 #fullstack-icon{
   background: url(./features/assets/fullstack.png);
   margin-right: 15px;
-  background-position: -342px -908px; 
+  background-position: -342px -908px;
   width: 28px;
   height: 26px;
   transform: scale(2);
@@ -193,69 +211,34 @@
 /* ABOUT */
 
 .github-icon {
-  position: relative;
-  height: 20px;
-  width: 20px;
-  
+  color: rgb(251,250,235);
+  font-size: 30;
+  margin-top: -5px;
 }
-
+.team-sprite-container {
+  width: 96px;
+  height: 96px;
+}
+.team-icons {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  transform: scale(1.5);
+}
 #skyler-icon{
-  background: url(./features/assets/Skyler.png);
-    background-position: 0px -640px; 
-    width: 64px;
-    height: 64px;
-    transform: scale(1);
-    background-size: auto !important;
+  background: url(./features/assets/Skyler.png) 0px -640px
 }
-
 #justin-icon{
-  background: url(./features/assets/Justin.png);
-    background-position: 0px -640px; 
-    width: 64px;
-    height: 64px;
-    transform: scale(1);
-    background-size: auto !important;
+  background: url(./features/assets/Justin.png) 0px -640px;
 }
-
 #garrett-icon{
-  background: url(./features/assets/Garrett.png);
-    background-position: 0px -640px; 
-    width: 64px;
-    height: 64px;
-    transform: scale(1);
-    background-size: auto !important;
+  background: url(./features/assets/Garrett.png) 0px -640px;
 }
-
 #meredith-icon{
-  background: url(./features/assets/Meredith.png);
-    background-position: 0px -640px; 
-    width: 64px;
-    height: 64px;
-    transform: scale(1);
-    background-size: auto !important;
+  background: url(./features/assets/Meredith.png) 0px -640px;
 }
-
 #zack-icon{
-  background: url(./features/assets/Zack.png);
-    background-position: 0px -640px; 
-    width: 64px;
-    height: 64px;
-    transform: scale(1);
-    background-size: auto !important;
-}
-
-.Enemy-battle{
-  background: url(./features/assets/Enemy.png) -256px -320px;
-  width: 64px;
-  height: 64px;
-  transform: scale(2);
-}
-
-.EnemyTwo-battle{
-  background: url(./features/assets/Enemy2.png) -256px -320px;
-  width: 64px;
-  height: 64px;
-  transform: scale(2);
+  background: url(./features/assets/Zack.png) 0px -640px;
 }
 
 .story-container{
@@ -276,6 +259,14 @@
   width:1000px;
   height: 23%;
 
+}
+
+.evil-raph{
+  background: url(./features/assets/badraphael.png) 0px -577px;
+  z-index: 10;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
 }
 
 /* .fix-buttons{

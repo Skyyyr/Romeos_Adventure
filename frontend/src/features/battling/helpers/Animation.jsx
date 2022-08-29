@@ -9,8 +9,13 @@ import EnemyOne from '../../assets/Enemy.png';
 import EnemyTwo from '../../assets/Enemy2.png';
 import WhiteHit from '../../assets/whitehit.png';
 import FireHit from '../../assets/firehit.png';
+import Justin from '../../assets/Justin.png';
+import Skyler from '../../assets/Skyler.png';
+import Meredith from '../../assets/Meredith.png';
+import Garrett from '../../assets/Garrett.png';
+import Zack from '../../assets/Zack.png';
 
-export default function Animation({key, height, width, row, frames, repeat, scale = 2, type, zIndex=0}) {
+export default function Animation({key, height, width, row, frames, repeat, scale=2, type, zIndex=0, running=true, speed=15, mouse=false}) {
   
   const firstRender = useRef(true)
 
@@ -21,9 +26,10 @@ export default function Animation({key, height, width, row, frames, repeat, scal
 
   const ref = useRef();
   const frame = useRef(0);
+  const theRow = useRef(row);
 
   const frameCount = useRef(0)
-  const FRAMES_PER_SECOND = 15
+  const FRAMES_PER_SECOND = speed
   const FRAME_MIN_TIME = (1000/60) * (60/FRAMES_PER_SECOND) - (1000/60) * 0.5;
 
   function getSpritesheet() {
@@ -37,12 +43,41 @@ export default function Animation({key, height, width, row, frames, repeat, scal
     if (type === 'EnemyTwo') return EnemyTwo
     if (type === 'whiteHit') return WhiteHit
     if (type === 'fireHit') return FireHit
+    if (type === 'Justin') return Justin
+    if (type === 'Skyler') return Skyler
+    if (type === 'Meredith') return Meredith
+    if (type === 'Garrett') return Garrett
+    if (type === 'Zack') return Zack
   }
 
   useEffect( () => {
     let canvas = ref.current;
     let context = canvas.getContext('2d')
     requestAnimationFrame(frameStep)
+
+    if (mouse) {
+      function getMousePosition(canvas, event) {
+        let rect = canvas.getBoundingClientRect()
+        return {
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top,
+        }
+      }
+      canvas.addEventListener('mousemove', function(event) {
+        let mousePos = getMousePosition(canvas, event)
+        //log('mouse position: ', mousePos.x, ',', mousePos.y)
+        if (mousePos.x <= 32) {
+          theRow.current = row-1
+        }
+        if (mousePos.x > 32 && mousePos.x < 64) {
+          theRow.current = row
+        }
+        if (mousePos.x >= 64) {
+          theRow.current = row+1
+        }
+      }, false)      
+    }
+
     function drawFrame(frameX, frameY, canvasX, canvasY) {
       context.drawImage(
         spritesheet,
@@ -57,12 +92,16 @@ export default function Animation({key, height, width, row, frames, repeat, scal
         return;
       }
       frameCount.current = time
+
       context.clearRect(0, 0, canvas.width, canvas.height);
-      drawFrame(frames[frame.current], row-1, 0, 0);
-      frame.current++;
-      if (frame.current >= frames.length) {
-        if (repeat) frame.current = 0;
-        else return
+      drawFrame(frames[frame.current], theRow.current-1, 0, 0);
+
+      if (running) {
+        frame.current++;
+        if (frame.current >= frames.length) {
+          if (repeat) frame.current = 0;
+          else return
+        }
       }
       firstRender.current = false
       requestAnimationFrame(frameStep)

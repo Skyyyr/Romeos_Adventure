@@ -15,13 +15,14 @@ import { SvgIcon } from '@mui/material';
 import {useNavigate, Link} from 'react-router-dom';
 import axios from 'axios'
 import {Icon} from '@mui/material';
+import { useEffect } from 'react';
 
 
 const pages = ['Play', 'Meet the Team'];
 const pagesObj = {"Play":'game', "Meet the Team": 'about'}
 const settings = ['Profile','Logout'];
 
-const ResponsiveAppBar = ({user, gameData}) => {
+const ResponsiveAppBar = ({user, gameData, getGameData}) => {
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
@@ -36,36 +37,38 @@ const ResponsiveAppBar = ({user, gameData}) => {
 
   const settingHandler = function(event,key){
     event.preventDefault()
-    console.log(key)
     if(key==="Profile"){
       navigate('/profile');
     }
     else{
-        console.log('You Logged Out')
+        //console.log('You Logged Out')
       axios.post('/logout').then((response)=>{
-        console.log('response from server: ', response)
+        //console.log('response from server: ', response)
         navigate('/')
         window.location.reload()
       })
     }
   }
 
+  useEffect(()=>{
+
+  },[gameData])
+
   return (
     <AppBar position="static" color="primary">
       <Container>
         <Toolbar disableGutters sx={{position: 'relative'}}>
           <div id="navbar-center">
-          <Box sx={{ display: 'flex' }}>
-            {user && pages.map((page) => (
-              <Button
-                href={`#/${pagesObj[page]}`}
-                key={page}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+            <Box sx={{ display: 'flex' }}>
+              { user && 
+                  <Button
+                    href={`#/about`}
+                    sx={{ my: 2, color: 'white', display: 'block', fontSize:18 }}
+                  >
+                    Meet the Team
+                  </Button>
+              }
+            </Box>
           </div>
           <Typography
             variant="h6"
@@ -75,9 +78,9 @@ const ResponsiveAppBar = ({user, gameData}) => {
             sx={{
               textAlign: 'left',
               flexGrow: 0,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
+              fontWeight: 800,
+              fontSize: 25,
+              letterSpacing: '.25rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
