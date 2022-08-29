@@ -28,6 +28,7 @@ export const STAGES = [
     'STAGE_9_CONVO',
 
     'STAGE_10_CONVO',
+    'STAGE_10_BATTLE',
 
     'STAGE_11_CONVO',
     'STAGE_11_BATTLE',

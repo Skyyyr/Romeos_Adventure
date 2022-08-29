@@ -32,8 +32,7 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
         STAGES.indexOf('STAGE_4_CONVO'),
         STAGES.indexOf('STAGE_5_CONVO'),
         STAGES.indexOf('STAGE_8_CONVO'),
-        STAGES.indexOf('STAGE_9_CONVO'),
-        STAGES.indexOf('STAGE_10_CONVO')
+        STAGES.indexOf('STAGE_9_CONVO')
     ]
 
     function updateMenu(clickedOptionId) {

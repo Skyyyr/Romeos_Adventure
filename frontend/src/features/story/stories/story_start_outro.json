@@ -1,36 +1,74 @@
 [
     {
         "id": 0,
-        "dialogue": "Lookin' good! Let's test your skills. There's an red-haired assessment guardian lurking that you must pass!",
+        "dialogue": "Lookin' good! Zuckerborg’s powers have compelled many to his side and you must use your wits and battle sense to put an end to his evil reign. There are many obstacles in your path. You will do battle with Zuckerborg's minions and use your Platoonian knowledge to answer riddles. Earn dinero with each victory, and spend it on getting hints to riddles or increasing your stats.",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
                 "id": 1,
-                "text": "Wait! I'm not ready!"
+                "text": "Learn more about battles"
+            },
+            {
+                "id": 3,
+                "text": "Learn more about riddles"
             },
             {
                 "id": 2,
-                "text": "I'm ready for battle!"
+                "text": "I already know about battles and riddles! I'm ready for battle!"
             }
         ]
     },
     {
         "id": 1,
-        "dialogue": "Imposter syndrome getting you down? Not to worry. There are battle options that come with your character. Trust your gut, and look below your feet!",
+        "dialogue": "There are battle options that come with your character. Choose between a sword, arrow or magic attack to inflict damage. Don't worry about hitting the forfeit button, you get to pick up right where you left off. Imposter syndrome getting you down? Not to worry. Trust your gut, and look below your feet!",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
+                "id": 3,
+                "text": "Learn more about riddles"
+            },
+            {
                 "id": 2,
-                "text": "Alright, fine! I trust myself! Let's get going!"
+                "text": "I already know about battles and riddles! I'm ready for battle!"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "dialogue": "Throughout your journey, you will encounter riddles. Drag and drop the answer to continue. If you get stuck, click on the 'Hint' button. Don't forget how much dinero you have to spend!",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 1,
+                "text": "Learn more about battles"
+            },
+            {
+                "id": 2,
+                "text": "I already know about battles and riddles! I'm ready for battle!"
             }
         ]
     },
     {
         "id": 2,
+        "dialogue": "Let's test your skills. There's an enemy lurking that you must pass!",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 99,
+                "text": "Alright! Enough already! Let's get to battlin'!"
+            }
+        ]
+    },
+    {
+        "id": 99,
         "dialogue": "",
         "func": "battle",
         "anim": false,
@@ -39,3 +77,5 @@
         ]
     }
 ]
+
+

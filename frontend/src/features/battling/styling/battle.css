@@ -134,16 +134,19 @@
 .Raphael-battle {
   background: url(../../assets/raphael.png) 0px -577px;
 }
+.Zuckerborg-battle {
+  background: url(../../assets/badraphael.png) 0px -577px;
+}
 .Adam-battle {
     background: url(../../assets/adam.png) 0px -577px;
 }
 .Zaynab-battle {
     background: url(../../assets/zaynab.png) 0px -577px;
 }
-.EnemyOne-battle {
+.Skeleton-battle {
   background: url(../../assets/Enemy.png) 0px -577px;
 }
-.EnemyTwo-battle {
+.Dragon-battle {
   background: url(../../assets/Enemy2.png) 0px -577px;
 }
 .BoarMan-battle {
