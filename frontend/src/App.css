@@ -23,14 +23,16 @@
 
 
 /* GENERAL PAGE DESIGN */
-
+.body-container {
+  height: calc(100vh - 68.5px);
+  box-shadow: inset 0px 3px 4px -2px rgba(0,0,0,1);
+}
 .page-container {
   display: grid;
   place-items: center;
-  height: calc(100vh - 68.5px);
+  height: 100%;
   max-width: 1152px;
   margin-inline: auto;
-  padding-top: 20px;
 }
 .game-container {
   height: 600px;
@@ -38,9 +40,7 @@
   border: transparent;
   border-radius: 10px;
   overflow: hidden;
- 
 }
-
 .map{
   height: 600px;
   width: 1000px;
@@ -51,9 +51,32 @@
   background-size: cover;
   background-image: url('./features/assets/DungeonMap.png');
 }
+.button-shadow {
+  box-shadow: 0px 6px 6px 2px rgba(0,0,0,.4) !important;
+}
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: rgb(251,250,235);
+}
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(251,250,235);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 
-
-/* HOME PAGE */ 
+/* HOME PAGE */
 
 #game-logo {
   padding-inline: 20px;
@@ -62,7 +85,7 @@
   background-color: transparent;
   border-radius: 30px;
   overflow: visible;
-  box-shadow: 12px 12px 10px 10px rgba(0,0,0,.4),
+  box-shadow: 0px 10px 8px 4px rgba(0,0,0,.4),
         inset 0px 0px 150px 150px rgb(255,255,255,.8);
 }
 #game-logo-image {
@@ -75,12 +98,12 @@
   background-position: center;
   width: 80%;
   min-height: 532px;
+  box-shadow: 0px 0px 2px 2px rgba(255,255,255,1);
 }
 .home-buttons {
   width: 225px;
   height: 60px;
 }
-
 .home-details {
   width: calc(90%/3);
   height: 94%;
@@ -107,8 +130,6 @@
   position: relative;
   height: 60px;
   width: 60px;
-  /* border: solid transparent; */
-  /* border-radius: 30px; */
   overflow: hidden;
 }
 #avatar-icon-inactive {
@@ -269,18 +290,11 @@
   transform: scale(2);
 }
 
-/* .fix-buttons{
-  position: fixed;
-  transform:translate(-112px, 26px)
-} */
 
 #story-top{
   height: 419px;
-
 }
-
 .story-bottom{
   height: 181px;
-
 }
 
