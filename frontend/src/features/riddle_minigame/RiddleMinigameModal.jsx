@@ -29,9 +29,9 @@ function RiddleMinigameModal({setGameMode, name, riddleID, gameData,getGameData,
 
   return (
     <>
-      <Button 
+      <Button
         variant="contained"
-        color="secondary"
+        color="white"
         onClick={handleRiddleOpen}
       >
         {name ? name : "minigame"}

@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "dialogue": "Lookin' good! Zuckerborg’s powers have compelled many to his side and you must use your wits and battle sense to put an end to his evil reign. There are many obstacles in your path. You will do battle with Zuckerborg's minions and use your Platoonian knowledge to answer riddles. Earn dinero with each victory, and spend it on getting hints to riddles or increasing your stats.",
+        "dialogue": "Lookin' good! Zuckerborg’s powers have compelled many to his side and you must use your wits and battle sense to put an end to his evil reign. There are many obstacles in your path. You will do battle with Zuckerborg's minions and use your Platoonian knowledge to answer riddles. Progress through each obstacle by clicking on each button on the map. Earn dinero with each victory, and spend it on getting hints to riddles or increasing your stats. ",
         "func": "",
         "anim": false,
         "animation_control": [],
@@ -15,9 +15,14 @@
                 "text": "Learn more about riddles"
             },
             {
+                "id": 4,
+                "text": "Learn more about the map"
+            },
+            {
                 "id": 2,
                 "text": "I already know about battles and riddles! I'm ready for battle!"
             }
+            
         ]
     },
     {
@@ -30,6 +35,10 @@
             {
                 "id": 3,
                 "text": "Learn more about riddles"
+            },
+            {
+                "id": 4,
+                "text": "Learn more about the map"
             },
             {
                 "id": 2,
@@ -47,6 +56,31 @@
             {
                 "id": 1,
                 "text": "Learn more about battles"
+            },
+            {
+                "id": 4,
+                "text": "Learn more about the map"
+            },
+            {
+                "id": 2,
+                "text": "I already know about battles and riddles! I'm ready for battle!"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "dialogue": "Click on the blue button in each room to progress through each obstacle. From the map, you can go to the main menu or view your character by clicking on the buttons in the bottom right.",
+        "func": "",
+        "anim": false,
+        "animation_control": [],
+        "options": [
+            {
+                "id": 1,
+                "text": "Learn more about battles"
+            },
+            {
+                "id": 3,
+                "text": "Learn more about riddles"
             },
             {
                 "id": 2,

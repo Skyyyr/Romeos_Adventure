@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "dialogue": "You have encoutered room two, your first riddle!",
+        "dialogue": "It looks like Zuckerborg has created uncomprehendable code! Solve this riddle to resolve the conflict, and move on!",
         "func": "",
         "anim": false,
         "animation_control": [],
@@ -9,33 +9,20 @@
             {
                 "id": 1,
                 "text": "Wait! I'm not ready!"
-            },
-            {
-                "id": 2,
-                "text": "I'm ready for the riddle!"
             }
         ]
     },
     {
         "id": 1,
-        "dialogue": "Imposter syndrome getting you down? Not to worry. There are battle options that come with your character. Trust your gut, and look below your feet!",
+        "dialogue": "Read the riddle and make your best guess. Drafting ideas ahead of time can help avoid complex problems later. If you have dinero, you can buy a hint!",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
-                "id": 2,
-                "text": "Alright, fine! I trust myself! Let's get going!"
+                "id": 0,
+                "text": "Oh ok!"
             }
-        ]
-    },
-    {
-        "id": 2,
-        "dialogue": "",
-        "func": "",
-        "anim": false,
-        "animation_control": [],
-        "options": [
         ]
     }
 ]
