@@ -3,8 +3,10 @@
         "id": 0,
         "dialogue": "You are doing great, but watch out! A most villainous foe has appeared. She may appear friendly, but you have another thing coming. ",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "arena_1", "anim_remove": "cave_4" }
+        ],
         "options": [
             {
                 "id": 2,

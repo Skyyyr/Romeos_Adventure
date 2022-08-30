@@ -14,7 +14,8 @@ export function getEnemyData(enemy) {
                     'defense': 7,
                     'accuracy': 8,
                     'evasion': 8,
-                }
+                },
+                'BACKGROUND':'castle_3'
             })
         case STAGES.indexOf('STAGE_10_BATTLE'):
             return ({
@@ -27,7 +28,8 @@ export function getEnemyData(enemy) {
                     'defense': 7,
                     'accuracy': 8,
                     'evasion': 8,
-                }
+                },
+                'BACKGROUND':'castle_2'
             })
         case STAGES.indexOf('STAGE_3_BATTLE'):
             return ({
@@ -40,7 +42,8 @@ export function getEnemyData(enemy) {
                     'defense': 3,
                     'accuracy': 6,
                     'evasion': 7,
-                }
+                },
+                'BACKGROUND': 'cave_1'
             })
         case STAGES.indexOf('STAGE_INTRO_BATTLE'):
             return ({
@@ -53,7 +56,8 @@ export function getEnemyData(enemy) {
                     'defense': 3,
                     'accuracy': 6,
                     'evasion': 7,
-                }
+                },
+                'BACKGROUND':'elven_4'
             })
         case STAGES.indexOf('STAGE_7_BATTLE'):
             return ({
@@ -66,7 +70,8 @@ export function getEnemyData(enemy) {
                     'defense': 6,
                     'accuracy': 7,
                     'evasion': 7,
-                }
+                },
+                'BACKGROUND':'arena_1'
             })
         case STAGES.indexOf('STAGE_1_BATTLE'):
             return ({
@@ -79,7 +84,8 @@ export function getEnemyData(enemy) {
                     'defense': 3,
                     'accuracy': 6,
                     'evasion': 7,
-                }
+                },
+                'BACKGROUND':'arena_4',
             })
         case STAGES.indexOf('STAGE_6_BATTLE'):
             return ({
@@ -92,8 +98,8 @@ export function getEnemyData(enemy) {
                     'defense': 6,
                     'accuracy': 7,
                     'evasion': 7,
-
-                }
+                },
+                'BACKGROUND':'cave_4'
             })
     }
   }

@@ -1,4 +1,5 @@
-import { useEffect } from "react"
+import './styling/sprites.css';
+import { useEffect, useRef } from "react"
 import story_test from "./stories/story_test.json"
 import story_second from "./stories/story_second.json"
 import StoryOption from "./storyoption"
@@ -18,15 +19,19 @@ import roomtenintro from "../story/stories/room_ten_intro.json"
 import roomelevenintro from "../story/stories/room_eleven_intro.json"
 import gameisbeaten from "../story/stories/game_is_beaten.json"
 
+import { Typography } from "@mui/material"
+
 import { STAGES } from "../../Components/Stages"
 import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
 
-function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}) {
+function StoryMenu({setGameMode, stateStage, gameData, setStateStage, getGameData}) {
     
 
     const [playerChoices, setPlayerChoices] = useState(startintro[0])
     const [convo, setConvo] = useState('')
+    // const fullConvo = useRef()
     const [jsonStory, setJsonStory] = useState(startintro)
+    const [background, setBackground] = useState('')
     const riddleStages = [
         STAGES.indexOf('STAGE_2_CONVO'),
         STAGES.indexOf('STAGE_4_CONVO'),
@@ -41,6 +46,7 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
             if (jsonStory[i]['id'] === clickedOptionId) {
                 setPlayerChoices(jsonStory[i])
                 handleFunction(jsonStory[i]['func'])
+                // fullConvo.current = createNpcDialog(jsonStory[i]['dialogue'])
                 setConvo(createNpcDialog(jsonStory[i]['dialogue']))
                 if (jsonStory[i]["anim"]) {
                     for (let j = 0; j < jsonStory[i]['animation_control'].length; j++) {
@@ -111,12 +117,13 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
     }
 
     function handleAnimation(requestedHtml, requestedAnimationAdd, requestedAnimationRemove) {
+        console.log(requestedHtml)
         const htmlElement = document.getElementById(requestedHtml)
-        if (requestedAnimationAdd !== "") {
-            htmlElement.classList.add(requestedAnimationAdd)
-        }
         if (requestedAnimationRemove !== "") {
             htmlElement.classList.remove(requestedAnimationRemove)
+        }        
+        if (requestedAnimationAdd !== "") {
+            htmlElement.classList.add(requestedAnimationAdd)
         }
     }
 
@@ -136,6 +143,7 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
                 gameData={gameData}
                 getGameData={getGameData}
                 setStateStage={setStateStage}
+                storyBG={jsonStory[0]['animation_control'][0]['anim_add']}
               /></div>)
         }
         return htmlContent
@@ -153,6 +161,33 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
         updateMenu(0)
         setConvo(createNpcDialog(jsonStory[0]['dialogue']))
     }, [jsonStory])
+
+    // const textFrame = useRef(0)
+    // const frameTime = (1000/60) * (60/30) - (1000/60) * 0.5;
+    // useEffect( () => {
+    //   let dialogue = '';
+
+    //   if (fullConvo.current && convo !== fullConvo.current) {
+
+    //   }
+      
+    //   const wait = ms =>
+    //     new Promise(resolve => {
+    //       setTimeout(() => {
+    //         resolve();
+    //       }, ms);
+    //     });
+
+
+    //   async function makeDialogue() {
+    //     if (fullConvo.current && convo !== fullConvo.current) {
+    //       dialogue += fullConvo.current[textFrame.current];
+    //       textFrame.current++;
+    //       await(wait(30))
+    //       makeDialogue()
+    //     }
+    //   }
+    // })
 
     function handleFunction(requestedFunction) {
         switch (requestedFunction) {
@@ -173,10 +208,18 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
     }
 
     return (
-        <div className="story-container">
-            <div className="convo" id="story-top">
-            {convo}
-            <div className='evil-raph'></div>
+        <div className="story-container" id="dialogue-bg">
+            <div className="row story-top">
+              <Typography 
+                variant="h6"
+                sx={{width:'95%'}}
+              >
+                {convo}
+              </Typography>
+            </div>
+            <div className="story-middle">
+              <div id="player-sprite" className="evil-raph-forward sprite"></div>
+              <div id="NPC-sprite" className="evil-raph-forward sprite"></div>
             </div>
             <div className="row story-bottom d-flex flex-column justify-content-end">
                 {createMenuOptions(playerChoices.options)}

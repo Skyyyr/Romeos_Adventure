@@ -262,39 +262,50 @@
   background: url(./features/assets/Zack.png) 0px -640px;
 }
 
+
+
+/* STORY DIALOGUE */ 
+
 .story-container{
   height: 100%;
   width: 100%;
-  background-image: url('./features/assets/field_night_bg.png');
+  /* background-image: url('./features/assets/field_night_bg.png'); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
 }
-
-.menu-section{
-  /* transform:translateY(370px); */
-
+.story-top{
+  height: 219px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.menu-option{
-  width:1000px;
-  height: 23%;
-
-}
-
-.evil-raph{
-  background: url(./features/assets/badraphael.png) 0px -577px;
-  z-index: 10;
-  width: 64px;
-  height: 64px;
-  transform: scale(2);
-}
-
-
-#story-top{
-  height: 419px;
+.story-middle{
+  height: 200px;
+  width: 60%;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .story-bottom{
   height: 181px;
 }
+
+.menu-option{
+  width: 1000px;
+  height: 45px;
+  border: solid 0px;
+  border-radius: 0px;
+  box-shadow: inset 0px 0px 1px 1px rgb(17,85,158);
+}
+.menu-option:hover {
+  box-shadow: inset 0px 0px 2px 2px rgb(142,228,232);
+  background-color: white;  
+}
+
+
+
+
+
 

@@ -3,8 +3,10 @@
         "id": 0,
         "dialogue": "Zuckerborg's hold on the people of Code Platoonia is weakening and he can feel it. The magical fork is within your grasp. Uh oh! You have encountered a wild Zuckerborg!",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "castle_2", "anim_remove": "castle_1" }
+        ],
         "options": [
             {
                 "id": 2,

@@ -120,9 +120,17 @@
 }
 
 .battleDialog{
+  background-color: rgba(17,85,158,.8);
   border: double rgb(142,228,232);
   width: 90%;
   margin-inline: auto;
+}
+.battle-background {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
 }
 
 .enemy-battle-stance {
@@ -138,10 +146,10 @@
   background: url(../../assets/badraphael.png) 0px -577px;
 }
 .Adam-battle {
-    background: url(../../assets/adam.png) 0px -577px;
+  background: url(../../assets/adam.png) 0px -577px;
 }
 .Zaynab-battle {
-    background: url(../../assets/zaynab.png) 0px -577px;
+  background: url(../../assets/zaynab.png) 0px -577px;
 }
 .Skeleton-battle {
   background: url(../../assets/Enemy.png) 0px -577px;
@@ -153,11 +161,10 @@
   background: url(../../assets/BoarMan.png) 0px -577px;
 }
 
-#battle-background {
-  background-image: url('../../assets/dirt-path-banner.png');
+/* #battle-background {
   background-repeat: no-repeat;
   background-position-y: 20%;
   overflow: hidden;
   box-shadow: inset 0px 35px 16px -20px rgb(17,85,158),
               inset 0px -35px 16px -20px rgb(17,85,158);
-}
+} */
