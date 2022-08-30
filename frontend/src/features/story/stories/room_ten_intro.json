@@ -1,31 +1,14 @@
 [
     {
         "id": 0,
-        "dialogue": "You have encoutered a wild Zuckerborg in room ten!",
-        "func": "",
-        "anim": false,
-        "animation_control": [],
-        "options": [
-            {
-                "id": 1,
-                "text": "Wait! I'm not ready!"
-            },
-            {
-                "id": 2,
-                "text": "I'm ready for the riddle!"
-            }
-        ]
-    },
-    {
-        "id": 1,
-        "dialogue": "Imposter syndrome getting you down? Not to worry. There are battle options that come with your character. Trust your gut, and look below your feet!",
+        "dialogue": "Zuckerborg's hold on the people of Code Platoonia is weakening and he can feel it. The magical fork is within your grasp. Uh oh! You have encountered a wild Zuckerborg!",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
                 "id": 2,
-                "text": "Alright, fine! I trust myself! Let's get going!"
+                "text": "Time to battle Zuckerborg!"
             }
         ]
     },
