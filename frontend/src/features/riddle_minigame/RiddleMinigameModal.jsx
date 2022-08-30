@@ -14,7 +14,7 @@ const style = {
   boxShadow: 24,
 };
 
-function RiddleMinigameModal({setGameMode, name, riddleID, gameData, getGameData , setStateStage, storyBG}) {
+function RiddleMinigameModal({setGameMode,setStateCurrency, name, riddleID, gameData, getGameData , setStateStage, storyBG}) {
 
   const [ riddleOpen, setRiddleOpen ] = useState(false)
   const handleRiddleOpen = () => setRiddleOpen(true)
@@ -22,6 +22,7 @@ function RiddleMinigameModal({setGameMode, name, riddleID, gameData, getGameData
   const handleRiddleClose = (condition = false) => {
     if (condition) {
       setStateStage(prev=>prev+1)
+      setStateCurrency(prev=>prev+3)
       setGameMode('MapView')
     }
 

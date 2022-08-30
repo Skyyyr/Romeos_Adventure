@@ -83,7 +83,7 @@ def game_data(request):
             char_data = request.data
 
             new_data = GameData.objects.create(
-                currency=5,
+                currency=0,
                 type=char_data['type'],
                 accuracy=char_data['accuracy'],
                 evasion=char_data['evasion'],
@@ -123,6 +123,8 @@ def game_data(request):
                 GameData.objects.filter(user=request.user).update(
                     currency=request.data['riddlepurchase']['currency'])
                 return JsonResponse({'result': True})
+
+
 
             return({'result': 'no updates'})
 

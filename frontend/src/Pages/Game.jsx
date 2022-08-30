@@ -12,18 +12,22 @@ function Game( {user, gameData, getGameData, setGameData} ) {
 
   const [gameMode, setGameMode] = useState('MainMenu') 
   const [stateStage, setStateStage] = useState(gameData ? gameData.stage : 0)
+  const [stateCurrency, setStateCurrency] = useState(gameData ? gameData.currency : 0)
+
 
   function saveGame() {
     axios.put('/gamedata', {
       'savegame':
         {
           'stage':stateStage,
-          'currency':gameData.currency
+          'currency':stateCurrency
         }
     }).then((response) => {
       getGameData()
    })
   }
+
+
 
   useEffect(()=>{
     getGameData()
@@ -50,6 +54,7 @@ function Game( {user, gameData, getGameData, setGameData} ) {
           <>
             {
               gameMode === "MainMenu" &&
+              <div id="mainmenu-background-image">
                 <MainMenu
                   user={user}
                   setGameMode={setGameMode}
@@ -57,6 +62,7 @@ function Game( {user, gameData, getGameData, setGameData} ) {
                   setStateStage={setStateStage}
                   setGameData={setGameData}
                 />
+                </div>
             }
             {
               gameMode === "Character" && user &&
@@ -83,6 +89,7 @@ function Game( {user, gameData, getGameData, setGameData} ) {
                   setGameMode={setGameMode}
                   setStateStage={setStateStage}
                   stateStage={stateStage}
+                  setStateCurrency={setStateCurrency}
                 />
             }
             {
@@ -94,6 +101,7 @@ function Game( {user, gameData, getGameData, setGameData} ) {
                   gameData={gameData}
                   stateStage={stateStage}
                   getGameData={getGameData}
+                  setStateCurrency={setStateCurrency}
                 />
             }
           </>

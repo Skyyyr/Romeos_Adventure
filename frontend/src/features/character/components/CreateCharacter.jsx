@@ -137,7 +137,7 @@ function CreateCharacter({user,setGameMode,setStateStage,saveGame}) {
                         </List>
                         <hr></hr>
                         <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
-                            Stats,Spending: {spending}
+                            Dinero: {spending}
                         </Typography>
                         <List style={{ columns: 2}} dense={false}>
                             {generateStats(
