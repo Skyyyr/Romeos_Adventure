@@ -19,8 +19,6 @@ function MapView({gameData, setGameMode, saveGame, stateStage, stage, getGameDat
     STAGES.indexOf('STAGE_10_CONVO'),
     STAGES.indexOf('STAGE_11_CONVO')]
 
-
-  console.log('mapview',stateStage,gameStageToMapStage[0])
   function loadMapData() {
     let htmlContent = []
     for (let i = 0; i < 12; i++) {{

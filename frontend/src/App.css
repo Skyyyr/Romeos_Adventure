@@ -279,7 +279,10 @@
 .menu-option{
   width:1000px;
   height: 23%;
+}
 
+.riddle-button {
+  height: 45.2px;
 }
 
 .evil-raph{

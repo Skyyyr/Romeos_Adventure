@@ -29,20 +29,22 @@ function RiddleMinigameModal({setGameMode, name, riddleID, gameData,getGameData,
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="secondary"
+      <button
+        className={'menu-option riddle-button'}
         onClick={handleRiddleOpen}
       >
         {name ? name : "minigame"}
-        </Button>
+      </button>
       <Modal
         open={riddleOpen}
-        onClose={(reason) => {
-          if (reason != 'backdropClick') {
-            handleRiddleClose();
+        onClose={
+          (reason) => {
+            if (reason !== 'backdropClick') {
+              handleRiddleClose();
+            }
+
           }
-        }}
+        }
       >
         <Box sx={style}>
           <Riddle_Minigame 
