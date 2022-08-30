@@ -299,6 +299,10 @@
   border-radius: 0px;
   box-shadow: inset 0px 0px 1px 1px rgb(17,85,158);
 }
+
+.riddle-button {
+  height: 45.2px;
+}
 .menu-option:hover {
   box-shadow: inset 0px 0px 2px 2px rgb(142,228,232);
   background-color: white;  
