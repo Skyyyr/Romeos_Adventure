@@ -71,6 +71,7 @@ function Game( {user, gameData, getGameData, setGameData} ) {
                   user={user}
                   setStateStage={setStateStage}
                   saveGame={saveGame}
+                  setStateCurrency={setStateCurrency}
                 />
             }
             {
