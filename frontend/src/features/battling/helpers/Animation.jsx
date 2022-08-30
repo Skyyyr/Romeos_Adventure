@@ -1,19 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
+
 import frontend from '../../assets/frontend.png';
 import backend from '../../assets/backend.png';
 import fullstack from '../../assets/fullstack.png';
-import Raphael from '../../assets/raphael.png';
-import Adam from '../../assets/adam.png';
-import Zaynab from '../../assets/zaynab.png';
-import EnemyOne from '../../assets/Enemy.png';
-import EnemyTwo from '../../assets/Enemy2.png';
+
 import WhiteHit from '../../assets/whitehit.png';
 import FireHit from '../../assets/firehit.png';
+
 import Justin from '../../assets/Justin.png';
 import Skyler from '../../assets/Skyler.png';
 import Meredith from '../../assets/Meredith.png';
 import Garrett from '../../assets/Garrett.png';
 import Zack from '../../assets/Zack.png';
+
+import Skeleton from '../../assets/Enemy.png';
+import Dragon from '../../assets/Enemy2.png';
+import BoarMan from '../../assets/BoarMan.png';
+
+import Adam from '../../assets/adam.png';
+import Zaynab from '../../assets/zaynab.png';
+import Raphael from '../../assets/raphael.png';
+import Zuckerborg from '../../assets/badraphael.png';
+
 
 export default function Animation({key, height, width, row, frames, repeat, scale=2, type, zIndex=0, running=true, speed=15, mouse=false}) {
   
@@ -39,8 +47,8 @@ export default function Animation({key, height, width, row, frames, repeat, scal
     if (type === 'Raphael') return Raphael
     if (type === 'Adam') return Adam
     if (type === 'Zaynab') return Zaynab
-    if (type === 'EnemyOne') return EnemyOne
-    if (type === 'EnemyTwo') return EnemyTwo
+    if (type === 'Skeleton') return Skeleton
+    if (type === 'Dragon') return Dragon
     if (type === 'whiteHit') return WhiteHit
     if (type === 'fireHit') return FireHit
     if (type === 'Justin') return Justin
@@ -48,6 +56,8 @@ export default function Animation({key, height, width, row, frames, repeat, scal
     if (type === 'Meredith') return Meredith
     if (type === 'Garrett') return Garrett
     if (type === 'Zack') return Zack
+    if (type === 'BoarMan') return BoarMan
+    if (type === 'Zuckerborg') return Zuckerborg
   }
 
   useEffect( () => {

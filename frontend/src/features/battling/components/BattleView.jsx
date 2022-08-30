@@ -292,6 +292,7 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
                       romeoMoves.map(elem => 
                         <Tooltip 
                           disableInteractive
+                          leaveTouchDelay='0'
                           title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}
                         >
                           <Button 
