@@ -125,17 +125,18 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
         for (let i = 0; i < allOptions.length; i++) {
             htmlContent.push(<StoryOption key={i} option={allOptions[i]} clickFunction={updateMenu}/>)
         }
-
+// --------- TO DO ------ This is where you would customize the names of the riddle buttons.
         if(riddleStages.includes(stateStage)){
-            htmlContent.push(<RiddleMinigameModal
+            htmlContent.push(<div className='col-12 menu-section'>
+                <RiddleMinigameModal
                 currency={gameData.currency}
                 setGameMode={setGameMode}
-                name={"Attempt Riddle"}
+                name={"Tackle A Riddle"}
                 riddleID={riddleStages.indexOf(stateStage).toString()}
                 gameData={gameData}
                 getGameData={getGameData}
                 setStateStage={setStateStage}
-              />)
+              /></div>)
         }
         return htmlContent
     }

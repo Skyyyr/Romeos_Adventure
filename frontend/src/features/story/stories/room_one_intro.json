@@ -1,36 +1,32 @@
 [
     {
         "id": 0,
-        "dialogue": "You have encoutered battle one",
+        "dialogue": "Hey, I'm Skyler! Congratulations on defeating Boarman! You have gained valuable experience. Don't forget to spend your dinero to level up your abilities! ",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
                 "id": 1,
-                "text": "Wait! I'm not ready!"
-            },
-            {
-                "id": 2,
-                "text": "I'm ready for battle!"
+                "text": "I won't forget to spend my dinero! Is there anything else you can tell me?"
             }
         ]
     },
     {
         "id": 1,
-        "dialogue": "Imposter syndrome getting you down? Not to worry. There are battle options that come with your character. Trust your gut, and look below your feet!",
+        "dialogue": "Things have been bad to the bone since Zuckerborg came to Code Platoonia. I've been busy fighting skeletons in the area and I need your help! ",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
-                "id": 2,
-                "text": "Alright, fine! I trust myself! Let's get going!"
+                "id": 99,
+                "text": "Battle a skeleton!"
             }
         ]
     },
     {
-        "id": 2,
+        "id": 99,
         "dialogue": "",
         "func": "battle",
         "anim": false,

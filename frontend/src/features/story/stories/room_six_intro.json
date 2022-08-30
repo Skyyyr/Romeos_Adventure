@@ -1,31 +1,14 @@
 [
     {
         "id": 0,
-        "dialogue": "You have encoutered room 6, a battle",
-        "func": "",
-        "anim": false,
-        "animation_control": [],
-        "options": [
-            {
-                "id": 1,
-                "text": "Wait! I'm not ready!"
-            },
-            {
-                "id": 2,
-                "text": "I'm ready for battle!"
-            }
-        ]
-    },
-    {
-        "id": 1,
-        "dialogue": "Imposter syndrome getting you down? Not to worry. There are battle options that come with your character. Trust your gut, and look below your feet!",
+        "dialogue": "Hey, Zack again. I'll be taking you through your journey from here on out. Nice! You are racking up that dinero. Despite all your efforts, Zuckerborg's treachery continues, and Code Platoonians continue to suffer without the magical fork of Git. Repositories across the land must be cloned, leaving the Code Platoonians weary and unable to complete their work. Don't give up now!",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
                 "id": 2,
-                "text": "Alright, fine! I trust myself! Let's get going!"
+                "text": "More enemies await! Onwards!"
             }
         ]
     },

@@ -9,7 +9,28 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function HintAlert({open,setOpen,answer}) {
 
     const i = Math.floor(Math.random() * answer.length)
-    const message = `RNGesus has revealed that letter number ${i+1} is ${answer[i]}...`
+    let j = Math.floor(Math.random() * answer.length)
+    let k = Math.floor(Math.random() * answer.length)
+    
+    function isEqual(){
+      while ( i === j || i === k || j === k) {
+        if (i === j)  {
+          j = Math.floor(Math.random() * answer.length)
+        }
+        if (j === k) {
+          k = Math.floor(Math.random() * answer.length)
+        }
+        if (i === k) {
+          k = Math.floor(Math.random() * answer.length)
+        }
+      }
+    }
+
+    isEqual()
+
+    const message = `Letter number ${i+1} is ${answer[i]}.\n
+                     Letter number ${j+1} is ${answer[j]}.\n
+                     Letter number ${k+1} is ${answer[k]}.`
 
   return (
     <div>

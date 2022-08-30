@@ -1,14 +1,14 @@
 [
     {
         "id": 0,
-        "dialogue": "You beat the game, congrats!!",
+        "dialogue": "Wow! The people of Code Platoonia could not be more grateful for your help! The magical fork has been restored, Raphael has been banished and all of Code Platoonia can now fork their repos! Congratulations!!!",
         "func": "",
         "anim": false,
         "animation_control": [],
         "options": [
             {
                 "id": 2,
-                "text": "Take me home"
+                "text": "Time to go home!"
             }
         ]
     },
