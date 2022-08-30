@@ -67,6 +67,45 @@
   background: url(../../assets/adam.png) 0px -192px;
 }
 
+.skeleton-away {
+  background: url(../../assets/Enemy.png) 0px 0px;
+}
+.skeleton-left {
+  background: url(../../assets/Enemy.png) 0px -64px;
+}
+.skeleton-forward {
+  background: url(../../assets/Enemy.png) 0px -128px;
+}
+.skeleton-right {
+  background: url(../../assets/Enemy.png) 0px -192px;
+}
+
+.dragon-away {
+  background: url(../../assets/Enemy2.png) 0px 0px;
+}
+.dragon-left {
+  background: url(../../assets/Enemy2.png) 0px -64px;
+}
+.dragon-forward {
+  background: url(../../assets/Enemy2.png) 0px -128px;
+}
+.dragon-right {
+  background: url(../../assets/Enemy2.png) 0px -192px;
+}
+
+.boarman-away {
+  background: url(../../assets/BoarMan.png) 0px 0px;
+}
+.boarman-left {
+  background: url(../../assets/BoarMan.png) 0px -64px;
+}
+.boarman-forward {
+  background: url(../../assets/BoarMan.png) 0px -128px;
+}
+.boarman-right {
+  background: url(../../assets/BoarMan.png) 0px -192px;
+}
+
 .frontend-away {
   background: url(../../assets/frontend.png) 0px 0px;
 }
@@ -78,6 +117,19 @@
 }
 .frontend-right {
   background: url(../../assets/frontend.png) 0px -192px;
+}
+
+.backend-away {
+  background: url(../../assets/backend.png) 0px 0px;
+}
+.backend-left {
+  background: url(../../assets/backend.png) 0px -64px;
+}
+.backend-forward {
+  background: url(../../assets/backend.png) 0px -128px;
+}
+.backend-right {
+  background: url(../../assets/backend.png) 0px -192px;
 }
 
 .fullstack-away {

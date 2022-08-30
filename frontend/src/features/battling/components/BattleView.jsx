@@ -230,11 +230,11 @@ function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode
     return (
         <div className={`${enemyData.BACKGROUND} battle-background`}>
             <div className='d-flex m-0 py-5 align-items-center' style={{'height':'20%'}}>
-                <div className='mx-4' style={{width:'180px'}}>
+                <div className='mx-4' style={{width:'240px'}}>
                     <Bar label="Romeo" value={romeoHealth}/>
                 </div>
-                <div className='mx-auto justify-content-center align-items-center' style={{backgroundColor:'rgba(17,85,158,.8)'}}>
-                    <div>
+                <div className='mx-auto justify-content-center align-items-center'>
+                    <div className="turn-display">
                         <Typography variant="h4">
                           Turn
                         </Typography>
@@ -244,7 +244,7 @@ function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode
                         </Typography>
                     </div>
                 </div>
-                <div className='mx-4'>
+                <div className='mx-4'  style={{width:'240px'}}>
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>

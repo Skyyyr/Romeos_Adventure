@@ -280,6 +280,12 @@
   align-items: center;
   justify-content: center;
 }
+#story-dialogue {
+  border-radius: 50px;
+  background-color: rgba(0,0,0,.4) !important;
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,.4) !important;
+  text-shadow: 1px 1px 2px black !important;
+}
 .story-middle{
   height: 200px;
   width: 60%;

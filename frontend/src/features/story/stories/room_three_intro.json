@@ -7,6 +7,9 @@
         "animation_control": [
           { "html": "dialogue-bg", "anim_add": "cave_1", "anim_remove": "" }
         ],
+        "characters": [
+          { "add": "justin-left" }
+        ],
         "options": [
             {
                 "id": 2,
@@ -20,7 +23,7 @@
         "func": "battle",
         "anim": true,
         "animation_control": [
-          { "html": "dialogue-bg", "anim_add": "cave_1", "anim_remove": "" }
+          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "cave_1" }
         ],
         "options": [
         ]

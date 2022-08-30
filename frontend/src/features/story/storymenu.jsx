@@ -25,11 +25,12 @@ import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
 
 function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStateStage, getGameData}) {
     
-
-    const [playerChoices, setPlayerChoices] = useState(startintro[0])
+    const [playerSprite, setPlayerSprite] = useState(true)
+    const [sprites, setSprites] = useState('')
+    const [playerChoices, setPlayerChoices] = useState('')
     const [convo, setConvo] = useState('')
     // const fullConvo = useRef()
-    const [jsonStory, setJsonStory] = useState(startintro)
+    const [jsonStory, setJsonStory] = useState('')
     const [background, setBackground] = useState('')
     const riddleStages = [
         STAGES.indexOf('STAGE_2_CONVO'),
@@ -64,9 +65,11 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     function determineStage(){
         switch(stateStage){
             case STAGES.indexOf('STAGE_TEST_INTRO'):
+                setPlayerSprite(false)
                 setJsonStory(startintro)
                 break
             case STAGES.indexOf('STAGE_TEST_OUTRO'):
+                setPlayerSprite(false)
                 setJsonStory(startoutro)
                 break
             case STAGES.indexOf('STAGE_1_CONVO'):
@@ -76,7 +79,6 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
                 setJsonStory(roomtwointro)
                 break
             case STAGES.indexOf('STAGE_3_CONVO'):
-                console.log('stage 3 convo')
                 setJsonStory(roomthreeintro)
                 break
             case STAGES.indexOf('STAGE_4_CONVO'):
@@ -116,6 +118,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     function handleAnimation(requestedHtml, requestedAnimationAdd, requestedAnimationRemove) {
         console.log(requestedHtml)
         const htmlElement = document.getElementById(requestedHtml)
+
         if (requestedAnimationRemove !== "") {
             htmlElement.classList.remove(requestedAnimationRemove)
         }        
@@ -158,8 +161,10 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     },[])
 
     useEffect(() => {
+      if (jsonStory !== '') {
         updateMenu(0)
-        setConvo(createNpcDialog(jsonStory[0]['dialogue']))
+        setConvo(createNpcDialog(jsonStory[0]['dialogue']))        
+      }
     }, [jsonStory])
 
     // const textFrame = useRef(0)
@@ -201,28 +206,59 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
                 break
             case 'newGame':
                 setGameMode("Character")
+                break
+            // case 'createSprites':
+            //     displaySprites()
+            //     break
             default:
                 ///console.log("DEFAULT")
                 break
         }
     }
 
+    // function displaySprites() {
+
+    // }
+    useEffect( () => {
+      if (playerChoices !== '') {
+        let arr = []
+        console.log('myconsolelog', playerChoices.characters)
+        for (let i = 0; i < playerChoices.characters.length; i++) {
+          arr.push(
+            <div 
+              className={`sprite ${playerChoices.characters[i].add}`}
+            ></div>
+          )
+        }
+        setSprites(arr)
+      }
+    }, [playerChoices])
+
     return (
         <div className="story-container" id="dialogue-bg">
             <div className="row story-top">
-              <Typography 
-                variant="h6"
-                sx={{width:'95%'}}
-              >
-                {convo}
-              </Typography>
+              { convo ?
+                  <Typography 
+                    variant="h6"
+                    sx={{width:'95%'}}
+                    id="story-dialogue"
+                  >
+                    {convo}
+                  </Typography>
+                : null }
             </div>
             <div className="story-middle">
-              <div id="player-sprite" className="evil-raph-forward sprite"></div>
-              <div id="NPC-sprite" className="evil-raph-forward sprite"></div>
+              { 
+                gameData && playerSprite && 
+                  <div id="player-sprite" className={`sprite ${gameData.type}-right`}></div>
+              }
+             
+              {sprites}
             </div>
             <div className="row story-bottom d-flex flex-column justify-content-end">
-                {createMenuOptions(playerChoices.options)}
+                {playerChoices ?
+                  createMenuOptions(playerChoices.options)
+                : null }
             </div>
             
         </div>

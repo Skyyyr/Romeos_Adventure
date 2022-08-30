@@ -5,7 +5,10 @@
         "func": "",
         "anim": true,
         "animation_control": [
-          { "html": "dialogue-bg", "anim_add": "cave_2", "anim_remove": "cave_1" }
+          { "html": "dialogue-bg", "anim_add": "cave_2", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "garrett-left" }
         ],
         "options": [
         ]

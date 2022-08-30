@@ -119,6 +119,12 @@
   transition: 0.35s;
 }
 
+.turn-display {
+  background-color: rgba(17,85,158,.8);
+  padding-inline: 25px;
+  border-radius: 10px;
+}
+
 .battleDialog{
   background-color: rgba(17,85,158,.8);
   border: double rgb(142,228,232);

@@ -5,7 +5,11 @@
         "func": "",
         "anim": true,
         "animation_control": [
-          { "html": "dialogue-bg", "anim_add": "castle_3", "anim_remove": "castle_2" }
+          { "html": "dialogue-bg", "anim_add": "castle_3", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "meredith-right" },
+          { "add": "raphael-away" }
         ],
         "options": [
             {
@@ -15,11 +19,13 @@
         ]
     },
     {
-        "id": 2,
+        "id": 1,
         "dialogue": "",
         "func": "battle",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "castle_3" }
+        ],
         "options": [
         ]
     }
