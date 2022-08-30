@@ -7,6 +7,9 @@
         "animation_control": [
           { "html": "dialogue-bg", "anim_add": "elven_1", "anim_remove": "" }
         ],
+        "characters": [
+          { "add": "evil-raph-left" }
+        ],
         "options": [
             {
                 "id": 1,

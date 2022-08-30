@@ -5,7 +5,10 @@
         "func": "",
         "anim": true,
         "animation_control": [
-          { "html": "dialogue-bg", "anim_add": "cave_3", "anim_remove": "cave_2" }
+          { "html": "dialogue-bg", "anim_add": "cave_3", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "meredith-left" }
         ],
         "options": [
         ]

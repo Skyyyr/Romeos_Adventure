@@ -5,7 +5,10 @@
         "func": "",
         "anim": true,
         "animation_control": [
-          { "html": "dialogue-bg", "anim_add": "elven_2", "anim_remove": "" }
+          { "html": "dialogue-bg", "anim_add": "elven_4", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "zack-forward" }
         ],
         "options": [
             {
@@ -33,6 +36,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 3,
@@ -54,6 +60,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -75,6 +84,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -92,10 +104,14 @@
     },
     {
         "id": 2,
-        "dialogue": "Let's test your skills. There's an enemy lurking that you must pass!",
+        "dialogue": "Let's test your skills. See if you can take out this rampant BoarMan!",
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-right" },
+          { "add": "boarman-left" }
+        ],
         "options": [
             {
                 "id": 99,
@@ -109,8 +125,9 @@
         "func": "battle",
         "anim": true,
         "animation_control": [
-          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "elven_2" }
+          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "elven_4" }
         ],
+        "characters": [],
         "options": [
         ]
     }

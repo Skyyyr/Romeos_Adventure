@@ -7,6 +7,9 @@
         "animation_control": [
           { "html": "dialogue-bg", "anim_add": "elven_2", "anim_remove": "" }
         ],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -20,6 +23,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 2,
@@ -33,6 +39,10 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "backend-forward" },
+          { "add": "zack-left" }
+        ],
         "options": [
             {
                 "id": 3,
@@ -44,8 +54,12 @@
         "id": 3,
         "dialogue": "Those who choose the path of React must decipher the type-less scrolls of ancient Platoonian Javascript. The unending questions that forever haunt them are, objects or arrays? To component or to not component? UseEffects, useRefs and Hooks, oh my!",
         "func": "",
-        "anim": false,
+        "anim": true,
         "animation_control": [],
+        "characters": [
+          { "add": "frontend-forward" },
+          { "add": "zack-left" }
+        ],
         "options": [
             {
                 "id": 4,
@@ -57,8 +71,12 @@
         "id": 4,
         "dialogue": "To be a Full Stack is to face the truth and your journey for balance. Trust of the backend views and frontend routes will lead you down a path of harmony. The choice is yours. Proceed to create your Romeo and customize him with 3 spending points.",
         "func": "",
-        "anim": false,
+        "anim": true,
         "animation_control": [],
+        "characters": [
+          { "add": "fullstack-forward" },
+          { "add": "zack-left" }
+        ],
         "options": [
             {
                 "id": 99,
@@ -74,6 +92,7 @@
         "animation_control": [
           { "html": "dialogue-bg", "anim_add": "", "anim_remove": "elven_2" }
         ],
+        "characters": [],
         "options": [
         ]
     }
