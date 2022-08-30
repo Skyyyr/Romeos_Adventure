@@ -3,8 +3,10 @@
         "id": 0,
         "dialogue": "Hey, I'm Skyler! Congratulations on defeating Boarman! You have gained valuable experience. Don't forget to spend your dinero to level up your abilities! ",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "elven_3", "anim_remove": "" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -29,8 +31,10 @@
         "id": 99,
         "dialogue": "",
         "func": "battle",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "elven_3" }
+        ],
         "options": [
         ]
     }

@@ -3,8 +3,10 @@
         "id": 0,
         "dialogue": "CONGRATU......What could this be? Is Zuckerborg revealing his true form? Is that Zuckerborg's true identity? Is that who I think it is?",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "castle_3", "anim_remove": "castle_2" }
+        ],
         "options": [
             {
                 "id": 1,

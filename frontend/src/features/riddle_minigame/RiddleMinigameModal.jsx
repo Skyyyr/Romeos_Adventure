@@ -14,15 +14,20 @@ const style = {
   boxShadow: 24,
 };
 
-function RiddleMinigameModal({setGameMode, name, riddleID, gameData,getGameData,setStateStage}) {
+function RiddleMinigameModal({setGameMode, name, riddleID, gameData, getGameData , setStateStage, storyBG}) {
 
   const [ riddleOpen, setRiddleOpen ] = useState(false)
   const handleRiddleOpen = () => setRiddleOpen(true)
+  
   const handleRiddleClose = (condition = false) => {
     if (condition) {
       setStateStage(prev=>prev+1)
       setGameMode('MapView')
     }
+
+    const htmlElement = document.getElementById('dialogue-bg')
+    htmlElement.classList.remove(storyBG)
+
     setRiddleOpen(false)
   }
 

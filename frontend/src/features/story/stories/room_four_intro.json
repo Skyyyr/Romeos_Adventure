@@ -3,8 +3,10 @@
         "id": 0,
         "dialogue": "Hey, it's Garrett. Wow! You vanquished Adam! Looks like a riddle is up next. Keep going! You got this! ",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "cave_2", "anim_remove": "cave_1" }
+        ],
         "options": [
         ]
     },

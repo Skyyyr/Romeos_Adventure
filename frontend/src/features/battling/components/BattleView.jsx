@@ -226,12 +226,12 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
     }
 
     return (
-        <>
-            <div className='row  m-0 align-items-center' style={{'height':'20%'}}>
-                <div className='col-3'>
+        <div className={`${enemyData.BACKGROUND} battle-background`}>
+            <div className='d-flex m-0 py-5 align-items-center' style={{'height':'20%'}}>
+                <div className='mx-4' style={{width:'180px'}}>
                     <Bar label="Romeo" value={romeoHealth}/>
                 </div>
-                <div className='col-6 justify-content-center align-items-center'>
+                <div className='mx-auto justify-content-center align-items-center' style={{backgroundColor:'rgba(17,85,158,.8)'}}>
                     <div>
                         <Typography variant="h4">
                           Turn
@@ -242,11 +242,11 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
                         </Typography>
                     </div>
                 </div>
-                <div className='col-3'>
+                <div className='mx-4'>
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>
-            <div className='row m-0 align-items-end' id="battle-background" style={{'height':'40%'}}>
+            <div className="row m-0 align-items-end" id="battle-background" style={{'height':'40%'}}>
                 <div className='wrapper'>
                     <div className ="row align-items-center justify-content-center" style={{'width':"300px", 'height': "200px"}}>
                         <div id='canvas-container' className={`${playerMoveEffect} ${playerFlip}`}>
@@ -326,7 +326,7 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
             <Button color="secondary" variant="contained" onClick={()=>(setRomeoHealth(0))}>
                 Dev-Lose
             </Button>
-        </>
+        </div>
     )
 }
 

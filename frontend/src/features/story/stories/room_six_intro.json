@@ -3,8 +3,10 @@
         "id": 0,
         "dialogue": "Hey, Zack again. I'll be taking you through your journey from here on out. Nice! You are racking up that dinero. Despite all your efforts, Zuckerborg's treachery continues, and Code Platoonians continue to suffer without the magical fork of Git. Repositories across the land must be cloned, leaving the Code Platoonians weary and unable to complete their work. Don't give up now!",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "cave_4", "anim_remove": "cave_3" }
+        ],
         "options": [
             {
                 "id": 2,
