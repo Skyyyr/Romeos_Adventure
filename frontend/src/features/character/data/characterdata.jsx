@@ -1,43 +1,51 @@
 //function to return characters,stats,moves
 export function getCharacterData(character) {
+    const moveAccFront = [70,80,90]
+    const expValFront = 30
+    const moveAccBack = [70,80,90]
+    const expValBack = 30
+    const moveAccFull = [70,80,90]
+    const expValFull = 30
+
     switch (character) {
+        //stats should sum to 7
         case 'frontend':
             return ({
                 'CLASS':'frontend',
-                'MOVES':[ {'name':'Sword Attack', 'label':'slashRight', 'type':'melee', 'power':4, 'accuracy':5},
-                          {'name':'Arrow Attack', 'label':'rngAtkRight', 'type':'ranged', 'power':5, 'accuracy':5},
-                          {'name':'Magic Attack', 'label':'magAtkRight', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'MOVES':[ {'name':'Sword Attack', 'label':'slashRight', 'type':'melee', 'power':Math.round((expValFront*100)/moveAccFront[0]), 'accuracy':moveAccFront[0]},
+                          {'name':'Arrow Attack', 'label':'rngAtkRight', 'type':'ranged', 'power':Math.round((expValFront*100)/moveAccFront[1]), 'accuracy':moveAccFront[1]},
+                          {'name':'Magic Attack', 'label':'magAtkRight', 'type':'magic', 'power':Math.round((expValFront*100)/moveAccFront[2]), 'accuracy':moveAccFront[2]} ],
                 'STATS':{
-                    'strength': 8, 
-                    'defense': 7,
-                    'accuracy': 8,
-                    'evasion': 8,
+                    'strength': 3, 
+                    'defense': 1,
+                    'accuracy': 2,
+                    'evasion': 1,
                 }
             })
         case 'backend':
             return ({
                 'CLASS':'backend',
-                'MOVES':[ {'name':'Sword Attack', 'label':'pierceRight', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Arrow Attack', 'label':'rngAtkRight', 'type':'ranged', 'power':5, 'accuracy':5},
-                          {'name':'Magic Attack', 'label':'magAtkRight', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'MOVES':[ {'name':'Sword Attack', 'label':'pierceRight', 'type':'melee', 'power':Math.round((expValBack*100)/moveAccBack[0]), 'accuracy':moveAccBack[0]},
+                          {'name':'Arrow Attack', 'label':'rngAtkRight', 'type':'ranged', 'power':Math.round((expValBack*100)/moveAccBack[1]), 'accuracy':moveAccBack[1]},
+                          {'name':'Magic Attack', 'label':'magAtkRight', 'type':'magic', 'power':Math.round((expValBack*100)/moveAccBack[2]), 'accuracy':moveAccBack[2]}],
                 'STATS':{
-                    'strength': 4,
-                    'defense': 3,
-                    'accuracy': 6,
-                    'evasion': 7,
+                    'strength': 1,
+                    'defense': 2,
+                    'accuracy': 1,
+                    'evasion': 3,
                 }
             })
         case 'fullstack':
             return ({
                 'CLASS':'fullstack',
-                'MOVES':[ {'name':'Sword Attack', 'label':'bashRight', 'type':'melee', 'power':5, 'accuracy':5},
-                          {'name':'Arrow Attack', 'label':'rngAtkRight', 'type':'ranged', 'power':5, 'accuracy':5},
-                          {'name':'Magic Attack', 'label':'magAtkRight', 'type':'magic', 'power':5, 'accuracy':5} ],
+                'MOVES':[ {'name':'Sword Attack', 'label':'bashRight', 'type':'melee', 'power':Math.round((expValFull*100)/moveAccFull[0]), 'accuracy':moveAccFull[0]},
+                          {'name':'Arrow Attack', 'label':'rngAtkRight', 'type':'ranged', 'power':Math.round((expValFull*100)/moveAccFull[1]), 'accuracy':moveAccFull[1]},
+                          {'name':'Magic Attack', 'label':'magAtkRight', 'type':'magic', 'power':Math.round((expValFull*100)/moveAccFull[2]), 'accuracy':moveAccFull[2]} ],
                 'STATS':{
-                    'strength': 5,
-                    'defense': 6,
-                    'accuracy': 7,
-                    'evasion': 7,
+                    'strength': 2,
+                    'defense': 2,
+                    'accuracy': 2,
+                    'evasion': 1,
                 }
             })
 

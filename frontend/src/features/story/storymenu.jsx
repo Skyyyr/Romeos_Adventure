@@ -23,7 +23,7 @@ import { Typography } from "@mui/material"
 import { STAGES } from "../../Components/Stages"
 import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
 
-function StoryMenu({setGameMode, stateStage, gameData, setStateStage, getGameData}) {
+function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStateStage, getGameData}) {
     
 
     const [playerChoices, setPlayerChoices] = useState(startintro[0])
@@ -141,6 +141,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateStage, getGameDat
                 getGameData={getGameData}
                 setStateStage={setStateStage}
                 storyBG={jsonStory[0]['animation_control'][0]['anim_add']}
+                setStateCurrency={setStateCurrency}
                 />
               </div>
              )

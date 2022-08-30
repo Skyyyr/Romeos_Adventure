@@ -11,7 +11,7 @@ import { STAGES } from '../../../Components/Stages'
 import Animation from '../helpers/Animation'
 import { walkRight, walkLeft, whiteHit, fireHit, getAttackAnimation } from '../helpers/AnimationConstants'
 
-function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
+function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode,stateStage}) {
 
     
     const [romeoStats, setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
@@ -54,9 +54,11 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
                 await wait(3000)
                 if(stateStage===STAGES.indexOf('STAGE_11_BATTLE')){
                   setStateStage(prev=>prev+1)
+                  setStateCurrency(prev=>prev+3)
                   setGameMode('Story')
                 }else{
                   setStateStage(prev=>prev+1)
+                  setStateCurrency(prev=>prev+3)
                   setGameMode('MapView')
                 }
             }
@@ -82,11 +84,11 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
     const inflictDamage = async (move) => {
         const damage = Damage(turn, romeoStats, enemyData.STATS, move)
         if(turn === "Player One"){
-            setCurrAttack(`Romeo used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
+            setCurrAttack(`Romeo used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
         }
         else if(turn === "Player Two"){
-            setCurrAttack(`Player Two used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
+            setCurrAttack(`${enemyData.NAME} used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
         }
         if (damage === 0) return false
