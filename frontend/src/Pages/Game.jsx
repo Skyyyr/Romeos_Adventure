@@ -80,6 +80,7 @@ function Game( {user, gameData, getGameData, setGameData} ) {
                   gameData={gameData}
                   getGameData={getGameData}
                   setGameMode={setGameMode}
+                  setStateCurrency={setStateCurrency}
                 />
             }
             {

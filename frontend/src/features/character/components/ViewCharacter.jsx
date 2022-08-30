@@ -13,7 +13,7 @@ import { useState } from 'react';
 import {Tooltip} from '@mui/material';
 
 
-function ViewCharacter({gameData,getGameData,setGameMode}) {
+function ViewCharacter({gameData,getGameData,setGameMode,setStateCurrency}) {
 
     const [romeoMoves,setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
 
@@ -21,6 +21,7 @@ function ViewCharacter({gameData,getGameData,setGameMode}) {
         const statsArr = ['strength','defense','accuracy','evasion']
         let rand = Math.floor(Math.random() * 4);
         let stat = statsArr[rand]
+        setStateCurrency(prev=>prev-1)
         axios.put('/gamedata', {'statincrease':{'stat':stat, 'value':(gameData[stat]+1),'currency':(gameData.currency-1)}}).then((response)=>{
             getGameData()
             //console.log(response)
