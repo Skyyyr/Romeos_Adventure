@@ -1,6 +1,6 @@
-import { useEffect } from "react"
+import './styling/sprites.css';
+import { useEffect, useRef } from "react"
 import story_test from "./stories/story_test.json"
-import story_second from "./stories/story_second.json"
 import StoryOption from "./storyoption"
 import { useState } from "react"
 import startintro from "../story/stories/story_start_intro.json"
@@ -18,15 +18,20 @@ import roomtenintro from "../story/stories/room_ten_intro.json"
 import roomelevenintro from "../story/stories/room_eleven_intro.json"
 import gameisbeaten from "../story/stories/game_is_beaten.json"
 
+import { Typography } from "@mui/material"
+
 import { STAGES } from "../../Components/Stages"
 import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
 
-function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}) {
+function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStateStage, getGameData}) {
     
-
-    const [playerChoices, setPlayerChoices] = useState(startintro[0])
+    const [playerSprite, setPlayerSprite] = useState(true)
+    const [sprites, setSprites] = useState('')
+    const [playerChoices, setPlayerChoices] = useState('')
     const [convo, setConvo] = useState('')
-    const [jsonStory, setJsonStory] = useState(startintro)
+    // const fullConvo = useRef()
+    const [jsonStory, setJsonStory] = useState('')
+    const [background, setBackground] = useState('')
     const riddleStages = [
         STAGES.indexOf('STAGE_2_CONVO'),
         STAGES.indexOf('STAGE_4_CONVO'),
@@ -41,6 +46,7 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
             if (jsonStory[i]['id'] === clickedOptionId) {
                 setPlayerChoices(jsonStory[i])
                 handleFunction(jsonStory[i]['func'])
+                // fullConvo.current = createNpcDialog(jsonStory[i]['dialogue'])
                 setConvo(createNpcDialog(jsonStory[i]['dialogue']))
                 if (jsonStory[i]["anim"]) {
                     for (let j = 0; j < jsonStory[i]['animation_control'].length; j++) {
@@ -56,14 +62,14 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
         }
     }
 
-    //console.log(stateStage)
-    //console.log(STAGES)
     function determineStage(){
         switch(stateStage){
             case STAGES.indexOf('STAGE_TEST_INTRO'):
+                setPlayerSprite(false)
                 setJsonStory(startintro)
                 break
             case STAGES.indexOf('STAGE_TEST_OUTRO'):
+                setPlayerSprite(false)
                 setJsonStory(startoutro)
                 break
             case STAGES.indexOf('STAGE_1_CONVO'):
@@ -73,7 +79,6 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
                 setJsonStory(roomtwointro)
                 break
             case STAGES.indexOf('STAGE_3_CONVO'):
-                console.log('stage 3 convo')
                 setJsonStory(roomthreeintro)
                 break
             case STAGES.indexOf('STAGE_4_CONVO'):
@@ -111,12 +116,14 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
     }
 
     function handleAnimation(requestedHtml, requestedAnimationAdd, requestedAnimationRemove) {
+        console.log(requestedHtml)
         const htmlElement = document.getElementById(requestedHtml)
-        if (requestedAnimationAdd !== "") {
-            htmlElement.classList.add(requestedAnimationAdd)
-        }
+
         if (requestedAnimationRemove !== "") {
             htmlElement.classList.remove(requestedAnimationRemove)
+        }        
+        if (requestedAnimationAdd !== "") {
+            htmlElement.classList.add(requestedAnimationAdd)
         }
     }
 
@@ -125,18 +132,22 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
         for (let i = 0; i < allOptions.length; i++) {
             htmlContent.push(<StoryOption key={i} option={allOptions[i]} clickFunction={updateMenu}/>)
         }
-// --------- TO DO ------ This is where you would customize the names of the riddle buttons.
         if(riddleStages.includes(stateStage)){
-            htmlContent.push(<div className='col-12 menu-section'>
+            htmlContent.push(
+              <div className='col-12 menu-section'>
                 <RiddleMinigameModal
                 currency={gameData.currency}
                 setGameMode={setGameMode}
-                name={"Tackle A Riddle"}
+                name={"Attempt the Riddle"}
                 riddleID={riddleStages.indexOf(stateStage).toString()}
                 gameData={gameData}
                 getGameData={getGameData}
                 setStateStage={setStateStage}
-              /></div>)
+                storyBG={jsonStory[0]['animation_control'][0]['anim_add']}
+                setStateCurrency={setStateCurrency}
+                />
+              </div>
+             )
         }
         return htmlContent
     }
@@ -150,9 +161,38 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
     },[])
 
     useEffect(() => {
+      if (jsonStory !== '') {
         updateMenu(0)
-        setConvo(createNpcDialog(jsonStory[0]['dialogue']))
+        setConvo(createNpcDialog(jsonStory[0]['dialogue']))        
+      }
     }, [jsonStory])
+
+    // const textFrame = useRef(0)
+    // const frameTime = (1000/60) * (60/30) - (1000/60) * 0.5;
+    // useEffect( () => {
+    //   let dialogue = '';
+
+    //   if (fullConvo.current && convo !== fullConvo.current) {
+
+    //   }
+      
+    //   const wait = ms =>
+    //     new Promise(resolve => {
+    //       setTimeout(() => {
+    //         resolve();
+    //       }, ms);
+    //     });
+
+
+    //   async function makeDialogue() {
+    //     if (fullConvo.current && convo !== fullConvo.current) {
+    //       dialogue += fullConvo.current[textFrame.current];
+    //       textFrame.current++;
+    //       await(wait(30))
+    //       makeDialogue()
+    //     }
+    //   }
+    // })
 
     function handleFunction(requestedFunction) {
         switch (requestedFunction) {
@@ -166,20 +206,59 @@ function StoryMenu({setGameMode, stateStage,gameData, setStateStage,getGameData}
                 break
             case 'newGame':
                 setGameMode("Character")
+                break
+            // case 'createSprites':
+            //     displaySprites()
+            //     break
             default:
                 ///console.log("DEFAULT")
                 break
         }
     }
 
+    // function displaySprites() {
+
+    // }
+    useEffect( () => {
+      if (playerChoices !== '') {
+        let arr = []
+        console.log('myconsolelog', playerChoices.characters)
+        for (let i = 0; i < playerChoices.characters.length; i++) {
+          arr.push(
+            <div 
+              className={`sprite ${playerChoices.characters[i].add}`}
+            ></div>
+          )
+        }
+        setSprites(arr)
+      }
+    }, [playerChoices])
+
     return (
-        <div className="story-container">
-            <div className="convo" id="story-top">
-            {convo}
-            <div className='evil-raph'></div>
+        <div className="story-container" id="dialogue-bg">
+            <div className="row story-top">
+              { convo ?
+                  <Typography 
+                    variant="h6"
+                    sx={{width:'95%'}}
+                    id="story-dialogue"
+                  >
+                    {convo}
+                  </Typography>
+                : null }
+            </div>
+            <div className="story-middle">
+              { 
+                gameData && playerSprite && 
+                  <div id="player-sprite" className={`sprite ${gameData.type}-right`}></div>
+              }
+             
+              {sprites}
             </div>
             <div className="row story-bottom d-flex flex-column justify-content-end">
-                {createMenuOptions(playerChoices.options)}
+                {playerChoices ?
+                  createMenuOptions(playerChoices.options)
+                : null }
             </div>
             
         </div>

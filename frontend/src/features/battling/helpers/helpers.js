@@ -8,14 +8,16 @@ export const wait = ms =>
 export function Damage(turn, romeoStats, enemyStats, move){
   let attacker = ''
   let defender = ''
-  let damage = 0
   turn === 'Player One' ? (attacker = romeoStats, defender = enemyStats) : (attacker = enemyStats, defender = romeoStats)
  
-  damage = Math.floor((attacker['strength']/defender['defense'])*move.power*(Math.random() * (1.10 - .90) + .90))
-  
-
-  const hitProb = (5*move['accuracy']+45+((attacker['accuracy']-defender['evasion'])/2))*(Math.random() * (1.10 - .90) + .90)
+  const damage = Math.floor((attacker['strength'] - defender['defense']+move.power)*(Math.random() * (1.05 - .95) + .95))
+  const hitProb = (move.accuracy+attacker['accuracy']-defender['evasion'])*(Math.random() * (1.05 - .95) + .95)
   const perc = (Math.random() * (100 - 1) + 1)
+
+  console.log("damage: ", damage)
+  console.log("hitprob: ", hitProb)
+  console.log("Expected Val", (hitProb/100)*damage)
+
   if(perc>hitProb)
       return 0
 

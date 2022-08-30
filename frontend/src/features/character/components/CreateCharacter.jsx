@@ -20,7 +20,7 @@ import {Tooltip} from '@mui/material';
 import { STAGES } from '../../../Components/Stages';
 
 
-function CreateCharacter({user,setGameMode,setStateStage,saveGame}) {
+function CreateCharacter({user,setGameMode,setStateStage,saveGame,setStateCurrency}) {
     const statType = ['strength','defense','accuracy','evasion']
     const [type, setType] = useState('frontend')
     const [stats, setStats] = useState(getCharacterData(type).STATS)
@@ -111,6 +111,7 @@ function CreateCharacter({user,setGameMode,setStateStage,saveGame}) {
         event.preventDefault()
         axios.post('/gamedata', {type:type, ...stats}).then((response)=>{
             setStateStage(STAGES.indexOf('STAGE_TEST_OUTRO'))
+            setStateCurrency(0)
             setGameMode('Story')
             console.log('response from server: ', response)
         })
@@ -137,7 +138,7 @@ function CreateCharacter({user,setGameMode,setStateStage,saveGame}) {
                         </List>
                         <hr></hr>
                         <Typography sx={{ mt: 2, mb: 1 }} variant="h6" component="div">
-                            Stats,Spending: {spending}
+                            Dinero: {spending}
                         </Typography>
                         <List style={{ columns: 2}} dense={false}>
                             {generateStats(

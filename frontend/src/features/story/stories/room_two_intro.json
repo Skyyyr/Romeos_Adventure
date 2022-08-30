@@ -3,8 +3,13 @@
         "id": 0,
         "dialogue": "It looks like Zuckerborg has created uncomprehendable code! Solve this riddle to resolve the conflict, and move on!",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "elven_1", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "evil-raph-left" }
+        ],
         "options": [
             {
                 "id": 1,

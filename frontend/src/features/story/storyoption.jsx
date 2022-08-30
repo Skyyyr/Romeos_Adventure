@@ -1,13 +1,14 @@
 function StoryOption(props){
 
     return (
-    <div>
-        <div className='col-12 menu-section'>
-            <button onClick={() => props.clickFunction(props.option.id, props.id)} className={'menu-option'}>
-                {props.option.text}
-            </button>
-        </div>
-    </div>
+      <div className='col-12 menu-section p-0'>
+          <button
+            className={'menu-option'}
+            onClick={() => props.clickFunction(props.option.id, props.id)} 
+          >
+            {props.option.text}
+          </button>
+      </div>
     )
 }
 

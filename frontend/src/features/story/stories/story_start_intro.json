@@ -3,8 +3,13 @@
         "id": 0,
         "dialogue": "Hey, I'm Zack! Welcome to Romeo's Adventure and the land of Code Platoonia. Once a peaceful and prosperous land, Code Platoonia has fallen to the shadows. An evil villain known as 'Zuckerborg' has wreaked havoc and stolen the magical fork of Git. Code Platoonia needs your help. Can you help to restore the balance of Git? ",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "elven_2", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -18,6 +23,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 2,
@@ -31,6 +39,10 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "backend-forward" },
+          { "add": "zack-left" }
+        ],
         "options": [
             {
                 "id": 3,
@@ -42,8 +54,12 @@
         "id": 3,
         "dialogue": "Those who choose the path of React must decipher the type-less scrolls of ancient Platoonian Javascript. The unending questions that forever haunt them are, objects or arrays? To component or to not component? UseEffects, useRefs and Hooks, oh my!",
         "func": "",
-        "anim": false,
+        "anim": true,
         "animation_control": [],
+        "characters": [
+          { "add": "frontend-forward" },
+          { "add": "zack-left" }
+        ],
         "options": [
             {
                 "id": 4,
@@ -55,8 +71,12 @@
         "id": 4,
         "dialogue": "To be a Full Stack is to face the truth and your journey for balance. Trust of the backend views and frontend routes will lead you down a path of harmony. The choice is yours. Proceed to create your Romeo and customize him with 3 spending points.",
         "func": "",
-        "anim": false,
+        "anim": true,
         "animation_control": [],
+        "characters": [
+          { "add": "fullstack-forward" },
+          { "add": "zack-left" }
+        ],
         "options": [
             {
                 "id": 99,
@@ -68,8 +88,11 @@
         "id": 99,
         "dialogue": "",
         "func": "newGame",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "elven_2" }
+        ],
+        "characters": [],
         "options": [
         ]
     }

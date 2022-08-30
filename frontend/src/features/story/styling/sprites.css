@@ -1,0 +1,260 @@
+/* 
+0 - facing away
+64 - face left
+128 - face forward
+192 - face right
+
+
+*/
+
+
+.sprite {
+  z-index: 10;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
+}
+
+.raphael-away {
+  background: url(../../assets/raphael.png) 0px 0px;
+}
+.raphael-left {
+  background: url(../../assets/raphael.png) 0px -64px;
+}
+.raphael-forward {
+  background: url(../../assets/raphael.png) 0px -128px;
+}
+.raphael-right {
+  background: url(../../assets/raphael.png) 0px -192px;
+}
+
+.evil-raph-away {
+  background: url(../../assets/badraphael.png) 0px 0px;
+}
+.evil-raph-left {
+  background: url(../../assets/badraphael.png) 0px -64px;
+}
+.evil-raph-forward {
+  background: url(../../assets/badraphael.png) 0px -128px;
+}
+.evil-raph-right {
+  background: url(../../assets/badraphael.png) 0px -192px;
+}
+
+.zack-away {
+  background: url(../../assets/Zack.png) 0px 0px;
+}
+.zack-left {
+  background: url(../../assets/Zack.png) 0px -64px;
+}
+.zack-forward {
+  background: url(../../assets/Zack.png) 0px -128px;
+}
+.zack-right {
+  background: url(../../assets/Zack.png) 0px -192px;
+}
+
+.adam-away {
+  background: url(../../assets/adam.png) 0px 0px;
+}
+.adam-left {
+  background: url(../../assets/adam.png) 0px -64px;
+}
+.adam-forward {
+  background: url(../../assets/adam.png) 0px -128px;
+}
+.adam-right {
+  background: url(../../assets/adam.png) 0px -192px;
+}
+
+.skeleton-away {
+  background: url(../../assets/Enemy.png) 0px 0px;
+}
+.skeleton-left {
+  background: url(../../assets/Enemy.png) 0px -64px;
+}
+.skeleton-forward {
+  background: url(../../assets/Enemy.png) 0px -128px;
+}
+.skeleton-right {
+  background: url(../../assets/Enemy.png) 0px -192px;
+}
+
+.dragon-away {
+  background: url(../../assets/Enemy2.png) 0px 0px;
+}
+.dragon-left {
+  background: url(../../assets/Enemy2.png) 0px -64px;
+}
+.dragon-forward {
+  background: url(../../assets/Enemy2.png) 0px -128px;
+}
+.dragon-right {
+  background: url(../../assets/Enemy2.png) 0px -192px;
+}
+
+.boarman-away {
+  background: url(../../assets/BoarMan.png) 0px 0px;
+}
+.boarman-left {
+  background: url(../../assets/BoarMan.png) 0px -64px;
+}
+.boarman-forward {
+  background: url(../../assets/BoarMan.png) 0px -128px;
+}
+.boarman-right {
+  background: url(../../assets/BoarMan.png) 0px -192px;
+}
+
+.frontend-away {
+  background: url(../../assets/frontend.png) 0px 0px;
+}
+.frontend-left {
+  background: url(../../assets/frontend.png) 0px -64px;
+}
+.frontend-forward {
+  background: url(../../assets/frontend.png) 0px -128px;
+}
+.frontend-right {
+  background: url(../../assets/frontend.png) 0px -192px;
+}
+
+.backend-away {
+  background: url(../../assets/backend.png) 0px 0px;
+}
+.backend-left {
+  background: url(../../assets/backend.png) 0px -64px;
+}
+.backend-forward {
+  background: url(../../assets/backend.png) 0px -128px;
+}
+.backend-right {
+  background: url(../../assets/backend.png) 0px -192px;
+}
+
+.fullstack-away {
+  background: url(../../assets/fullstack.png) 0px 0px;
+}
+.fullstack-left {
+  background: url(../../assets/fullstack.png) 0px -64px;
+}
+.fullstack-forward {
+  background: url(../../assets/fullstack.png) 0px -128px;
+}
+.fullstack-right {
+  background: url(../../assets/fullstack.png) 0px -192px;
+}
+
+.garrett-away {
+  background: url(../../assets/Garrett.png) 0px 0px;
+}
+.garrett-left {
+  background: url(../../assets/Garrett.png) 0px -64px;
+}
+.garrett-forward {
+  background: url(../../assets/Garrett.png) 0px -128px;
+}
+.garrett-right {
+  background: url(../../assets/Garrett.png) 0px -192px;
+}
+
+.justin-away {
+  background: url(../../assets/Justin.png) 0px 0px;
+}
+.justin-left {
+  background: url(../../assets/Justin.png) 0px -64px;
+}
+.justin-forward {
+  background: url(../../assets/Justin.png) 0px -128px;
+}
+.justin-right {
+  background: url(../../assets/Justin.png) 0px -192px;
+}
+
+.meredith-away {
+  background: url(../../assets/Meredith.png) 0px 0px;
+}
+.meredith-left {
+  background: url(../../assets/Meredith.png) 0px -64px;
+}
+.meredith-forward {
+  background: url(../../assets/Meredith.png) 0px -128px;
+}
+.meredith-right {
+  background: url(../../assets/Meredith.png) 0px -192px;
+}
+
+.skyler-away {
+  background: url(../../assets/Skyler.png) 0px 0px;
+}
+.skyler-left {
+  background: url(../../assets/Skyler.png) 0px -64px;
+}
+.skyler-forward {
+  background: url(../../assets/Skyler.png) 0px -128px;
+}
+.skyler-right {
+  background: url(../../assets/Skyler.png) 0px -192px;
+}
+
+.zaynab-away {
+  background: url(../../assets/zaynab.png) 0px 0px;
+}
+.zaynab-left {
+  background: url(../../assets/zaynab.png) 0px -64px;
+}
+.zaynab-forward {
+  background: url(../../assets/zaynab.png) 0px -128px;
+}
+.zaynab-right {
+  background: url(../../assets/zaynab.png) 0px -192px;
+}
+
+.arena_1 {
+  background-image: url('../../assets/backgrounds/arena_1.png')
+}
+.arena_2 {
+  background-image: url('../../assets/backgrounds/arena_2.png')
+}
+.arena_3 {
+  background-image: url('../../assets/backgrounds/arena_3.png')
+}
+.arena_4 {
+  background-image: url('../../assets/backgrounds/arena_4.png')
+}
+.castle_1 {
+  background-image: url('../../assets/backgrounds/castle_1.png')
+}
+.castle_2 {
+  background-image: url('../../assets/backgrounds/castle_2.png')
+}
+.castle_3 {
+  background-image: url('../../assets/backgrounds/castle_3.png')
+}
+.castle_4 {
+  background-image: url('../../assets/backgrounds/castle_4.png')
+}
+.cave_1 {
+  background-image: url('../../assets/backgrounds/cave_1.png')
+}
+.cave_2 {
+  background-image: url('../../assets/backgrounds/cave_2.png')
+}
+.cave_3 {
+  background-image: url('../../assets/backgrounds/cave_3.png')
+}
+.cave_4 {
+  background-image: url('../../assets/backgrounds/cave_4.png')
+}
+.elven_1 {
+  background-image: url('../../assets/backgrounds/elven_1.png')
+}
+.elven_2 {
+  background-image: url('../../assets/backgrounds/elven_2.png')
+}
+.elven_3 {
+  background-image: url('../../assets/backgrounds/elven_3.png')
+}
+.elven_4 {
+  background-image: url('../../assets/backgrounds/elven_4.png')
+}

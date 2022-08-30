@@ -3,8 +3,13 @@
         "id": 0,
         "dialogue": "Much respect. Zaynab is a most formidable foe. Her red sword is infamous for its quick justice. This riddle up ahead is no local host.",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "cave_1", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "meredith-left" }
+        ],
         "options": [
         ]
     },

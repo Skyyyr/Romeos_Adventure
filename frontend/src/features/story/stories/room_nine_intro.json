@@ -1,9 +1,14 @@
 [
     {
         "id": 0,
-        "func": "This is your final riddle. You've got this!",
-        "anim": false,
-        "animation_control": [],
+        "func": "This is your final riddle. You shall never pass!!",
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "castle_1", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "evil-raph-left" }
+        ],
         "options": [
         ]
     },

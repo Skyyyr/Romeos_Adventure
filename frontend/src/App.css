@@ -262,39 +262,98 @@
   background: url(./features/assets/Zack.png) 0px -640px;
 }
 
+
+
+/* STORY DIALOGUE */ 
+
 .story-container{
   height: 100%;
   width: 100%;
-  background-image: url('./features/assets/field_night_bg.png');
+  /* background-image: url('./features/assets/field_night_bg.png'); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
 }
-
-.menu-section{
-  /* transform:translateY(370px); */
-
+.story-top{
+  height: 219px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.menu-option{
-  width:1000px;
-  height: 23%;
-
+#story-dialogue {
+  border-radius: 50px;
+  background-color: rgba(0,0,0,.4) !important;
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,.4) !important;
+  text-shadow: 1px 1px 2px black !important;
 }
-
-.evil-raph{
-  background: url(./features/assets/badraphael.png) 0px -577px;
-  z-index: 10;
-  width: 64px;
-  height: 64px;
-  transform: scale(2);
-}
-
-
-#story-top{
-  height: 419px;
+.story-middle{
+  height: 200px;
+  width: 60%;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .story-bottom{
   height: 181px;
 }
+
+.menu-option{
+  width: 1000px;
+  height: 45px;
+  border: solid 0px;
+  border-radius: 0px;
+  box-shadow: inset 0px 0px 1px 1px rgb(17,85,158);
+}
+
+.riddle-button {
+  height: 45.2px;
+}
+.menu-option:hover {
+  box-shadow: inset 0px 0px 2px 2px rgb(142,228,232);
+  background-color: white;  
+}
+
+#mainmenu-background-image{
+  background-image: url('./features/assets/homepage-adventure-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 2px 2px rgba(255,255,255,1);
+  position: relative;
+}
+
+
+.mainmenu-char{
+  z-index: 10;
+  width: 64px;
+  height: 64px;
+  transform: scale(2);
+  position: absolute;
+  left: 520px;
+  bottom: 200px;
+}
+
+.Adam-menu{
+  background: url(./features/assets/adam.png) 0px -640px;
+}
+
+.Zaynab-menu{
+  background: url(./features/assets/zaynab.png) 0px -640px;
+}
+
+.Raphael-menu{
+  background: url(./features/assets/raphael.png) 0px -640px;
+}
+
+.Zuckerborg-menu{
+  background: url(./features/assets/badraphael.png) 0px -640px;
+}
+
+
+
+
+
 

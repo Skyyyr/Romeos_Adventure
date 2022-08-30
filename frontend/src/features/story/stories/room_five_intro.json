@@ -3,8 +3,13 @@
         "id": 0,
         "dialogue": "Hi, my name is Meredith! Nice job! That won't be the last riddle you see. Zuckerborg left plenty of those around for you to solve. Coincidentally, the next obstacle is a riddle! Good luck!",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "cave_3", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "meredith-left" }
+        ],
         "options": [
         ]
     },

@@ -14,35 +14,43 @@ const style = {
   boxShadow: 24,
 };
 
-function RiddleMinigameModal({setGameMode, name, riddleID, gameData,getGameData,setStateStage}) {
+function RiddleMinigameModal({setGameMode,setStateCurrency, name, riddleID, gameData, getGameData , setStateStage, storyBG}) {
 
   const [ riddleOpen, setRiddleOpen ] = useState(false)
   const handleRiddleOpen = () => setRiddleOpen(true)
+  
   const handleRiddleClose = (condition = false) => {
     if (condition) {
       setStateStage(prev=>prev+1)
+      setStateCurrency(prev=>prev+3)
       setGameMode('MapView')
     }
+
+    const htmlElement = document.getElementById('dialogue-bg')
+    htmlElement.classList.remove(storyBG)
+
     setRiddleOpen(false)
   }
 
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="secondary"
+      <button
+        className={'menu-option riddle-button'}
         onClick={handleRiddleOpen}
       >
         {name ? name : "minigame"}
-        </Button>
+      </button>
       <Modal
         open={riddleOpen}
-        onClose={(reason) => {
-          if (reason != 'backdropClick') {
-            handleRiddleClose();
+        onClose={
+          (reason) => {
+            if (reason !== 'backdropClick') {
+              handleRiddleClose();
+            }
+
           }
-        }}
+        }
       >
         <Box sx={style}>
           <Riddle_Minigame 

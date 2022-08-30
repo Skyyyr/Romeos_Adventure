@@ -16,7 +16,6 @@ function Home( {user} ) {
       opacity: 0.8,
     }
 
-
     return (
       <div className="page-container">
         <div id="homepage-background-image" style={{position:'relative'}}>

@@ -24,6 +24,7 @@ export default function DeleteWarning({gameData, deleteChar, setGameMode}) {
       <Button 
         variant="contained"
         color="secondary"
+        sx={{'margin':'2px'}}
         onClick={()=>((gameData && gameData.type) ? handleClickOpen() : setGameMode("Story"))}
       >
         New Game

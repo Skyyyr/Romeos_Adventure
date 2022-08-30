@@ -3,8 +3,13 @@
         "id": 0,
         "dialogue": "Lookin' good! Zuckerborg’s powers have compelled many to his side and you must use your wits and battle sense to put an end to his evil reign. There are many obstacles in your path. You will do battle with Zuckerborg's minions and use your Platoonian knowledge to answer riddles. Progress through each obstacle by clicking on each button on the map. Earn dinero with each victory, and spend it on getting hints to riddles or increasing your stats. ",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "elven_4", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -31,6 +36,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 3,
@@ -52,6 +60,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -73,6 +84,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-forward" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -90,10 +104,14 @@
     },
     {
         "id": 2,
-        "dialogue": "Let's test your skills. There's an enemy lurking that you must pass!",
+        "dialogue": "Let's test your skills. See if you can take out this rampant BoarMan!",
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "zack-right" },
+          { "add": "boarman-left" }
+        ],
         "options": [
             {
                 "id": 99,
@@ -105,8 +123,11 @@
         "id": 99,
         "dialogue": "",
         "func": "battle",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "elven_4" }
+        ],
+        "characters": [],
         "options": [
         ]
     }

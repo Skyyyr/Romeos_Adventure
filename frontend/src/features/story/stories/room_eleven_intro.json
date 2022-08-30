@@ -3,8 +3,14 @@
         "id": 0,
         "dialogue": "CONGRATU......What could this be? Is Zuckerborg revealing his true form? Is that Zuckerborg's true identity? Is that who I think it is?",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "castle_3", "anim_remove": "" }
+        ],
+        "characters": [
+          { "add": "meredith-right" },
+          { "add": "raphael-away" }
+        ],
         "options": [
             {
                 "id": 1,
@@ -13,11 +19,13 @@
         ]
     },
     {
-        "id": 2,
+        "id": 1,
         "dialogue": "",
         "func": "battle",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "", "anim_remove": "castle_3" }
+        ],
         "options": [
         ]
     }

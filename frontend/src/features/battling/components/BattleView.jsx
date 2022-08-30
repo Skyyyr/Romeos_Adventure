@@ -11,7 +11,7 @@ import { STAGES } from '../../../Components/Stages'
 import Animation from '../helpers/Animation'
 import { walkRight, walkLeft, whiteHit, fireHit, getAttackAnimation } from '../helpers/AnimationConstants'
 
-function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
+function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode,stateStage}) {
 
     
     const [romeoStats, setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
@@ -54,9 +54,11 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
                 await wait(3000)
                 if(stateStage===STAGES.indexOf('STAGE_11_BATTLE')){
                   setStateStage(prev=>prev+1)
+                  setStateCurrency(prev=>prev+3)
                   setGameMode('Story')
                 }else{
                   setStateStage(prev=>prev+1)
+                  setStateCurrency(prev=>prev+3)
                   setGameMode('MapView')
                 }
             }
@@ -82,11 +84,11 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
     const inflictDamage = async (move) => {
         const damage = Damage(turn, romeoStats, enemyData.STATS, move)
         if(turn === "Player One"){
-            setCurrAttack(`Romeo used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
+            setCurrAttack(`Romeo used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
         }
         else if(turn === "Player Two"){
-            setCurrAttack(`Player Two used ${move.name} it did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
+            setCurrAttack(`${enemyData.NAME} used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
             setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
         }
         if (damage === 0) return false
@@ -226,13 +228,13 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
     }
 
     return (
-        <>
-            <div className='row  m-0 align-items-center' style={{'height':'20%'}}>
-                <div className='col-3'>
+        <div className={`${enemyData.BACKGROUND} battle-background`}>
+            <div className='d-flex m-0 py-5 align-items-center' style={{'height':'20%'}}>
+                <div className='mx-4' style={{width:'240px'}}>
                     <Bar label="Romeo" value={romeoHealth}/>
                 </div>
-                <div className='col-6 justify-content-center align-items-center'>
-                    <div>
+                <div className='mx-auto justify-content-center align-items-center'>
+                    <div className="turn-display">
                         <Typography variant="h4">
                           Turn
                         </Typography>
@@ -242,11 +244,11 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
                         </Typography>
                     </div>
                 </div>
-                <div className='col-3'>
+                <div className='mx-4'  style={{width:'240px'}}>
                     <Bar label={enemyData.NAME} value={enemyHealth}/>
                 </div> 
             </div>
-            <div className='row m-0 align-items-end' id="battle-background" style={{'height':'40%'}}>
+            <div className="row m-0 align-items-end" id="battle-background" style={{'height':'40%'}}>
                 <div className='wrapper'>
                     <div className ="row align-items-center justify-content-center" style={{'width':"300px", 'height': "200px"}}>
                         <div id='canvas-container' className={`${playerMoveEffect} ${playerFlip}`}>
@@ -292,6 +294,7 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
                       romeoMoves.map(elem => 
                         <Tooltip 
                           disableInteractive
+                          leaveTouchDelay='0'
                           title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}
                         >
                           <Button 
@@ -325,7 +328,7 @@ function BattleView({gameData,setStateStage, enemy, setGameMode,stateStage}) {
             <Button color="secondary" variant="contained" onClick={()=>(setRomeoHealth(0))}>
                 Dev-Lose
             </Button>
-        </>
+        </div>
     )
 }
 
