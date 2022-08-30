@@ -27,7 +27,7 @@ export default function StatBar({statName, val,stats, addStat, removeStat}) {
         '& > legend': { mt: 2 },
       }}
     >
-    <Typography component="legend">{statName}:{stats[val]}</Typography>
+    <Typography component="legend">{statName}: {stats[val]}</Typography>
         <Icon 
             component='a'
             style={{'color':'rgb(8,39,73)'}}
