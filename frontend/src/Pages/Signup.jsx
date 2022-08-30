@@ -119,6 +119,7 @@ export default function SignUp() {
             fullWidth
             id="firstName"
             label="First Name"
+            error = {((firstNameInput=="" || !firstNameInputVal) && signUpAttempt)}
             helperText={((firstNameInput=="" || !firstNameInputVal) && signUpAttempt) ? `Must be at least ${firstNameMinLen} characters` : ''}
             onChange={(e)=>(setFirstNameInput(e.target.value),setFirstNameInputVal(e.target.value.length>=firstNameMinLen))}
           />
