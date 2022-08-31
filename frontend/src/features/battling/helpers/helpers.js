@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 export const wait = ms =>
   new Promise(resolve => {
     setTimeout(() => {
@@ -21,6 +23,12 @@ export function Damage(turn, romeoStats, enemyStats, move){
   if(perc>hitProb)
       return 0
 
+  const decisiveStrike = (Math.random() * (100 - 1) + 1)
+  if(decisiveStrike > 95)
+    return 999
+
   return damage
 }
+
+
 

@@ -17,7 +17,8 @@ function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode
     const [romeoStats, setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
     const [romeoMoves, setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
     const [enemyData, setEnemyData] = useState(getEnemyData(enemy))
-    const [turn, setTurn] = useState('Player One')
+    const startTurn = Math.random() < 0.5
+    const [turn, setTurn] = useState(startTurn ? 'Player One' : 'Player Two')
     const [romeoHealth, setRomeoHealth] = useState(100)
     const [enemyHealth, setEnemyHealth] = useState(100)
     const [currAttack, setCurrAttack] = useState('')
@@ -86,12 +87,21 @@ function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode
     const inflictDamage = async (move) => {
         const damage = Damage(turn, romeoStats, enemyData.STATS, move)
         if(turn === "Player One"){
+          if(damage === 999){
+            setCurrAttack(`Romeo used ${move.name}. It was a decisive strike!!!`)
+          }else{
             setCurrAttack(`Romeo used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
-            setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
+          }
+          setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
         }
         else if(turn === "Player Two"){
+          if(damage === 999){
+            setCurrAttack(`${enemyData.NAME} used ${move.name}. It was a decisive strike!!!`)
+          }else{
             setCurrAttack(`${enemyData.NAME} used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
-            setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
+          }
+          setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
+          
         }
         if (damage === 0) return false
         else return true
