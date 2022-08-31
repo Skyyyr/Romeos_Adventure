@@ -1,7 +1,8 @@
 [
     {
         "id": 0,
-        "func": "This is your final riddle. You shall never pass!!",
+        "dialogue": "This is your final riddle. You shall never pass!!",
+        "func": "",
         "anim": true,
         "animation_control": [
           { "html": "dialogue-bg", "anim_add": "castle_1", "anim_remove": "" }

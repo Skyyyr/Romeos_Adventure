@@ -17,8 +17,9 @@ import roomnineintro from "../story/stories/room_nine_intro.json"
 import roomtenintro from "../story/stories/room_ten_intro.json"
 import roomelevenintro from "../story/stories/room_eleven_intro.json"
 import gameisbeaten from "../story/stories/game_is_beaten.json"
+import { wait } from '../battling/helpers/helpers';
 
-import { Typography } from "@mui/material"
+import {  Typography } from "@mui/material"
 
 import { STAGES } from "../../Components/Stages"
 import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
@@ -27,7 +28,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     
     const [playerSprite, setPlayerSprite] = useState(true)
     const [sprites, setSprites] = useState('')
-    const [playerChoices, setPlayerChoices] = useState('')
+    const [playerChoices, setPlayerChoices] = useState(startintro[0])
     const [convo, setConvo] = useState('')
     // const fullConvo = useRef()
     const [jsonStory, setJsonStory] = useState('')
@@ -41,14 +42,29 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     ]
 
     function updateMenu(clickedOptionId) {
-        
+
         for (let i = 0; i < jsonStory.length; i++) {
             if (jsonStory[i]['id'] === clickedOptionId) {
                 setPlayerChoices(jsonStory[i])
                 handleFunction(jsonStory[i]['func'])
                 // fullConvo.current = createNpcDialog(jsonStory[i]['dialogue'])
-                setConvo(createNpcDialog(jsonStory[i]['dialogue']))
+                //setConvo(createNpcDialog(jsonStory[i]['dialogue']))
+                
+                let dialog = jsonStory[i]['dialogue']
+                
+                if (dialog.length) {
+                    (async () => {
+                      let dispConvo = '';
+                      for (let i = 0; i < dialog.length; i++) {
+                        await wait(5);
+                        dispConvo = dispConvo + dialog[i];
+                        setConvo(createNpcDialog(dispConvo))
+                      }
+                    })();
+                  }
+                  console.log("testing testing", jsonStory)
                 if (jsonStory[i]["anim"]) {
+                    
                     for (let j = 0; j < jsonStory[i]['animation_control'].length; j++) {
                         handleAnimation(
                             jsonStory[i]['animation_control'][j]['html'],
@@ -79,6 +95,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
                 setJsonStory(roomtwointro)
                 break
             case STAGES.indexOf('STAGE_3_CONVO'):
+                console.log('stage 3 convo')
                 setJsonStory(roomthreeintro)
                 break
             case STAGES.indexOf('STAGE_4_CONVO'):
@@ -118,7 +135,6 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     function handleAnimation(requestedHtml, requestedAnimationAdd, requestedAnimationRemove) {
         console.log(requestedHtml)
         const htmlElement = document.getElementById(requestedHtml)
-
         if (requestedAnimationRemove !== "") {
             htmlElement.classList.remove(requestedAnimationRemove)
         }        
@@ -135,7 +151,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
         if(riddleStages.includes(stateStage)){
             htmlContent.push(
               <div className='col-12 menu-section'>
-                <RiddleMinigameModal
+              <RiddleMinigameModal
                 currency={gameData.currency}
                 setGameMode={setGameMode}
                 name={"Attempt the Riddle"}
@@ -143,7 +159,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
                 gameData={gameData}
                 getGameData={getGameData}
                 setStateStage={setStateStage}
-                storyBG={jsonStory[0]['animation_control'][0]['anim_add']}
+                //storyBG={jsonStory[0]['animation_control'][0]['anim_add']}
                 setStateCurrency={setStateCurrency}
                 />
               </div>
@@ -153,18 +169,20 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     }
 
     function createNpcDialog(dialog) {
-        return <div className={'dialog text-center'}>{dialog}</div>
+        return <div  className={'dialog text-center'}>{dialog}</div>
     }
 
     useEffect(()=>{
         determineStage()
     },[])
 
+
     useEffect(() => {
-      if (jsonStory !== '') {
-        updateMenu(0)
-        setConvo(createNpcDialog(jsonStory[0]['dialogue']))        
-      }
+        if (jsonStory !== '') {
+            updateMenu(0)
+            setConvo(createNpcDialog(jsonStory[0]['dialogue']))
+        }
+
     }, [jsonStory])
 
     // const textFrame = useRef(0)
@@ -194,6 +212,8 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     //   }
     // })
 
+
+
     function handleFunction(requestedFunction) {
         switch (requestedFunction) {
             case 'battle':
@@ -206,62 +226,55 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
                 break
             case 'newGame':
                 setGameMode("Character")
-                break
-            // case 'createSprites':
-            //     displaySprites()
-            //     break
             default:
                 ///console.log("DEFAULT")
                 break
         }
     }
 
-    // function displaySprites() {
-
-    // }
     useEffect( () => {
-      if (playerChoices !== '') {
-        let arr = []
-        console.log('myconsolelog', playerChoices.characters)
-        for (let i = 0; i < playerChoices.characters.length; i++) {
-          arr.push(
-            <div 
-              className={`sprite ${playerChoices.characters[i].add}`}
-            ></div>
-          )
+        if (playerChoices !== '') {
+          let arr = []
+          console.log('myconsolelog', playerChoices.characters)
+          for (let i = 0; i < playerChoices.characters.length; i++) {
+            arr.push(
+              <div 
+                className={`sprite ${playerChoices.characters[i].add}`}
+              ></div>
+            )
+          }
+          setSprites(arr)
         }
-        setSprites(arr)
-      }
-    }, [playerChoices])
+      }, [playerChoices])
 
     return (
         <div className="story-container" id="dialogue-bg">
-            <div className="row story-top">
-              { convo ?
-                  <Typography 
-                    variant="h6"
-                    sx={{width:'95%'}}
-                    id="story-dialogue"
-                  >
-                    {convo}
-                  </Typography>
-                : null }
-            </div>
-            <div className="story-middle">
-              { 
-                gameData && playerSprite && 
-                  <div id="player-sprite" className={`sprite ${gameData.type}-right`}></div>
-              }
-             
-              {sprites}
-            </div>
-            <div className="row story-bottom d-flex flex-column justify-content-end">
-                {playerChoices ?
-                  createMenuOptions(playerChoices.options)
-                : null }
-            </div>
-            
+        <div className="row story-top">
+          { convo ?
+              <Typography 
+                variant="h6"
+                sx={{width:'95%'}}
+                id="story-dialogue"
+              >
+                {convo}
+              </Typography>
+            : null }
         </div>
+        <div className="story-middle">
+          { 
+            gameData && playerSprite && 
+              <div id="player-sprite" className={`sprite ${gameData.type}-right`}></div>
+          }
+         
+          {sprites}
+        </div>
+        <div className="row story-bottom d-flex flex-column justify-content-end">
+            {playerChoices ?
+              createMenuOptions(playerChoices.options)
+            : null }
+        </div>
+        
+    </div>
        
     )
 }

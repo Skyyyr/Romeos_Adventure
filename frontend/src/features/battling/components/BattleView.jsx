@@ -7,17 +7,18 @@ import Button from "@mui/material/Button"
 import { Typography, Tooltip } from '@mui/material'
 import {wait, Damage} from '../helpers/helpers'
 import { STAGES } from '../../../Components/Stages'
+import React from 'react'
 
 import Animation from '../helpers/Animation'
 import { walkRight, walkLeft, whiteHit, fireHit, getAttackAnimation } from '../helpers/AnimationConstants'
 
 function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode,stateStage}) {
 
-    
     const [romeoStats, setRomeoStats] = useState({'accuracy':gameData.accuracy,'defense':gameData.defense,'evasion':gameData.evasion,'strength':gameData.strength})
     const [romeoMoves, setRomeoMoves] = useState(getCharacterData(gameData.type).MOVES)
     const [enemyData, setEnemyData] = useState(getEnemyData(enemy))
-    const [turn, setTurn] = useState('Player One')
+    const startTurn = Math.random() < 0.5
+    const [turn, setTurn] = useState(startTurn ? 'Player One' : 'Player Two')
     const [romeoHealth, setRomeoHealth] = useState(100)
     const [enemyHealth, setEnemyHealth] = useState(100)
     const [currAttack, setCurrAttack] = useState('')
@@ -75,21 +76,32 @@ function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode
     }
 
     const enemyAttack = (move) => {
+      if(enemyHealth > 0){
         let atkAnim = getAttackAnimation(move.label)
         if (move.type === 'melee') enemyMelee(move, atkAnim)
         if (move.type === 'ranged') enemyRanged(move, atkAnim)
         if (move.type === 'magic') enemyMagic(move, atkAnim)
+      }
     }
 
     const inflictDamage = async (move) => {
         const damage = Damage(turn, romeoStats, enemyData.STATS, move)
         if(turn === "Player One"){
+          if(damage === 999){
+            setCurrAttack(`Romeo used ${move.name}. It was a decisive strike!!!`)
+          }else{
             setCurrAttack(`Romeo used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
-            setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
+          }
+          setEnemyHealth(val => (val - damage) < 0 ? 0 : (val - damage))
         }
         else if(turn === "Player Two"){
+          if(damage === 999){
+            setCurrAttack(`${enemyData.NAME} used ${move.name}. It was a decisive strike!!!`)
+          }else{
             setCurrAttack(`${enemyData.NAME} used ${move.name}. It did ${damage} damage${damage === 0 ? ', it missed.' : '.'}`)
-            setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
+          }
+          setRomeoHealth(val => (val - damage) < 0 ? 0 : (val - damage))
+          
         }
         if (damage === 0) return false
         else return true
@@ -294,8 +306,8 @@ function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode
                       romeoMoves.map(elem => 
                         <Tooltip 
                           disableInteractive
-                          leaveTouchDelay='0'
-                          title={`Power: ${elem.power}, Accuracy: ${elem.accuracy}`}
+                          enterTouchDelay={50}
+                          title={(turn === "Player One" && !disabled) ? `Power: ${elem.power}, Accuracy: ${elem.accuracy}` : ''}
                         >
                           <Button 
                             id={elem.name}
