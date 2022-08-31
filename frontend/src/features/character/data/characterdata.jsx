@@ -1,10 +1,10 @@
 //function to return characters,stats,moves
 export function getCharacterData(character) {
-    const moveAccFront = [70,80,90]
+    const moveAccFront = [92,79,72]
     const expValFront = 30
-    const moveAccBack = [70,80,90]
+    const moveAccBack = [89,82,74]
     const expValBack = 30
-    const moveAccFull = [70,80,90]
+    const moveAccFull = [91,83,71]
     const expValFull = 30
 
     switch (character) {

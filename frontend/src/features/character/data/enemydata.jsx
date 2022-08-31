@@ -2,19 +2,19 @@ import { STAGES } from "../../../Components/Stages"
 
 //function to return characters,stats,moves
 export function getEnemyData(enemy) {
-    const moveAccRaph = [70,80,90]
+    const moveAccRaph = [90,83,68]
     const expValRaph = 30
-    const moveAccZuck = [70,80,90]
+    const moveAccZuck = [91,77,71]
     const expValZuck = 30
-    const moveAccAdam = [70,80,90]
+    const moveAccAdam = [89,81,72]
     const expValAdam = 30
-    const moveAccZaynab = [70,80,90]
+    const moveAccZaynab = [92,82,70]
     const expValZaynab = 30
-    const moveAccSkel = [70,80,90]
+    const moveAccSkel = [88,78,69]
     const expValSkel = 30
-    const moveAccBoar = [70,80,90]
+    const moveAccBoar = [93,79,67]
     const expValBoar = 30
-    const moveAccDrag = [70,80,90]
+    const moveAccDrag = [87,80,73]
     const expValDrag = 30
     switch (enemy) {
         case STAGES.indexOf('STAGE_11_BATTLE'):
