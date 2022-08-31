@@ -19,18 +19,19 @@ import roomelevenintro from "../story/stories/room_eleven_intro.json"
 import gameisbeaten from "../story/stories/game_is_beaten.json"
 import { wait } from '../battling/helpers/helpers';
 
-import { stepConnectorClasses, Typography } from "@mui/material"
+import {  Typography } from "@mui/material"
 
 import { STAGES } from "../../Components/Stages"
 import RiddleMinigameModal from "../riddle_minigame/RiddleMinigameModal"
 
 function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStateStage, getGameData}) {
     
-
+    const [playerSprite, setPlayerSprite] = useState(true)
+    const [sprites, setSprites] = useState('')
     const [playerChoices, setPlayerChoices] = useState(startintro[0])
     const [convo, setConvo] = useState('')
     // const fullConvo = useRef()
-    const [jsonStory, setJsonStory] = useState(startintro)
+    const [jsonStory, setJsonStory] = useState('')
     const [background, setBackground] = useState('')
     const riddleStages = [
         STAGES.indexOf('STAGE_2_CONVO'),
@@ -42,26 +43,28 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
 
     function updateMenu(clickedOptionId) {
 
-        setConvo('')
-        
         for (let i = 0; i < jsonStory.length; i++) {
             if (jsonStory[i]['id'] === clickedOptionId) {
                 setPlayerChoices(jsonStory[i])
                 handleFunction(jsonStory[i]['func'])
                 // fullConvo.current = createNpcDialog(jsonStory[i]['dialogue'])
                 //setConvo(createNpcDialog(jsonStory[i]['dialogue']))
+                
                 let dialog = jsonStory[i]['dialogue']
+                
                 if (dialog.length) {
                     (async () => {
                       let dispConvo = '';
                       for (let i = 0; i < dialog.length; i++) {
-                        await wait(1);
+                        await wait(5);
                         dispConvo = dispConvo + dialog[i];
                         setConvo(createNpcDialog(dispConvo))
                       }
                     })();
                   }
+                  console.log("testing testing", jsonStory)
                 if (jsonStory[i]["anim"]) {
+                    
                     for (let j = 0; j < jsonStory[i]['animation_control'].length; j++) {
                         handleAnimation(
                             jsonStory[i]['animation_control'][j]['html'],
@@ -78,9 +81,11 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     function determineStage(){
         switch(stateStage){
             case STAGES.indexOf('STAGE_TEST_INTRO'):
+                setPlayerSprite(false)
                 setJsonStory(startintro)
                 break
             case STAGES.indexOf('STAGE_TEST_OUTRO'):
+                setPlayerSprite(false)
                 setJsonStory(startoutro)
                 break
             case STAGES.indexOf('STAGE_1_CONVO'):
@@ -146,7 +151,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
         if(riddleStages.includes(stateStage)){
             htmlContent.push(
               <div className='col-12 menu-section'>
-                <RiddleMinigameModal
+              <RiddleMinigameModal
                 currency={gameData.currency}
                 setGameMode={setGameMode}
                 name={"Attempt the Riddle"}
@@ -154,7 +159,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
                 gameData={gameData}
                 getGameData={getGameData}
                 setStateStage={setStateStage}
-                storyBG={jsonStory[0]['animation_control'][0]['anim_add']}
+                //storyBG={jsonStory[0]['animation_control'][0]['anim_add']}
                 setStateCurrency={setStateCurrency}
                 />
               </div>
@@ -164,7 +169,7 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     }
 
     function createNpcDialog(dialog) {
-        return <div id="story-dialogue" className={'dialog text-center'}>{dialog}</div>
+        return <div  className={'dialog text-center'}>{dialog}</div>
     }
 
     useEffect(()=>{
@@ -173,9 +178,10 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
 
 
     useEffect(() => {
-
-        updateMenu(0)
-        setConvo(createNpcDialog(jsonStory[0]['dialogue']))
+        if (jsonStory !== '') {
+            updateMenu(0)
+            setConvo(createNpcDialog(jsonStory[0]['dialogue']))
+        }
 
     }, [jsonStory])
 
@@ -226,25 +232,49 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
         }
     }
 
+    useEffect( () => {
+        if (playerChoices !== '') {
+          let arr = []
+          console.log('myconsolelog', playerChoices.characters)
+          for (let i = 0; i < playerChoices.characters.length; i++) {
+            arr.push(
+              <div 
+                className={`sprite ${playerChoices.characters[i].add}`}
+              ></div>
+            )
+          }
+          setSprites(arr)
+        }
+      }, [playerChoices])
+
     return (
         <div className="story-container" id="dialogue-bg">
-            <div className="row story-top">
+        <div className="row story-top">
+          { convo ?
               <Typography 
                 variant="h6"
                 sx={{width:'95%'}}
+                id="story-dialogue"
               >
                 {convo}
               </Typography>
-            </div>
-            <div className="story-middle">
-              <div id="player-sprite" className="evil-raph-forward sprite"></div>
-              <div id="NPC-sprite" className="evil-raph-forward sprite"></div>
-            </div>
-            <div className="row story-bottom d-flex flex-column justify-content-end">
-                {createMenuOptions(playerChoices.options)}
-            </div>
-            
+            : null }
         </div>
+        <div className="story-middle">
+          { 
+            gameData && playerSprite && 
+              <div id="player-sprite" className={`sprite ${gameData.type}-right`}></div>
+          }
+         
+          {sprites}
+        </div>
+        <div className="row story-bottom d-flex flex-column justify-content-end">
+            {playerChoices ?
+              createMenuOptions(playerChoices.options)
+            : null }
+        </div>
+        
+    </div>
        
     )
 }
