@@ -15,15 +15,15 @@
         ],
         "options": [
             {
-                "id": 2,
-                "text": "Time to go home!"
+                "id": 1,
+                "text": "Say goodbye to everyone!"
             }
         ]
     },
     {
-        "id": 2,
-        "dialogue": "",
-        "func": "endGame",
+        "id": 1,
+        "dialogue": "Now the Fork has been restored! Go fork something!",
+        "func": "",
         "anim": false,
         "animation_control": [],
         "characters": [
@@ -32,6 +32,20 @@
           { "add": "skyler-left" },
           { "add": "justin-left" }
         ],
+        "options": [
+          {
+            "id": 2,
+            "text": "Fork Repo"
+          }
+        ]
+    },
+    {
+        "id": 2,
+        "dialogue": "",
+        "func": "endGame",
+        "anim": false,
+        "animation_control": [],
+        "characters": [],
         "options": [
         ]
     }
