@@ -3,10 +3,15 @@
         "id": 0,
         "dialogue": "Wow! The people of Code Platoonia could not be more grateful for your help! The magical fork has been restored, Raphael has been banished and all of Code Platoonia can now fork their repos! Congratulations!!!",
         "func": "",
-        "anim": false,
-        "animation_control": [],
+        "anim": true,
+        "animation_control": [
+          { "html": "dialogue-bg", "anim_add": "castle_3", "anim_remove": "" }
+        ],
         "characters": [
-          { "add": "meredith-left" }
+          { "add": "meredith-left" },
+          { "add": "garrett-left" },
+          { "add": "skyler-left" },
+          { "add": "justin-left" }
         ],
         "options": [
             {
@@ -22,7 +27,10 @@
         "anim": false,
         "animation_control": [],
         "characters": [
-          { "add": "meredith-left" }
+          { "add": "meredith-left" },
+          { "add": "garrett-left" },
+          { "add": "skyler-left" },
+          { "add": "justin-left" }
         ],
         "options": [
         ]
