@@ -12,14 +12,5 @@
         ],
         "options": [
         ]
-    },
-    {
-        "id": 2,
-        "dialogue": "",
-        "func": "",
-        "anim": false,
-        "animation_control": [],
-        "options": [
-        ]
     }
 ]

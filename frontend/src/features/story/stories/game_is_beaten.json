@@ -5,6 +5,9 @@
         "func": "",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "meredith-left" }
+        ],
         "options": [
             {
                 "id": 2,
@@ -18,6 +21,9 @@
         "func": "endGame",
         "anim": false,
         "animation_control": [],
+        "characters": [
+          { "add": "meredith-left" }
+        ],
         "options": [
         ]
     }

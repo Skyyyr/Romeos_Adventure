@@ -237,7 +237,6 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
     useEffect( () => {
         if (playerChoices !== '') {
           let arr = []
-          console.log('myconsolelog', playerChoices.characters)
           for (let i = 0; i < playerChoices.characters.length; i++) {
             arr.push(
               <div 
