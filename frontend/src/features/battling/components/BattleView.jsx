@@ -334,12 +334,19 @@ function BattleView({gameData,setStateStage, enemy,setStateCurrency, setGameMode
                     <Typography variant='h5'>{currAttack}</Typography>
                 </div>
             </div>
-            <Button color="secondary" variant="contained" onClick={()=>(setEnemyHealth(0))}>
-                Dev-Win
-            </Button>
-            <Button color="secondary" variant="contained" onClick={()=>(setRomeoHealth(0))}>
-                Dev-Lose
-            </Button>
+          {
+            gameData.user === 1 ?
+            <>
+              <Button color="secondary" variant="contained" onClick={()=>(setEnemyHealth(0))}>
+                  Dev-Win
+              </Button>
+              <Button color="secondary" variant="contained" onClick={()=>(setRomeoHealth(0))}>
+                  Dev-Lose
+              </Button>
+            </>
+              :
+            ""
+          }
         </div>
     )
 }
