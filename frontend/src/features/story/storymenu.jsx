@@ -226,6 +226,8 @@ function StoryMenu({setGameMode, stateStage, gameData, setStateCurrency, setStat
                 break
             case 'newGame':
                 setGameMode("Character")
+            case 'endGame':
+                setGameMode("MapView")
             default:
                 ///console.log("DEFAULT")
                 break
