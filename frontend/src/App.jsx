@@ -74,7 +74,7 @@ function App() {
               <Routes>
                 <Route 
                   exact path='/' 
-                  element={<Home user={user} />} 
+                  element={<Home user={user} gameData={gameData} />}
                 />
                 <Route 
                   exact path='/signup' 

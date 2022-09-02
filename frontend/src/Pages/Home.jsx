@@ -4,7 +4,7 @@ import RomeoLogo from '../features/assets/romeologo.png';
 import BackgroundImage from '../features/assets/homepage-adventure-background.jpg';
 import Logo from '../features/assets/romeologo.svg';
 
-function Home( {user} ) {
+function Home( {user, gameData} ) {
 
     const imageAttr = "https://www.freepik.com/free-vector/blank-nature-park-landscape-scene-daytime_16879862.htm#query=nature%20banner&position=10&from_view=keyword"
     const imageAttrStyle = {
@@ -29,10 +29,8 @@ function Home( {user} ) {
           </div>
           <div className="d-flex justify-content-center align-items-center" style={{height:'216px'}}>
             {
-              user.id === 1 ?
+              gameData && gameData.user === 1 &&
                 <h1>DEV MODE</h1>
-                :
-                ""
             }
             { user ?
               <>
