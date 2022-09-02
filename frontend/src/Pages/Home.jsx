@@ -28,10 +28,6 @@ function Home( {user, gameData} ) {
             </div>
           </div>
           <div className="d-flex justify-content-center align-items-center" style={{height:'216px'}}>
-            {
-              gameData && gameData.user === 1 &&
-                <h1>DEV MODE</h1>
-            }
             { user ?
               <>
                 <Link to="/game">
